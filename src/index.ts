@@ -1,6 +1,9 @@
 import express from "express";
 import { PrismaClient } from "../generated/client";
 import userRoutes from "./routes/userRouter";
+import courseRoutes from "./routes/courseRouters";
+import semesterRouter from "./routes/semesterRouter";
+import branchRouter from "./routes/branchRouters";
 
 const prisma = new PrismaClient();
 const app = express();
@@ -24,7 +27,20 @@ async function main() {
 main().catch(console.error);
 
 
-app.use("/api", userRoutes);
+app.use("/user", userRoutes);
+app.use("/student", userRoutes);
+app.use("/faculty", userRoutes);
+app.use("/admin", userRoutes);
+app.use("/course", courseRoutes);
+app.use("/attendance", userRoutes);
+app.use("/semester", semesterRouter);
+app.use("/branch", branchRouter);
+
+
+
+
+
+
 
 
 
