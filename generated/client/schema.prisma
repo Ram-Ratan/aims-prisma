@@ -23,8 +23,10 @@ model Student {
   id               String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   rollNo           String                      @unique
   fullName         String
-  semester         String
-  branch           String
+  semesterId       String                      @db.Uuid
+  semester         Semester                    @relation(fields: [semesterId], references: [id])
+  branchId         String                      @db.Uuid
+  branch           Branch                      @relation(fields: [branchId], references: [id])
   mobileNo         String
   email            String
   user             User                        @relation(fields: [userId], references: [id])
@@ -55,12 +57,14 @@ model Semester {
   id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   sem    Int      @unique
   course Course[]
+  student Student[]
 }
 
 model Branch {
   id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name   String   @unique
   course Course[]
+  student Student[]
 }
 
 model Course {

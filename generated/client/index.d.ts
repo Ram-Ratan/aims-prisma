@@ -1703,10 +1703,12 @@ export namespace Prisma {
 
   export type SemesterCountOutputType = {
     course: number
+    student: number
   }
 
   export type SemesterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | SemesterCountOutputTypeCountCourseArgs
+    student?: boolean | SemesterCountOutputTypeCountStudentArgs
   }
 
   // Custom InputTypes
@@ -1730,6 +1732,14 @@ export namespace Prisma {
   }
 
 
+  /**
+   * SemesterCountOutputType without action
+   */
+  export type SemesterCountOutputTypeCountStudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentWhereInput
+  }
+
+
 
   /**
    * Count Type BranchCountOutputType
@@ -1737,10 +1747,12 @@ export namespace Prisma {
 
   export type BranchCountOutputType = {
     course: number
+    student: number
   }
 
   export type BranchCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | BranchCountOutputTypeCountCourseArgs
+    student?: boolean | BranchCountOutputTypeCountStudentArgs
   }
 
   // Custom InputTypes
@@ -1761,6 +1773,14 @@ export namespace Prisma {
    */
   export type BranchCountOutputTypeCountCourseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CourseWhereInput
+  }
+
+
+  /**
+   * BranchCountOutputType without action
+   */
+  export type BranchCountOutputTypeCountStudentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StudentWhereInput
   }
 
 
@@ -2813,8 +2833,8 @@ export namespace Prisma {
     id: string | null
     rollNo: string | null
     fullName: string | null
-    semester: string | null
-    branch: string | null
+    semesterId: string | null
+    branchId: string | null
     mobileNo: string | null
     email: string | null
     userId: string | null
@@ -2824,8 +2844,8 @@ export namespace Prisma {
     id: string | null
     rollNo: string | null
     fullName: string | null
-    semester: string | null
-    branch: string | null
+    semesterId: string | null
+    branchId: string | null
     mobileNo: string | null
     email: string | null
     userId: string | null
@@ -2835,8 +2855,8 @@ export namespace Prisma {
     id: number
     rollNo: number
     fullName: number
-    semester: number
-    branch: number
+    semesterId: number
+    branchId: number
     mobileNo: number
     email: number
     userId: number
@@ -2848,8 +2868,8 @@ export namespace Prisma {
     id?: true
     rollNo?: true
     fullName?: true
-    semester?: true
-    branch?: true
+    semesterId?: true
+    branchId?: true
     mobileNo?: true
     email?: true
     userId?: true
@@ -2859,8 +2879,8 @@ export namespace Prisma {
     id?: true
     rollNo?: true
     fullName?: true
-    semester?: true
-    branch?: true
+    semesterId?: true
+    branchId?: true
     mobileNo?: true
     email?: true
     userId?: true
@@ -2870,8 +2890,8 @@ export namespace Prisma {
     id?: true
     rollNo?: true
     fullName?: true
-    semester?: true
-    branch?: true
+    semesterId?: true
+    branchId?: true
     mobileNo?: true
     email?: true
     userId?: true
@@ -2954,8 +2974,8 @@ export namespace Prisma {
     id: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
+    semesterId: string
+    branchId: string
     mobileNo: string
     email: string
     userId: string
@@ -2982,11 +3002,13 @@ export namespace Prisma {
     id?: boolean
     rollNo?: boolean
     fullName?: boolean
-    semester?: boolean
-    branch?: boolean
+    semesterId?: boolean
+    branchId?: boolean
     mobileNo?: boolean
     email?: boolean
     userId?: boolean
+    semester?: boolean | SemesterDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     courseRegistered?: boolean | Student$courseRegisteredArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
@@ -2997,14 +3019,16 @@ export namespace Prisma {
     id?: boolean
     rollNo?: boolean
     fullName?: boolean
-    semester?: boolean
-    branch?: boolean
+    semesterId?: boolean
+    branchId?: boolean
     mobileNo?: boolean
     email?: boolean
     userId?: boolean
   }
 
   export type StudentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    semester?: boolean | SemesterDefaultArgs<ExtArgs>
+    branch?: boolean | BranchDefaultArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     courseRegistered?: boolean | Student$courseRegisteredArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
@@ -3015,6 +3039,8 @@ export namespace Prisma {
   export type $StudentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Student"
     objects: {
+      semester: Prisma.$SemesterPayload<ExtArgs>
+      branch: Prisma.$BranchPayload<ExtArgs>
       user: Prisma.$UserPayload<ExtArgs>
       courseRegistered: Prisma.$StudentCourseRegistrationPayload<ExtArgs>[]
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
@@ -3023,8 +3049,8 @@ export namespace Prisma {
       id: string
       rollNo: string
       fullName: string
-      semester: string
-      branch: string
+      semesterId: string
+      branchId: string
       mobileNo: string
       email: string
       userId: string
@@ -3393,6 +3419,10 @@ export namespace Prisma {
   export interface Prisma__StudentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    semester<T extends SemesterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SemesterDefaultArgs<ExtArgs>>): Prisma__SemesterClient<$Result.GetResult<Prisma.$SemesterPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    branch<T extends BranchDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BranchDefaultArgs<ExtArgs>>): Prisma__BranchClient<$Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     courseRegistered<T extends Student$courseRegisteredArgs<ExtArgs> = {}>(args?: Subset<T, Student$courseRegisteredArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentCourseRegistrationPayload<ExtArgs>, T, 'findMany'> | Null>;
@@ -3430,8 +3460,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Student", 'String'>
     readonly rollNo: FieldRef<"Student", 'String'>
     readonly fullName: FieldRef<"Student", 'String'>
-    readonly semester: FieldRef<"Student", 'String'>
-    readonly branch: FieldRef<"Student", 'String'>
+    readonly semesterId: FieldRef<"Student", 'String'>
+    readonly branchId: FieldRef<"Student", 'String'>
     readonly mobileNo: FieldRef<"Student", 'String'>
     readonly email: FieldRef<"Student", 'String'>
     readonly userId: FieldRef<"Student", 'String'>
@@ -5832,6 +5862,7 @@ export namespace Prisma {
     id?: boolean
     sem?: boolean
     course?: boolean | Semester$courseArgs<ExtArgs>
+    student?: boolean | Semester$studentArgs<ExtArgs>
     _count?: boolean | SemesterCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["semester"]>
 
@@ -5842,6 +5873,7 @@ export namespace Prisma {
 
   export type SemesterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | Semester$courseArgs<ExtArgs>
+    student?: boolean | Semester$studentArgs<ExtArgs>
     _count?: boolean | SemesterCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5850,6 +5882,7 @@ export namespace Prisma {
     name: "Semester"
     objects: {
       course: Prisma.$CoursePayload<ExtArgs>[]
+      student: Prisma.$StudentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6221,6 +6254,8 @@ export namespace Prisma {
 
     course<T extends Semester$courseArgs<ExtArgs> = {}>(args?: Subset<T, Semester$courseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    student<T extends Semester$studentArgs<ExtArgs> = {}>(args?: Subset<T, Semester$studentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6584,6 +6619,27 @@ export namespace Prisma {
 
 
   /**
+   * Semester.student
+   */
+  export type Semester$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+    orderBy?: StudentOrderByWithRelationInput | StudentOrderByWithRelationInput[]
+    cursor?: StudentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
+  }
+
+
+  /**
    * Semester without action
    */
   export type SemesterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6740,6 +6796,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     course?: boolean | Branch$courseArgs<ExtArgs>
+    student?: boolean | Branch$studentArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["branch"]>
 
@@ -6750,6 +6807,7 @@ export namespace Prisma {
 
   export type BranchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | Branch$courseArgs<ExtArgs>
+    student?: boolean | Branch$studentArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6758,6 +6816,7 @@ export namespace Prisma {
     name: "Branch"
     objects: {
       course: Prisma.$CoursePayload<ExtArgs>[]
+      student: Prisma.$StudentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7129,6 +7188,8 @@ export namespace Prisma {
 
     course<T extends Branch$courseArgs<ExtArgs> = {}>(args?: Subset<T, Branch$courseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, 'findMany'> | Null>;
 
+    student<T extends Branch$studentArgs<ExtArgs> = {}>(args?: Subset<T, Branch$studentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7488,6 +7549,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CourseScalarFieldEnum | CourseScalarFieldEnum[]
+  }
+
+
+  /**
+   * Branch.student
+   */
+  export type Branch$studentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Student
+     */
+    select?: StudentSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: StudentInclude<ExtArgs> | null
+    where?: StudentWhereInput
+    orderBy?: StudentOrderByWithRelationInput | StudentOrderByWithRelationInput[]
+    cursor?: StudentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StudentScalarFieldEnum | StudentScalarFieldEnum[]
   }
 
 
@@ -11264,8 +11346,8 @@ export namespace Prisma {
     id: 'id',
     rollNo: 'rollNo',
     fullName: 'fullName',
-    semester: 'semester',
-    branch: 'branch',
+    semesterId: 'semesterId',
+    branchId: 'branchId',
     mobileNo: 'mobileNo',
     email: 'email',
     userId: 'userId'
@@ -11534,11 +11616,13 @@ export namespace Prisma {
     id?: UuidFilter<"Student"> | string
     rollNo?: StringFilter<"Student"> | string
     fullName?: StringFilter<"Student"> | string
-    semester?: StringFilter<"Student"> | string
-    branch?: StringFilter<"Student"> | string
+    semesterId?: UuidFilter<"Student"> | string
+    branchId?: UuidFilter<"Student"> | string
     mobileNo?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
     userId?: UuidFilter<"Student"> | string
+    semester?: XOR<SemesterRelationFilter, SemesterWhereInput>
+    branch?: XOR<BranchRelationFilter, BranchWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
     courseRegistered?: StudentCourseRegistrationListRelationFilter
     attendances?: AttendanceListRelationFilter
@@ -11548,11 +11632,13 @@ export namespace Prisma {
     id?: SortOrder
     rollNo?: SortOrder
     fullName?: SortOrder
-    semester?: SortOrder
-    branch?: SortOrder
+    semesterId?: SortOrder
+    branchId?: SortOrder
     mobileNo?: SortOrder
     email?: SortOrder
     userId?: SortOrder
+    semester?: SemesterOrderByWithRelationInput
+    branch?: BranchOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     courseRegistered?: StudentCourseRegistrationOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
@@ -11566,10 +11652,12 @@ export namespace Prisma {
     OR?: StudentWhereInput[]
     NOT?: StudentWhereInput | StudentWhereInput[]
     fullName?: StringFilter<"Student"> | string
-    semester?: StringFilter<"Student"> | string
-    branch?: StringFilter<"Student"> | string
+    semesterId?: UuidFilter<"Student"> | string
+    branchId?: UuidFilter<"Student"> | string
     mobileNo?: StringFilter<"Student"> | string
     email?: StringFilter<"Student"> | string
+    semester?: XOR<SemesterRelationFilter, SemesterWhereInput>
+    branch?: XOR<BranchRelationFilter, BranchWhereInput>
     user?: XOR<UserRelationFilter, UserWhereInput>
     courseRegistered?: StudentCourseRegistrationListRelationFilter
     attendances?: AttendanceListRelationFilter
@@ -11579,8 +11667,8 @@ export namespace Prisma {
     id?: SortOrder
     rollNo?: SortOrder
     fullName?: SortOrder
-    semester?: SortOrder
-    branch?: SortOrder
+    semesterId?: SortOrder
+    branchId?: SortOrder
     mobileNo?: SortOrder
     email?: SortOrder
     userId?: SortOrder
@@ -11596,8 +11684,8 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"Student"> | string
     rollNo?: StringWithAggregatesFilter<"Student"> | string
     fullName?: StringWithAggregatesFilter<"Student"> | string
-    semester?: StringWithAggregatesFilter<"Student"> | string
-    branch?: StringWithAggregatesFilter<"Student"> | string
+    semesterId?: UuidWithAggregatesFilter<"Student"> | string
+    branchId?: UuidWithAggregatesFilter<"Student"> | string
     mobileNo?: StringWithAggregatesFilter<"Student"> | string
     email?: StringWithAggregatesFilter<"Student"> | string
     userId?: UuidWithAggregatesFilter<"Student"> | string
@@ -11718,12 +11806,14 @@ export namespace Prisma {
     id?: UuidFilter<"Semester"> | string
     sem?: IntFilter<"Semester"> | number
     course?: CourseListRelationFilter
+    student?: StudentListRelationFilter
   }
 
   export type SemesterOrderByWithRelationInput = {
     id?: SortOrder
     sem?: SortOrder
     course?: CourseOrderByRelationAggregateInput
+    student?: StudentOrderByRelationAggregateInput
   }
 
   export type SemesterWhereUniqueInput = Prisma.AtLeast<{
@@ -11733,6 +11823,7 @@ export namespace Prisma {
     OR?: SemesterWhereInput[]
     NOT?: SemesterWhereInput | SemesterWhereInput[]
     course?: CourseListRelationFilter
+    student?: StudentListRelationFilter
   }, "id" | "sem">
 
   export type SemesterOrderByWithAggregationInput = {
@@ -11760,12 +11851,14 @@ export namespace Prisma {
     id?: UuidFilter<"Branch"> | string
     name?: StringFilter<"Branch"> | string
     course?: CourseListRelationFilter
+    student?: StudentListRelationFilter
   }
 
   export type BranchOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
     course?: CourseOrderByRelationAggregateInput
+    student?: StudentOrderByRelationAggregateInput
   }
 
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -11775,6 +11868,7 @@ export namespace Prisma {
     OR?: BranchWhereInput[]
     NOT?: BranchWhereInput | BranchWhereInput[]
     course?: CourseListRelationFilter
+    student?: StudentListRelationFilter
   }, "id" | "name">
 
   export type BranchOrderByWithAggregationInput = {
@@ -12086,10 +12180,10 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
     mobileNo: string
     email: string
+    semester: SemesterCreateNestedOneWithoutStudentInput
+    branch: BranchCreateNestedOneWithoutStudentInput
     user: UserCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
@@ -12099,8 +12193,8 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
+    semesterId: string
+    branchId: string
     mobileNo: string
     email: string
     userId: string
@@ -12112,10 +12206,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutStudentNestedInput
+    branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
@@ -12125,8 +12219,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -12138,8 +12232,8 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
+    semesterId: string
+    branchId: string
     mobileNo: string
     email: string
     userId: string
@@ -12149,8 +12243,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
   }
@@ -12159,8 +12251,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -12277,24 +12369,28 @@ export namespace Prisma {
     id?: string
     sem: number
     course?: CourseCreateNestedManyWithoutSemesterInput
+    student?: StudentCreateNestedManyWithoutSemesterInput
   }
 
   export type SemesterUncheckedCreateInput = {
     id?: string
     sem: number
     course?: CourseUncheckedCreateNestedManyWithoutSemesterInput
+    student?: StudentUncheckedCreateNestedManyWithoutSemesterInput
   }
 
   export type SemesterUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
     course?: CourseUpdateManyWithoutSemesterNestedInput
+    student?: StudentUpdateManyWithoutSemesterNestedInput
   }
 
   export type SemesterUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
     course?: CourseUncheckedUpdateManyWithoutSemesterNestedInput
+    student?: StudentUncheckedUpdateManyWithoutSemesterNestedInput
   }
 
   export type SemesterCreateManyInput = {
@@ -12316,24 +12412,28 @@ export namespace Prisma {
     id?: string
     name: string
     course?: CourseCreateNestedManyWithoutBranchInput
+    student?: StudentCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateInput = {
     id?: string
     name: string
     course?: CourseUncheckedCreateNestedManyWithoutBranchInput
+    student?: StudentUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     course?: CourseUpdateManyWithoutBranchNestedInput
+    student?: StudentUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     course?: CourseUncheckedUpdateManyWithoutBranchNestedInput
+    student?: StudentUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchCreateManyInput = {
@@ -12667,6 +12767,16 @@ export namespace Prisma {
     _max?: NestedEnumuserTypeFilter<$PrismaModel>
   }
 
+  export type SemesterRelationFilter = {
+    is?: SemesterWhereInput
+    isNot?: SemesterWhereInput
+  }
+
+  export type BranchRelationFilter = {
+    is?: BranchWhereInput
+    isNot?: BranchWhereInput
+  }
+
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -12696,8 +12806,8 @@ export namespace Prisma {
     id?: SortOrder
     rollNo?: SortOrder
     fullName?: SortOrder
-    semester?: SortOrder
-    branch?: SortOrder
+    semesterId?: SortOrder
+    branchId?: SortOrder
     mobileNo?: SortOrder
     email?: SortOrder
     userId?: SortOrder
@@ -12707,8 +12817,8 @@ export namespace Prisma {
     id?: SortOrder
     rollNo?: SortOrder
     fullName?: SortOrder
-    semester?: SortOrder
-    branch?: SortOrder
+    semesterId?: SortOrder
+    branchId?: SortOrder
     mobileNo?: SortOrder
     email?: SortOrder
     userId?: SortOrder
@@ -12718,8 +12828,8 @@ export namespace Prisma {
     id?: SortOrder
     rollNo?: SortOrder
     fullName?: SortOrder
-    semester?: SortOrder
-    branch?: SortOrder
+    semesterId?: SortOrder
+    branchId?: SortOrder
     mobileNo?: SortOrder
     email?: SortOrder
     userId?: SortOrder
@@ -12814,7 +12924,17 @@ export namespace Prisma {
     none?: CourseWhereInput
   }
 
+  export type StudentListRelationFilter = {
+    every?: StudentWhereInput
+    some?: StudentWhereInput
+    none?: StudentWhereInput
+  }
+
   export type CourseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StudentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12870,16 +12990,6 @@ export namespace Prisma {
   export type BranchMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-  }
-
-  export type SemesterRelationFilter = {
-    is?: SemesterWhereInput
-    isNot?: SemesterWhereInput
-  }
-
-  export type BranchRelationFilter = {
-    is?: BranchWhereInput
-    isNot?: BranchWhereInput
   }
 
   export type CourseCountOrderByAggregateInput = {
@@ -13123,6 +13233,18 @@ export namespace Prisma {
     update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutUserInput, AdminUpdateWithoutUserInput>, AdminUncheckedUpdateWithoutUserInput>
   }
 
+  export type SemesterCreateNestedOneWithoutStudentInput = {
+    create?: XOR<SemesterCreateWithoutStudentInput, SemesterUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: SemesterCreateOrConnectWithoutStudentInput
+    connect?: SemesterWhereUniqueInput
+  }
+
+  export type BranchCreateNestedOneWithoutStudentInput = {
+    create?: XOR<BranchCreateWithoutStudentInput, BranchUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutStudentInput
+    connect?: BranchWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutStudentInput = {
     create?: XOR<UserCreateWithoutStudentInput, UserUncheckedCreateWithoutStudentInput>
     connectOrCreate?: UserCreateOrConnectWithoutStudentInput
@@ -13155,6 +13277,22 @@ export namespace Prisma {
     connectOrCreate?: AttendanceCreateOrConnectWithoutStudentInput | AttendanceCreateOrConnectWithoutStudentInput[]
     createMany?: AttendanceCreateManyStudentInputEnvelope
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
+  }
+
+  export type SemesterUpdateOneRequiredWithoutStudentNestedInput = {
+    create?: XOR<SemesterCreateWithoutStudentInput, SemesterUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: SemesterCreateOrConnectWithoutStudentInput
+    upsert?: SemesterUpsertWithoutStudentInput
+    connect?: SemesterWhereUniqueInput
+    update?: XOR<XOR<SemesterUpdateToOneWithWhereWithoutStudentInput, SemesterUpdateWithoutStudentInput>, SemesterUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type BranchUpdateOneRequiredWithoutStudentNestedInput = {
+    create?: XOR<BranchCreateWithoutStudentInput, BranchUncheckedCreateWithoutStudentInput>
+    connectOrCreate?: BranchCreateOrConnectWithoutStudentInput
+    upsert?: BranchUpsertWithoutStudentInput
+    connect?: BranchWhereUniqueInput
+    update?: XOR<XOR<BranchUpdateToOneWithWhereWithoutStudentInput, BranchUpdateWithoutStudentInput>, BranchUncheckedUpdateWithoutStudentInput>
   }
 
   export type UserUpdateOneRequiredWithoutStudentNestedInput = {
@@ -13302,11 +13440,25 @@ export namespace Prisma {
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
   }
 
+  export type StudentCreateNestedManyWithoutSemesterInput = {
+    create?: XOR<StudentCreateWithoutSemesterInput, StudentUncheckedCreateWithoutSemesterInput> | StudentCreateWithoutSemesterInput[] | StudentUncheckedCreateWithoutSemesterInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutSemesterInput | StudentCreateOrConnectWithoutSemesterInput[]
+    createMany?: StudentCreateManySemesterInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
   export type CourseUncheckedCreateNestedManyWithoutSemesterInput = {
     create?: XOR<CourseCreateWithoutSemesterInput, CourseUncheckedCreateWithoutSemesterInput> | CourseCreateWithoutSemesterInput[] | CourseUncheckedCreateWithoutSemesterInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutSemesterInput | CourseCreateOrConnectWithoutSemesterInput[]
     createMany?: CourseCreateManySemesterInputEnvelope
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
+  }
+
+  export type StudentUncheckedCreateNestedManyWithoutSemesterInput = {
+    create?: XOR<StudentCreateWithoutSemesterInput, StudentUncheckedCreateWithoutSemesterInput> | StudentCreateWithoutSemesterInput[] | StudentUncheckedCreateWithoutSemesterInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutSemesterInput | StudentCreateOrConnectWithoutSemesterInput[]
+    createMany?: StudentCreateManySemesterInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -13331,6 +13483,20 @@ export namespace Prisma {
     deleteMany?: CourseScalarWhereInput | CourseScalarWhereInput[]
   }
 
+  export type StudentUpdateManyWithoutSemesterNestedInput = {
+    create?: XOR<StudentCreateWithoutSemesterInput, StudentUncheckedCreateWithoutSemesterInput> | StudentCreateWithoutSemesterInput[] | StudentUncheckedCreateWithoutSemesterInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutSemesterInput | StudentCreateOrConnectWithoutSemesterInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutSemesterInput | StudentUpsertWithWhereUniqueWithoutSemesterInput[]
+    createMany?: StudentCreateManySemesterInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutSemesterInput | StudentUpdateWithWhereUniqueWithoutSemesterInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutSemesterInput | StudentUpdateManyWithWhereWithoutSemesterInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
   export type CourseUncheckedUpdateManyWithoutSemesterNestedInput = {
     create?: XOR<CourseCreateWithoutSemesterInput, CourseUncheckedCreateWithoutSemesterInput> | CourseCreateWithoutSemesterInput[] | CourseUncheckedCreateWithoutSemesterInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutSemesterInput | CourseCreateOrConnectWithoutSemesterInput[]
@@ -13345,6 +13511,20 @@ export namespace Prisma {
     deleteMany?: CourseScalarWhereInput | CourseScalarWhereInput[]
   }
 
+  export type StudentUncheckedUpdateManyWithoutSemesterNestedInput = {
+    create?: XOR<StudentCreateWithoutSemesterInput, StudentUncheckedCreateWithoutSemesterInput> | StudentCreateWithoutSemesterInput[] | StudentUncheckedCreateWithoutSemesterInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutSemesterInput | StudentCreateOrConnectWithoutSemesterInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutSemesterInput | StudentUpsertWithWhereUniqueWithoutSemesterInput[]
+    createMany?: StudentCreateManySemesterInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutSemesterInput | StudentUpdateWithWhereUniqueWithoutSemesterInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutSemesterInput | StudentUpdateManyWithWhereWithoutSemesterInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
   export type CourseCreateNestedManyWithoutBranchInput = {
     create?: XOR<CourseCreateWithoutBranchInput, CourseUncheckedCreateWithoutBranchInput> | CourseCreateWithoutBranchInput[] | CourseUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutBranchInput | CourseCreateOrConnectWithoutBranchInput[]
@@ -13352,11 +13532,25 @@ export namespace Prisma {
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
   }
 
+  export type StudentCreateNestedManyWithoutBranchInput = {
+    create?: XOR<StudentCreateWithoutBranchInput, StudentUncheckedCreateWithoutBranchInput> | StudentCreateWithoutBranchInput[] | StudentUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutBranchInput | StudentCreateOrConnectWithoutBranchInput[]
+    createMany?: StudentCreateManyBranchInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+  }
+
   export type CourseUncheckedCreateNestedManyWithoutBranchInput = {
     create?: XOR<CourseCreateWithoutBranchInput, CourseUncheckedCreateWithoutBranchInput> | CourseCreateWithoutBranchInput[] | CourseUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutBranchInput | CourseCreateOrConnectWithoutBranchInput[]
     createMany?: CourseCreateManyBranchInputEnvelope
     connect?: CourseWhereUniqueInput | CourseWhereUniqueInput[]
+  }
+
+  export type StudentUncheckedCreateNestedManyWithoutBranchInput = {
+    create?: XOR<StudentCreateWithoutBranchInput, StudentUncheckedCreateWithoutBranchInput> | StudentCreateWithoutBranchInput[] | StudentUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutBranchInput | StudentCreateOrConnectWithoutBranchInput[]
+    createMany?: StudentCreateManyBranchInputEnvelope
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
   }
 
   export type CourseUpdateManyWithoutBranchNestedInput = {
@@ -13373,6 +13567,20 @@ export namespace Prisma {
     deleteMany?: CourseScalarWhereInput | CourseScalarWhereInput[]
   }
 
+  export type StudentUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<StudentCreateWithoutBranchInput, StudentUncheckedCreateWithoutBranchInput> | StudentCreateWithoutBranchInput[] | StudentUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutBranchInput | StudentCreateOrConnectWithoutBranchInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutBranchInput | StudentUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: StudentCreateManyBranchInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutBranchInput | StudentUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutBranchInput | StudentUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
+  }
+
   export type CourseUncheckedUpdateManyWithoutBranchNestedInput = {
     create?: XOR<CourseCreateWithoutBranchInput, CourseUncheckedCreateWithoutBranchInput> | CourseCreateWithoutBranchInput[] | CourseUncheckedCreateWithoutBranchInput[]
     connectOrCreate?: CourseCreateOrConnectWithoutBranchInput | CourseCreateOrConnectWithoutBranchInput[]
@@ -13385,6 +13593,20 @@ export namespace Prisma {
     update?: CourseUpdateWithWhereUniqueWithoutBranchInput | CourseUpdateWithWhereUniqueWithoutBranchInput[]
     updateMany?: CourseUpdateManyWithWhereWithoutBranchInput | CourseUpdateManyWithWhereWithoutBranchInput[]
     deleteMany?: CourseScalarWhereInput | CourseScalarWhereInput[]
+  }
+
+  export type StudentUncheckedUpdateManyWithoutBranchNestedInput = {
+    create?: XOR<StudentCreateWithoutBranchInput, StudentUncheckedCreateWithoutBranchInput> | StudentCreateWithoutBranchInput[] | StudentUncheckedCreateWithoutBranchInput[]
+    connectOrCreate?: StudentCreateOrConnectWithoutBranchInput | StudentCreateOrConnectWithoutBranchInput[]
+    upsert?: StudentUpsertWithWhereUniqueWithoutBranchInput | StudentUpsertWithWhereUniqueWithoutBranchInput[]
+    createMany?: StudentCreateManyBranchInputEnvelope
+    set?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    disconnect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    delete?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    connect?: StudentWhereUniqueInput | StudentWhereUniqueInput[]
+    update?: StudentUpdateWithWhereUniqueWithoutBranchInput | StudentUpdateWithWhereUniqueWithoutBranchInput[]
+    updateMany?: StudentUpdateManyWithWhereWithoutBranchInput | StudentUpdateManyWithWhereWithoutBranchInput[]
+    deleteMany?: StudentScalarWhereInput | StudentScalarWhereInput[]
   }
 
   export type SemesterCreateNestedOneWithoutCourseInput = {
@@ -13803,10 +14025,10 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
     mobileNo: string
     email: string
+    semester: SemesterCreateNestedOneWithoutStudentInput
+    branch: BranchCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
   }
@@ -13815,8 +14037,8 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
+    semesterId: string
+    branchId: string
     mobileNo: string
     email: string
     courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
@@ -13881,10 +14103,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutStudentNestedInput
+    branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
   }
@@ -13893,8 +14115,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
@@ -13949,6 +14171,40 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SemesterCreateWithoutStudentInput = {
+    id?: string
+    sem: number
+    course?: CourseCreateNestedManyWithoutSemesterInput
+  }
+
+  export type SemesterUncheckedCreateWithoutStudentInput = {
+    id?: string
+    sem: number
+    course?: CourseUncheckedCreateNestedManyWithoutSemesterInput
+  }
+
+  export type SemesterCreateOrConnectWithoutStudentInput = {
+    where: SemesterWhereUniqueInput
+    create: XOR<SemesterCreateWithoutStudentInput, SemesterUncheckedCreateWithoutStudentInput>
+  }
+
+  export type BranchCreateWithoutStudentInput = {
+    id?: string
+    name: string
+    course?: CourseCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchUncheckedCreateWithoutStudentInput = {
+    id?: string
+    name: string
+    course?: CourseUncheckedCreateNestedManyWithoutBranchInput
+  }
+
+  export type BranchCreateOrConnectWithoutStudentInput = {
+    where: BranchWhereUniqueInput
+    create: XOR<BranchCreateWithoutStudentInput, BranchUncheckedCreateWithoutStudentInput>
   }
 
   export type UserCreateWithoutStudentInput = {
@@ -14018,6 +14274,52 @@ export namespace Prisma {
   export type AttendanceCreateManyStudentInputEnvelope = {
     data: AttendanceCreateManyStudentInput | AttendanceCreateManyStudentInput[]
     skipDuplicates?: boolean
+  }
+
+  export type SemesterUpsertWithoutStudentInput = {
+    update: XOR<SemesterUpdateWithoutStudentInput, SemesterUncheckedUpdateWithoutStudentInput>
+    create: XOR<SemesterCreateWithoutStudentInput, SemesterUncheckedCreateWithoutStudentInput>
+    where?: SemesterWhereInput
+  }
+
+  export type SemesterUpdateToOneWithWhereWithoutStudentInput = {
+    where?: SemesterWhereInput
+    data: XOR<SemesterUpdateWithoutStudentInput, SemesterUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type SemesterUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sem?: IntFieldUpdateOperationsInput | number
+    course?: CourseUpdateManyWithoutSemesterNestedInput
+  }
+
+  export type SemesterUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sem?: IntFieldUpdateOperationsInput | number
+    course?: CourseUncheckedUpdateManyWithoutSemesterNestedInput
+  }
+
+  export type BranchUpsertWithoutStudentInput = {
+    update: XOR<BranchUpdateWithoutStudentInput, BranchUncheckedUpdateWithoutStudentInput>
+    create: XOR<BranchCreateWithoutStudentInput, BranchUncheckedCreateWithoutStudentInput>
+    where?: BranchWhereInput
+  }
+
+  export type BranchUpdateToOneWithWhereWithoutStudentInput = {
+    where?: BranchWhereInput
+    data: XOR<BranchUpdateWithoutStudentInput, BranchUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type BranchUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    course?: CourseUpdateManyWithoutBranchNestedInput
+  }
+
+  export type BranchUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    course?: CourseUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type UserUpsertWithoutStudentInput = {
@@ -14290,6 +14592,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentCreateWithoutSemesterInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    mobileNo: string
+    email: string
+    branch: BranchCreateNestedOneWithoutStudentInput
+    user: UserCreateNestedOneWithoutStudentInput
+    courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutSemesterInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    branchId: string
+    mobileNo: string
+    email: string
+    userId: string
+    courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutSemesterInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutSemesterInput, StudentUncheckedCreateWithoutSemesterInput>
+  }
+
+  export type StudentCreateManySemesterInputEnvelope = {
+    data: StudentCreateManySemesterInput | StudentCreateManySemesterInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CourseUpsertWithWhereUniqueWithoutSemesterInput = {
     where: CourseWhereUniqueInput
     update: XOR<CourseUpdateWithoutSemesterInput, CourseUncheckedUpdateWithoutSemesterInput>
@@ -14315,6 +14651,36 @@ export namespace Prisma {
     name?: StringFilter<"Course"> | string
     semesterId?: UuidFilter<"Course"> | string
     branchId?: UuidFilter<"Course"> | string
+  }
+
+  export type StudentUpsertWithWhereUniqueWithoutSemesterInput = {
+    where: StudentWhereUniqueInput
+    update: XOR<StudentUpdateWithoutSemesterInput, StudentUncheckedUpdateWithoutSemesterInput>
+    create: XOR<StudentCreateWithoutSemesterInput, StudentUncheckedCreateWithoutSemesterInput>
+  }
+
+  export type StudentUpdateWithWhereUniqueWithoutSemesterInput = {
+    where: StudentWhereUniqueInput
+    data: XOR<StudentUpdateWithoutSemesterInput, StudentUncheckedUpdateWithoutSemesterInput>
+  }
+
+  export type StudentUpdateManyWithWhereWithoutSemesterInput = {
+    where: StudentScalarWhereInput
+    data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutSemesterInput>
+  }
+
+  export type StudentScalarWhereInput = {
+    AND?: StudentScalarWhereInput | StudentScalarWhereInput[]
+    OR?: StudentScalarWhereInput[]
+    NOT?: StudentScalarWhereInput | StudentScalarWhereInput[]
+    id?: UuidFilter<"Student"> | string
+    rollNo?: StringFilter<"Student"> | string
+    fullName?: StringFilter<"Student"> | string
+    semesterId?: UuidFilter<"Student"> | string
+    branchId?: UuidFilter<"Student"> | string
+    mobileNo?: StringFilter<"Student"> | string
+    email?: StringFilter<"Student"> | string
+    userId?: UuidFilter<"Student"> | string
   }
 
   export type CourseCreateWithoutBranchInput = {
@@ -14347,6 +14713,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type StudentCreateWithoutBranchInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    mobileNo: string
+    email: string
+    semester: SemesterCreateNestedOneWithoutStudentInput
+    user: UserCreateNestedOneWithoutStudentInput
+    courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutBranchInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    semesterId: string
+    mobileNo: string
+    email: string
+    userId: string
+    courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutBranchInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutBranchInput, StudentUncheckedCreateWithoutBranchInput>
+  }
+
+  export type StudentCreateManyBranchInputEnvelope = {
+    data: StudentCreateManyBranchInput | StudentCreateManyBranchInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CourseUpsertWithWhereUniqueWithoutBranchInput = {
     where: CourseWhereUniqueInput
     update: XOR<CourseUpdateWithoutBranchInput, CourseUncheckedUpdateWithoutBranchInput>
@@ -14363,14 +14763,32 @@ export namespace Prisma {
     data: XOR<CourseUpdateManyMutationInput, CourseUncheckedUpdateManyWithoutBranchInput>
   }
 
+  export type StudentUpsertWithWhereUniqueWithoutBranchInput = {
+    where: StudentWhereUniqueInput
+    update: XOR<StudentUpdateWithoutBranchInput, StudentUncheckedUpdateWithoutBranchInput>
+    create: XOR<StudentCreateWithoutBranchInput, StudentUncheckedCreateWithoutBranchInput>
+  }
+
+  export type StudentUpdateWithWhereUniqueWithoutBranchInput = {
+    where: StudentWhereUniqueInput
+    data: XOR<StudentUpdateWithoutBranchInput, StudentUncheckedUpdateWithoutBranchInput>
+  }
+
+  export type StudentUpdateManyWithWhereWithoutBranchInput = {
+    where: StudentScalarWhereInput
+    data: XOR<StudentUpdateManyMutationInput, StudentUncheckedUpdateManyWithoutBranchInput>
+  }
+
   export type SemesterCreateWithoutCourseInput = {
     id?: string
     sem: number
+    student?: StudentCreateNestedManyWithoutSemesterInput
   }
 
   export type SemesterUncheckedCreateWithoutCourseInput = {
     id?: string
     sem: number
+    student?: StudentUncheckedCreateNestedManyWithoutSemesterInput
   }
 
   export type SemesterCreateOrConnectWithoutCourseInput = {
@@ -14381,11 +14799,13 @@ export namespace Prisma {
   export type BranchCreateWithoutCourseInput = {
     id?: string
     name: string
+    student?: StudentCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutCourseInput = {
     id?: string
     name: string
+    student?: StudentUncheckedCreateNestedManyWithoutBranchInput
   }
 
   export type BranchCreateOrConnectWithoutCourseInput = {
@@ -14471,11 +14891,13 @@ export namespace Prisma {
   export type SemesterUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    student?: StudentUpdateManyWithoutSemesterNestedInput
   }
 
   export type SemesterUncheckedUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    student?: StudentUncheckedUpdateManyWithoutSemesterNestedInput
   }
 
   export type BranchUpsertWithoutCourseInput = {
@@ -14492,11 +14914,13 @@ export namespace Prisma {
   export type BranchUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    student?: StudentUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    student?: StudentUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type StudentCourseRegistrationUpsertWithWhereUniqueWithoutCourseInput = {
@@ -14576,10 +15000,10 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
     mobileNo: string
     email: string
+    semester: SemesterCreateNestedOneWithoutStudentInput
+    branch: BranchCreateNestedOneWithoutStudentInput
     user: UserCreateNestedOneWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
   }
@@ -14588,8 +15012,8 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
+    semesterId: string
+    branchId: string
     mobileNo: string
     email: string
     userId: string
@@ -14647,10 +15071,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutStudentNestedInput
+    branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
   }
@@ -14659,8 +15083,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -14775,10 +15199,10 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
     mobileNo: string
     email: string
+    semester: SemesterCreateNestedOneWithoutStudentInput
+    branch: BranchCreateNestedOneWithoutStudentInput
     user: UserCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
   }
@@ -14787,8 +15211,8 @@ export namespace Prisma {
     id?: string
     rollNo: string
     fullName: string
-    semester: string
-    branch: string
+    semesterId: string
+    branchId: string
     mobileNo: string
     email: string
     userId: string
@@ -14840,10 +15264,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutStudentNestedInput
+    branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
   }
@@ -14852,8 +15276,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     rollNo?: StringFieldUpdateOperationsInput | string
     fullName?: StringFieldUpdateOperationsInput | string
-    semester?: StringFieldUpdateOperationsInput | string
-    branch?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
     mobileNo?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
@@ -14966,6 +15390,16 @@ export namespace Prisma {
     branchId: string
   }
 
+  export type StudentCreateManySemesterInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    branchId: string
+    mobileNo: string
+    email: string
+    userId: string
+  }
+
   export type CourseUpdateWithoutSemesterInput = {
     id?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
@@ -14993,11 +15427,55 @@ export namespace Prisma {
     branchId?: StringFieldUpdateOperationsInput | string
   }
 
+  export type StudentUpdateWithoutSemesterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
+    courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutSemesterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateManyWithoutSemesterInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type CourseCreateManyBranchInput = {
     id?: string
     courseId: string
     name: string
     semesterId: string
+  }
+
+  export type StudentCreateManyBranchInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    semesterId: string
+    mobileNo: string
+    email: string
+    userId: string
   }
 
   export type CourseUpdateWithoutBranchInput = {
@@ -15025,6 +15503,40 @@ export namespace Prisma {
     courseId?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     semesterId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StudentUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutStudentNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
+    courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateManyWithoutBranchInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type StudentCourseRegistrationCreateManyCourseInput = {
