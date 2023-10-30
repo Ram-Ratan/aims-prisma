@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username String   @unique
+  password String
+  email    String   @unique
+  role     userType @default(STUDENT)
+  student  Student?
+  faculty  Faculty?
+  admin    Admin?
+}
+
+model Student {
+  id               String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  rollNo           String                      @unique
+  fullName         String
+  semester         String
+  branch           String
+  mobileNo         String
+  email            String
+  user             User                        @relation(fields: [userId], references: [id])
+  userId           String                      @unique @db.Uuid
+  courseRegistered StudentCourseRegistration[]
+  attendances      Attendance[]
+}
+
+model Faculty {
+  id             String                    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullName       String
+  department     departmentType
+  email          String
+  user           User                      @relation(fields: [userId], references: [id])
+  userId         String                    @unique @db.Uuid
+  courseAssigned FacultyCourseAssignment[]
+}
+
+model Admin {
+  id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullName String
+  email    String
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String @unique @db.Uuid
+}
+
+model Semester {
+  id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sem    Int      @unique
+  course Course[]
+}
+
+model Branch {
+  id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name   String   @unique
+  course Course[]
+}
+
+model Course {
+  id                String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  courseId          String                      @unique
+  name              String
+  semester          Semester                    @relation(fields: [semesterId], references: [id])
+  semesterId        String                      @db.Uuid
+  branch            Branch                      @relation(fields: [branchId], references: [id])
+  branchId          String                      @db.Uuid
+  studentRegistered StudentCourseRegistration[]
+  facultyAssigned   FacultyCourseAssignment[]
+  attendances       Attendance[]
+}
+
+model StudentCourseRegistration {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  courseId  String  @db.Uuid
+  studentId String  @db.Uuid
+  course    Course  @relation(fields: [courseId], references: [id])
+  student   Student @relation(fields: [studentId], references: [id])
+}
+
+model FacultyCourseAssignment {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  facultyId String  @db.Uuid
+  courseId  String  @db.Uuid
+  faculty   Faculty @relation(fields: [facultyId], references: [id])
+  course    Course  @relation(fields: [courseId], references: [id])
+}
+
+model Attendance {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  courseId  String   @db.Uuid
+  studentId String   @db.Uuid
+  date      DateTime @default(now())
+  isPresent Boolean
+  student   Student  @relation(fields: [studentId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+}
+
+enum userType {
+  STUDENT
+  FACULTY
+  ADMIN
+}
+
+enum departmentType {
+  ELECTRONICS
+  COMPUTING
+}
