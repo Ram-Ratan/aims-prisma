@@ -3,9 +3,20 @@ import { PrismaClient } from "../../generated/client";
 
 const prisma = new PrismaClient();
 
-export const getAllStudents = async (req: Request, res: Response) => {
+export const getStudents = async (req: Request, res: Response) => {
+  const {userId} = req?.query;
   try {
-    const response = await prisma.student.findMany();
+    const response = await prisma.student.findMany({
+      where:{
+        userId: userId?.toString()
+      },
+      include:{
+        semester:true,
+        branch:true,
+
+      }
+    });
+    console.log(response);
     res.json(response);
   } catch (error) {
     console.error(error);

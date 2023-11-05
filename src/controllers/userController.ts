@@ -12,6 +12,23 @@ export const getAllUsers = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const getUser = async (req: Request, res: Response) => {
+  console.log("getUser called")
+  const {username} = req?.body;
+  try {
+    const users = await prisma.user.findUnique({
+      where:{
+        username: username
+      }
+    });
+    res.json(users);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export const addMultipleUsers = async (req: Request, res: Response) => {
   try {
     const response = await prisma.user.createMany({

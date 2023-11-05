@@ -7,14 +7,14 @@ import branchRouter from "./routes/branchRouters";
 import studentRouter from "./routes/studentRouter";
 import courseRegistrationRouter from "./routes/courseRegistrationRouter";
 import attendanceRouter from "./routes/attendanceRouter";
-
+const cors = require("cors");
 const prisma = new PrismaClient();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-
+app.use(cors());
 async function main() {
   try {
     await prisma.$connect();

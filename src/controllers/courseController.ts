@@ -4,8 +4,16 @@ import { PrismaClient } from "../../generated/client";
 const prisma = new PrismaClient();
 
 export const getAllCourses = async (req: Request, res: Response) => {
+  console.log("get all courses called")
+  const {semesterId, branchId} = req?.query;
   try {
-    const courses = await prisma.course.findMany();
+    const courses = await prisma.course.findMany({
+      where:{
+        semesterId: semesterId?.toString(),
+        branchId: branchId?.toString(),
+      }
+    });
+    console.log(courses)
     res.json(courses);
   } catch (error) {
     console.error(error);

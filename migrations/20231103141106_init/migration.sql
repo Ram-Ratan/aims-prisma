@@ -20,8 +20,8 @@ CREATE TABLE "Student" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "rollNo" TEXT NOT NULL,
     "fullName" TEXT NOT NULL,
-    "semester" TEXT NOT NULL,
-    "branch" TEXT NOT NULL,
+    "semesterId" UUID NOT NULL,
+    "branchId" UUID NOT NULL,
     "mobileNo" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "userId" UUID NOT NULL,
@@ -132,6 +132,12 @@ CREATE UNIQUE INDEX "Branch_name_key" ON "Branch"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Course_courseId_key" ON "Course"("courseId");
+
+-- AddForeignKey
+ALTER TABLE "Student" ADD CONSTRAINT "Student_semesterId_fkey" FOREIGN KEY ("semesterId") REFERENCES "Semester"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Student" ADD CONSTRAINT "Student_branchId_fkey" FOREIGN KEY ("branchId") REFERENCES "Branch"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Student" ADD CONSTRAINT "Student_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

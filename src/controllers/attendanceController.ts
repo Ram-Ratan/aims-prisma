@@ -4,7 +4,7 @@ import { PrismaClient } from "../../generated/client";
 const prisma = new PrismaClient();
 
 export const markAttendance = async (req: Request, res: Response) => {
-  const data = req.body.students.map((student:any)=>{
+  const data = req.body.attendance.map((student:any)=>{
     return {
       courseId: req.body.courseId,
       studentId: student.id,
@@ -48,15 +48,23 @@ export const getAttendanceByCourseDateId = async (
   req: Request,
   res: Response
 ) => {
-  const date = new Date(req.body.date);
+  const startDate = req.body?.startDate;
+  const endDate = req.body?.endDate;
   const courseId = req.body.courseId;
-  const studentId = req.body.studentId;
+  const userId = req.body.userId;
   try {
     const response = await prisma.attendance.findMany({
       where: {
-        date: date,
+        date: {
+          gte: startDate,
+          lte:  endDate
+        },
         courseId: courseId,
-        studentId: studentId
+        student:{
+          user:{
+            id: userId
+          }
+        }
       }
     });
     res.json(response);

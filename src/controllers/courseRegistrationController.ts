@@ -24,12 +24,12 @@ export const courseRegistration = async (req: Request, res: Response) => {
 
 export const courserRegisteredById = async (req: Request, res: Response) => {
   try {
-    const studentId = req?.query?.id?.toString()
+    const userId = req?.query?.id?.toString()
     const response = await prisma.student.findUnique({
         where: {
-            id: studentId
+            userId: userId
         },
-        include: {
+        select: {
             courseRegistered: {
                 include: {
                     course: {
@@ -47,6 +47,35 @@ export const courserRegisteredById = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const getStudentByCourse = async (req: Request, res: Response) => {
+  try {
+    const courseId = req?.query?.courseId?.toString();
+    const response = await prisma.studentCourseRegistration.findMany({
+      orderBy:{
+        student:{
+          rollNo: "asc"
+        }
+      },
+      where:{
+        courseId: courseId
+      },
+      include:{
+        student:{
+          select:{
+            rollNo: true,
+            fullName: true,
+          }
+        }
+      }
+    })
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 
 
 
