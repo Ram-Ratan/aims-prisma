@@ -6,7 +6,9 @@ import semesterRouter from "./routes/semesterRouter";
 import branchRouter from "./routes/branchRouters";
 import studentRouter from "./routes/studentRouter";
 import courseRegistrationRouter from "./routes/courseRegistrationRouter";
+import courseAssignedRouter from "./routes/courseAssignedRouter";
 import attendanceRouter from "./routes/attendanceRouter";
+import facultyRouter from "./routes/facultyRouter";
 const cors = require("cors");
 const prisma = new PrismaClient();
 const app = express();
@@ -32,13 +34,14 @@ main().catch(console.error);
 
 app.use("/user", userRoutes);
 app.use("/student", studentRouter);
-app.use("/faculty", userRoutes);
+app.use("/faculty", facultyRouter);
 app.use("/admin", userRoutes);
 app.use("/course", courseRoutes);
 app.use("/attendance", userRoutes);
 app.use("/semester", semesterRouter);
 app.use("/branch", branchRouter);
 app.use("/course-registration",courseRegistrationRouter);
+app.use("/course-assigned",courseAssignedRouter);
 app.use("/attendance", attendanceRouter);
 
 

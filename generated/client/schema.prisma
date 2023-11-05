@@ -54,16 +54,16 @@ model Admin {
 }
 
 model Semester {
-  id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  sem    Int      @unique
-  course Course[]
+  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sem     Int       @unique
+  course  Course[]
   student Student[]
 }
 
 model Branch {
-  id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name   String   @unique
-  course Course[]
+  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name    String    @unique
+  course  Course[]
   student Student[]
 }
 
@@ -78,6 +78,7 @@ model Course {
   studentRegistered StudentCourseRegistration[]
   facultyAssigned   FacultyCourseAssignment[]
   attendances       Attendance[]
+  examEntries       ExamMarksEntry[]
 }
 
 model StudentCourseRegistration {
@@ -106,6 +107,24 @@ model Attendance {
   course    Course   @relation(fields: [courseId], references: [id])
 }
 
+model Exam {
+  id           String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         examType
+  code         String           @unique
+  date         DateTime         @default(now())
+  marksEntries ExamMarksEntry[]
+}
+
+model ExamMarksEntry {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  examId        String  @db.Uuid
+  courseId      String  @db.Uuid
+  marksObtained Float
+  remarks       String?
+  exam          Exam    @relation(fields: [examId], references: [id])
+  course        Course  @relation(fields: [courseId], references: [id])
+}
+
 enum userType {
   STUDENT
   FACULTY
@@ -115,4 +134,10 @@ enum userType {
 enum departmentType {
   ELECTRONICS
   COMPUTING
+}
+
+enum examType {
+  CT1
+  CT2
+  ENDSEM
 }

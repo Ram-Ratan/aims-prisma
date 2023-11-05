@@ -15,11 +15,12 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
   console.log("getUser called")
-  const {username} = req?.body;
+  const {username, password} = req?.body;
   try {
     const users = await prisma.user.findUnique({
       where:{
-        username: username
+        username: username,
+        password: password
       }
     });
     res.json(users);
