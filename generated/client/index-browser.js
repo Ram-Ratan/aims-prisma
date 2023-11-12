@@ -171,6 +171,22 @@ exports.Prisma.FacultyCourseAssignmentScalarFieldEnum = {
   courseId: 'courseId'
 };
 
+exports.Prisma.ExamScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  code: 'code',
+  date: 'date'
+};
+
+exports.Prisma.ExamMarksEntryScalarFieldEnum = {
+  id: 'id',
+  examId: 'examId',
+  courseId: 'courseId',
+  studentId: 'studentId',
+  marksObtained: 'marksObtained',
+  remarks: 'remarks'
+};
+
 exports.Prisma.AttendanceScalarFieldEnum = {
   id: 'id',
   courseId: 'courseId',
@@ -188,6 +204,11 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
 exports.userType = exports.$Enums.userType = {
   STUDENT: 'STUDENT',
   FACULTY: 'FACULTY',
@@ -197,6 +218,12 @@ exports.userType = exports.$Enums.userType = {
 exports.departmentType = exports.$Enums.departmentType = {
   ELECTRONICS: 'ELECTRONICS',
   COMPUTING: 'COMPUTING'
+};
+
+exports.examType = exports.$Enums.examType = {
+  CT1: 'CT1',
+  CT2: 'CT2',
+  ENDSEM: 'ENDSEM'
 };
 
 exports.Prisma.ModelName = {
@@ -209,6 +236,8 @@ exports.Prisma.ModelName = {
   Course: 'Course',
   StudentCourseRegistration: 'StudentCourseRegistration',
   FacultyCourseAssignment: 'FacultyCourseAssignment',
+  Exam: 'Exam',
+  ExamMarksEntry: 'ExamMarksEntry',
   Attendance: 'Attendance'
 };
 

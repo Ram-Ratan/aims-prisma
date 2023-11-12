@@ -9,6 +9,7 @@ import courseRegistrationRouter from "./routes/courseRegistrationRouter";
 import courseAssignedRouter from "./routes/courseAssignedRouter";
 import attendanceRouter from "./routes/attendanceRouter";
 import facultyRouter from "./routes/facultyRouter";
+import examRouter from "./routes/examRouter";
 const cors = require("cors");
 const prisma = new PrismaClient();
 const app = express();
@@ -43,6 +44,7 @@ app.use("/branch", branchRouter);
 app.use("/course-registration",courseRegistrationRouter);
 app.use("/course-assigned",courseAssignedRouter);
 app.use("/attendance", attendanceRouter);
+app.use("/exam",examRouter);
 
 
 

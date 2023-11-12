@@ -33,6 +33,7 @@ model Student {
   userId           String                      @unique @db.Uuid
   courseRegistered StudentCourseRegistration[]
   attendances      Attendance[]
+  examEntries      ExamMarksEntry[]
 }
 
 model Faculty {
@@ -54,16 +55,16 @@ model Admin {
 }
 
 model Semester {
-  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  sem     Int       @unique
-  course  Course[]
+  id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  sem    Int      @unique
+  course Course[]
   student Student[]
 }
 
 model Branch {
-  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name    String    @unique
-  course  Course[]
+  id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name   String   @unique
+  course Course[]
   student Student[]
 }
 
@@ -97,16 +98,6 @@ model FacultyCourseAssignment {
   course    Course  @relation(fields: [courseId], references: [id])
 }
 
-model Attendance {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  courseId  String   @db.Uuid
-  studentId String   @db.Uuid
-  date      DateTime @default(now())
-  isPresent Boolean
-  student   Student  @relation(fields: [studentId], references: [id])
-  course    Course   @relation(fields: [courseId], references: [id])
-}
-
 model Exam {
   id           String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name         examType
@@ -119,10 +110,22 @@ model ExamMarksEntry {
   id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   examId        String  @db.Uuid
   courseId      String  @db.Uuid
+  studentId     String  @db.Uuid
   marksObtained Float
   remarks       String?
   exam          Exam    @relation(fields: [examId], references: [id])
   course        Course  @relation(fields: [courseId], references: [id])
+  student       Student @relation(fields: [studentId], references: [id])
+}
+
+model Attendance {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  courseId  String   @db.Uuid
+  studentId String   @db.Uuid
+  date      DateTime @default(now())
+  isPresent Boolean
+  student   Student  @relation(fields: [studentId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
 }
 
 enum userType {
@@ -135,6 +138,7 @@ enum departmentType {
   ELECTRONICS
   COMPUTING
 }
+
 
 enum examType {
   CT1

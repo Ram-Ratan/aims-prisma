@@ -5,19 +5,19 @@ const prisma = new PrismaClient();
 
 async function seedData() {
   try {
-    // let user:any[] = [];
-    // for (let index = 20201; index <= 20249; index++) {
-    //     const obj = {
-    //       username: `${index}@iiitu.ac.in`,
-    //       password: "12345",
-    //       email: `${index}@iiitu.ac.in`,
-    //       role: "STUDENT"
-    //     };
-    //     user.push(obj);
-    // }
-    // await prisma.user.createMany({
-    //   data: user,
-    // });
+    let user:any[] = [];
+    for (let index = 20201; index <= 20249; index++) {
+        const obj = {
+          username: `${index}@iiitu.ac.in`,
+          password: "12345",
+          email: `${index}@iiitu.ac.in`,
+          role: "STUDENT"
+        };
+        user.push(obj);
+    }
+    await prisma.user.createMany({
+      data: user,
+    });
     const students = await prisma.user.findMany({
         where:{
             role: "STUDENT"
@@ -52,9 +52,9 @@ async function seedData() {
             sem: 8,
         }
     ]
-    // const semester = await prisma.semester.createMany({
-    //     data: semesterData
-    // })
+    const semesters = await prisma.semester.createMany({
+        data: semesterData
+    })
 
     const branchData = [
       {
@@ -68,9 +68,9 @@ async function seedData() {
       },
     ];
 
-    // const branch = await prisma.branch.createMany({
-    //     data: branchData
-    // })
+    const branchs = await prisma.branch.createMany({
+        data: branchData
+    })
     // const user = await prisma.user.findMany({});
     const branch = await prisma.branch.findMany({});
     const semester = await prisma.semester.findMany({});
@@ -139,9 +139,9 @@ async function seedData() {
         semesterId: semester[6].id,
       },
     ];
-    // const courseS = await prisma.course.createMany({
-    //     data: courseData
-    // })
+    const courseS = await prisma.course.createMany({
+        data: courseData
+    })
 
     console.log("Data seeded successfully.");
   } catch (error) {

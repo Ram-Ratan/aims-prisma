@@ -33,6 +33,7 @@ model Student {
   userId           String                      @unique @db.Uuid
   courseRegistered StudentCourseRegistration[]
   attendances      Attendance[]
+  examEntries      ExamMarksEntry[]
 }
 
 model Faculty {
@@ -78,6 +79,7 @@ model Course {
   studentRegistered StudentCourseRegistration[]
   facultyAssigned   FacultyCourseAssignment[]
   attendances       Attendance[]
+  examEntries       ExamMarksEntry[]
 }
 
 model StudentCourseRegistration {
@@ -94,6 +96,26 @@ model FacultyCourseAssignment {
   courseId  String  @db.Uuid
   faculty   Faculty @relation(fields: [facultyId], references: [id])
   course    Course  @relation(fields: [courseId], references: [id])
+}
+
+model Exam {
+  id           String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         examType
+  code         String           @unique
+  date         DateTime         @default(now())
+  marksEntries ExamMarksEntry[]
+}
+
+model ExamMarksEntry {
+  id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  examId        String  @db.Uuid
+  courseId      String  @db.Uuid
+  studentId     String  @db.Uuid
+  marksObtained Float
+  remarks       String?
+  exam          Exam    @relation(fields: [examId], references: [id])
+  course        Course  @relation(fields: [courseId], references: [id])
+  student       Student @relation(fields: [studentId], references: [id])
 }
 
 model Attendance {
@@ -115,4 +137,11 @@ enum userType {
 enum departmentType {
   ELECTRONICS
   COMPUTING
+}
+
+
+enum examType {
+  CT1
+  CT2
+  ENDSEM
 }

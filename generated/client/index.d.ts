@@ -59,6 +59,16 @@ export type StudentCourseRegistration = $Result.DefaultSelection<Prisma.$Student
  */
 export type FacultyCourseAssignment = $Result.DefaultSelection<Prisma.$FacultyCourseAssignmentPayload>
 /**
+ * Model Exam
+ * 
+ */
+export type Exam = $Result.DefaultSelection<Prisma.$ExamPayload>
+/**
+ * Model ExamMarksEntry
+ * 
+ */
+export type ExamMarksEntry = $Result.DefaultSelection<Prisma.$ExamMarksEntryPayload>
+/**
  * Model Attendance
  * 
  */
@@ -84,6 +94,15 @@ export const departmentType: {
 
 export type departmentType = (typeof departmentType)[keyof typeof departmentType]
 
+
+export const examType: {
+  CT1: 'CT1',
+  CT2: 'CT2',
+  ENDSEM: 'ENDSEM'
+};
+
+export type examType = (typeof examType)[keyof typeof examType]
+
 }
 
 export type userType = $Enums.userType
@@ -93,6 +112,10 @@ export const userType: typeof $Enums.userType
 export type departmentType = $Enums.departmentType
 
 export const departmentType: typeof $Enums.departmentType
+
+export type examType = $Enums.examType
+
+export const examType: typeof $Enums.examType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -305,6 +328,26 @@ export class PrismaClient<
     * ```
     */
   get facultyCourseAssignment(): Prisma.FacultyCourseAssignmentDelegate<ExtArgs>;
+
+  /**
+   * `prisma.exam`: Exposes CRUD operations for the **Exam** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Exams
+    * const exams = await prisma.exam.findMany()
+    * ```
+    */
+  get exam(): Prisma.ExamDelegate<ExtArgs>;
+
+  /**
+   * `prisma.examMarksEntry`: Exposes CRUD operations for the **ExamMarksEntry** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ExamMarksEntries
+    * const examMarksEntries = await prisma.examMarksEntry.findMany()
+    * ```
+    */
+  get examMarksEntry(): Prisma.ExamMarksEntryDelegate<ExtArgs>;
 
   /**
    * `prisma.attendance`: Exposes CRUD operations for the **Attendance** model.
@@ -794,6 +837,8 @@ export namespace Prisma {
     Course: 'Course',
     StudentCourseRegistration: 'StudentCourseRegistration',
     FacultyCourseAssignment: 'FacultyCourseAssignment',
+    Exam: 'Exam',
+    ExamMarksEntry: 'ExamMarksEntry',
     Attendance: 'Attendance'
   };
 
@@ -811,7 +856,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'student' | 'faculty' | 'admin' | 'semester' | 'branch' | 'course' | 'studentCourseRegistration' | 'facultyCourseAssignment' | 'attendance'
+      modelProps: 'user' | 'student' | 'faculty' | 'admin' | 'semester' | 'branch' | 'course' | 'studentCourseRegistration' | 'facultyCourseAssignment' | 'exam' | 'examMarksEntry' | 'attendance'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1409,6 +1454,138 @@ export namespace Prisma {
           }
         }
       }
+      Exam: {
+        payload: Prisma.$ExamPayload<ExtArgs>
+        fields: Prisma.ExamFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExamFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExamFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          findFirst: {
+            args: Prisma.ExamFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExamFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          findMany: {
+            args: Prisma.ExamFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>[]
+          }
+          create: {
+            args: Prisma.ExamCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          createMany: {
+            args: Prisma.ExamCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ExamDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          update: {
+            args: Prisma.ExamUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExamDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExamUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ExamUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamPayload>
+          }
+          aggregate: {
+            args: Prisma.ExamAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateExam>
+          }
+          groupBy: {
+            args: Prisma.ExamGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ExamGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExamCountArgs<ExtArgs>,
+            result: $Utils.Optional<ExamCountAggregateOutputType> | number
+          }
+        }
+      }
+      ExamMarksEntry: {
+        payload: Prisma.$ExamMarksEntryPayload<ExtArgs>
+        fields: Prisma.ExamMarksEntryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ExamMarksEntryFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ExamMarksEntryFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>
+          }
+          findFirst: {
+            args: Prisma.ExamMarksEntryFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ExamMarksEntryFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>
+          }
+          findMany: {
+            args: Prisma.ExamMarksEntryFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>[]
+          }
+          create: {
+            args: Prisma.ExamMarksEntryCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>
+          }
+          createMany: {
+            args: Prisma.ExamMarksEntryCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ExamMarksEntryDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>
+          }
+          update: {
+            args: Prisma.ExamMarksEntryUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>
+          }
+          deleteMany: {
+            args: Prisma.ExamMarksEntryDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ExamMarksEntryUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ExamMarksEntryUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ExamMarksEntryPayload>
+          }
+          aggregate: {
+            args: Prisma.ExamMarksEntryAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateExamMarksEntry>
+          }
+          groupBy: {
+            args: Prisma.ExamMarksEntryGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ExamMarksEntryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ExamMarksEntryCountArgs<ExtArgs>,
+            result: $Utils.Optional<ExamMarksEntryCountAggregateOutputType> | number
+          }
+        }
+      }
       Attendance: {
         payload: Prisma.$AttendancePayload<ExtArgs>
         fields: Prisma.AttendanceFieldRefs
@@ -1626,11 +1803,13 @@ export namespace Prisma {
   export type StudentCountOutputType = {
     courseRegistered: number
     attendances: number
+    examEntries: number
   }
 
   export type StudentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     courseRegistered?: boolean | StudentCountOutputTypeCountCourseRegisteredArgs
     attendances?: boolean | StudentCountOutputTypeCountAttendancesArgs
+    examEntries?: boolean | StudentCountOutputTypeCountExamEntriesArgs
   }
 
   // Custom InputTypes
@@ -1659,6 +1838,14 @@ export namespace Prisma {
    */
   export type StudentCountOutputTypeCountAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
+  }
+
+
+  /**
+   * StudentCountOutputType without action
+   */
+  export type StudentCountOutputTypeCountExamEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamMarksEntryWhereInput
   }
 
 
@@ -1793,12 +1980,14 @@ export namespace Prisma {
     studentRegistered: number
     facultyAssigned: number
     attendances: number
+    examEntries: number
   }
 
   export type CourseCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     studentRegistered?: boolean | CourseCountOutputTypeCountStudentRegisteredArgs
     facultyAssigned?: boolean | CourseCountOutputTypeCountFacultyAssignedArgs
     attendances?: boolean | CourseCountOutputTypeCountAttendancesArgs
+    examEntries?: boolean | CourseCountOutputTypeCountExamEntriesArgs
   }
 
   // Custom InputTypes
@@ -1835,6 +2024,48 @@ export namespace Prisma {
    */
   export type CourseCountOutputTypeCountAttendancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AttendanceWhereInput
+  }
+
+
+  /**
+   * CourseCountOutputType without action
+   */
+  export type CourseCountOutputTypeCountExamEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamMarksEntryWhereInput
+  }
+
+
+
+  /**
+   * Count Type ExamCountOutputType
+   */
+
+  export type ExamCountOutputType = {
+    marksEntries: number
+  }
+
+  export type ExamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    marksEntries?: boolean | ExamCountOutputTypeCountMarksEntriesArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * ExamCountOutputType without action
+   */
+  export type ExamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamCountOutputType
+     */
+    select?: ExamCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * ExamCountOutputType without action
+   */
+  export type ExamCountOutputTypeCountMarksEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamMarksEntryWhereInput
   }
 
 
@@ -3012,6 +3243,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     courseRegistered?: boolean | Student$courseRegisteredArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
+    examEntries?: boolean | Student$examEntriesArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -3032,6 +3264,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     courseRegistered?: boolean | Student$courseRegisteredArgs<ExtArgs>
     attendances?: boolean | Student$attendancesArgs<ExtArgs>
+    examEntries?: boolean | Student$examEntriesArgs<ExtArgs>
     _count?: boolean | StudentCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3044,6 +3277,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       courseRegistered: Prisma.$StudentCourseRegistrationPayload<ExtArgs>[]
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
+      examEntries: Prisma.$ExamMarksEntryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -3428,6 +3662,8 @@ export namespace Prisma {
     courseRegistered<T extends Student$courseRegisteredArgs<ExtArgs> = {}>(args?: Subset<T, Student$courseRegisteredArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StudentCourseRegistrationPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     attendances<T extends Student$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Student$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    examEntries<T extends Student$examEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Student$examEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3815,6 +4051,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+
+  /**
+   * Student.examEntries
+   */
+  export type Student$examEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    where?: ExamMarksEntryWhereInput
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    cursor?: ExamMarksEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamMarksEntryScalarFieldEnum | ExamMarksEntryScalarFieldEnum[]
   }
 
 
@@ -7758,6 +8015,7 @@ export namespace Prisma {
     studentRegistered?: boolean | Course$studentRegisteredArgs<ExtArgs>
     facultyAssigned?: boolean | Course$facultyAssignedArgs<ExtArgs>
     attendances?: boolean | Course$attendancesArgs<ExtArgs>
+    examEntries?: boolean | Course$examEntriesArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
 
@@ -7775,6 +8033,7 @@ export namespace Prisma {
     studentRegistered?: boolean | Course$studentRegisteredArgs<ExtArgs>
     facultyAssigned?: boolean | Course$facultyAssignedArgs<ExtArgs>
     attendances?: boolean | Course$attendancesArgs<ExtArgs>
+    examEntries?: boolean | Course$examEntriesArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -7787,6 +8046,7 @@ export namespace Prisma {
       studentRegistered: Prisma.$StudentCourseRegistrationPayload<ExtArgs>[]
       facultyAssigned: Prisma.$FacultyCourseAssignmentPayload<ExtArgs>[]
       attendances: Prisma.$AttendancePayload<ExtArgs>[]
+      examEntries: Prisma.$ExamMarksEntryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8168,6 +8428,8 @@ export namespace Prisma {
     facultyAssigned<T extends Course$facultyAssignedArgs<ExtArgs> = {}>(args?: Subset<T, Course$facultyAssignedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacultyCourseAssignmentPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     attendances<T extends Course$attendancesArgs<ExtArgs> = {}>(args?: Subset<T, Course$attendancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    examEntries<T extends Course$examEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Course$examEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8573,6 +8835,27 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: AttendanceScalarFieldEnum | AttendanceScalarFieldEnum[]
+  }
+
+
+  /**
+   * Course.examEntries
+   */
+  export type Course$examEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    where?: ExamMarksEntryWhereInput
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    cursor?: ExamMarksEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamMarksEntryScalarFieldEnum | ExamMarksEntryScalarFieldEnum[]
   }
 
 
@@ -10395,6 +10678,1909 @@ export namespace Prisma {
 
 
   /**
+   * Model Exam
+   */
+
+  export type AggregateExam = {
+    _count: ExamCountAggregateOutputType | null
+    _min: ExamMinAggregateOutputType | null
+    _max: ExamMaxAggregateOutputType | null
+  }
+
+  export type ExamMinAggregateOutputType = {
+    id: string | null
+    name: $Enums.examType | null
+    code: string | null
+    date: Date | null
+  }
+
+  export type ExamMaxAggregateOutputType = {
+    id: string | null
+    name: $Enums.examType | null
+    code: string | null
+    date: Date | null
+  }
+
+  export type ExamCountAggregateOutputType = {
+    id: number
+    name: number
+    code: number
+    date: number
+    _all: number
+  }
+
+
+  export type ExamMinAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    date?: true
+  }
+
+  export type ExamMaxAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    date?: true
+  }
+
+  export type ExamCountAggregateInputType = {
+    id?: true
+    name?: true
+    code?: true
+    date?: true
+    _all?: true
+  }
+
+  export type ExamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Exam to aggregate.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Exams
+    **/
+    _count?: true | ExamCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExamMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExamMaxAggregateInputType
+  }
+
+  export type GetExamAggregateType<T extends ExamAggregateArgs> = {
+        [P in keyof T & keyof AggregateExam]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExam[P]>
+      : GetScalarType<T[P], AggregateExam[P]>
+  }
+
+
+
+
+  export type ExamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamWhereInput
+    orderBy?: ExamOrderByWithAggregationInput | ExamOrderByWithAggregationInput[]
+    by: ExamScalarFieldEnum[] | ExamScalarFieldEnum
+    having?: ExamScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExamCountAggregateInputType | true
+    _min?: ExamMinAggregateInputType
+    _max?: ExamMaxAggregateInputType
+  }
+
+  export type ExamGroupByOutputType = {
+    id: string
+    name: $Enums.examType
+    code: string
+    date: Date
+    _count: ExamCountAggregateOutputType | null
+    _min: ExamMinAggregateOutputType | null
+    _max: ExamMaxAggregateOutputType | null
+  }
+
+  type GetExamGroupByPayload<T extends ExamGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExamGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExamGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExamGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    date?: boolean
+    marksEntries?: boolean | Exam$marksEntriesArgs<ExtArgs>
+    _count?: boolean | ExamCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["exam"]>
+
+  export type ExamSelectScalar = {
+    id?: boolean
+    name?: boolean
+    code?: boolean
+    date?: boolean
+  }
+
+  export type ExamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    marksEntries?: boolean | Exam$marksEntriesArgs<ExtArgs>
+    _count?: boolean | ExamCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $ExamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Exam"
+    objects: {
+      marksEntries: Prisma.$ExamMarksEntryPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: $Enums.examType
+      code: string
+      date: Date
+    }, ExtArgs["result"]["exam"]>
+    composites: {}
+  }
+
+
+  type ExamGetPayload<S extends boolean | null | undefined | ExamDefaultArgs> = $Result.GetResult<Prisma.$ExamPayload, S>
+
+  type ExamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ExamFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: ExamCountAggregateInputType | true
+    }
+
+  export interface ExamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Exam'], meta: { name: 'Exam' } }
+    /**
+     * Find zero or one Exam that matches the filter.
+     * @param {ExamFindUniqueArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ExamFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamFindUniqueArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Exam that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ExamFindUniqueOrThrowArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ExamFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Exam that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamFindFirstArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ExamFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamFindFirstArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Exam that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamFindFirstOrThrowArgs} args - Arguments to find a Exam
+     * @example
+     * // Get one Exam
+     * const exam = await prisma.exam.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ExamFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Exams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Exams
+     * const exams = await prisma.exam.findMany()
+     * 
+     * // Get first 10 Exams
+     * const exams = await prisma.exam.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const examWithIdOnly = await prisma.exam.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ExamFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Exam.
+     * @param {ExamCreateArgs} args - Arguments to create a Exam.
+     * @example
+     * // Create one Exam
+     * const Exam = await prisma.exam.create({
+     *   data: {
+     *     // ... data to create a Exam
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ExamCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamCreateArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Exams.
+     *     @param {ExamCreateManyArgs} args - Arguments to create many Exams.
+     *     @example
+     *     // Create many Exams
+     *     const exam = await prisma.exam.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ExamCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Exam.
+     * @param {ExamDeleteArgs} args - Arguments to delete one Exam.
+     * @example
+     * // Delete one Exam
+     * const Exam = await prisma.exam.delete({
+     *   where: {
+     *     // ... filter to delete one Exam
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ExamDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamDeleteArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Exam.
+     * @param {ExamUpdateArgs} args - Arguments to update one Exam.
+     * @example
+     * // Update one Exam
+     * const exam = await prisma.exam.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ExamUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamUpdateArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Exams.
+     * @param {ExamDeleteManyArgs} args - Arguments to filter Exams to delete.
+     * @example
+     * // Delete a few Exams
+     * const { count } = await prisma.exam.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ExamDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Exams
+     * const exam = await prisma.exam.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ExamUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Exam.
+     * @param {ExamUpsertArgs} args - Arguments to update or create a Exam.
+     * @example
+     * // Update or create a Exam
+     * const exam = await prisma.exam.upsert({
+     *   create: {
+     *     // ... data to create a Exam
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Exam we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ExamUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamUpsertArgs<ExtArgs>>
+    ): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Exams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamCountArgs} args - Arguments to filter Exams to count.
+     * @example
+     * // Count the number of Exams
+     * const count = await prisma.exam.count({
+     *   where: {
+     *     // ... the filter for the Exams we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExamCountArgs>(
+      args?: Subset<T, ExamCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExamCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Exam.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExamAggregateArgs>(args: Subset<T, ExamAggregateArgs>): Prisma.PrismaPromise<GetExamAggregateType<T>>
+
+    /**
+     * Group by Exam.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExamGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExamGroupByArgs['orderBy'] }
+        : { orderBy?: ExamGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Exam model
+   */
+  readonly fields: ExamFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Exam.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    marksEntries<T extends Exam$marksEntriesArgs<ExtArgs> = {}>(args?: Subset<T, Exam$marksEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Exam model
+   */ 
+  interface ExamFieldRefs {
+    readonly id: FieldRef<"Exam", 'String'>
+    readonly name: FieldRef<"Exam", 'examType'>
+    readonly code: FieldRef<"Exam", 'String'>
+    readonly date: FieldRef<"Exam", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Exam findUnique
+   */
+  export type ExamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+
+  /**
+   * Exam findUniqueOrThrow
+   */
+  export type ExamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+
+  /**
+   * Exam findFirst
+   */
+  export type ExamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Exams.
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Exams.
+     */
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+
+  /**
+   * Exam findFirstOrThrow
+   */
+  export type ExamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exam to fetch.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Exams.
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Exams.
+     */
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+
+  /**
+   * Exam findMany
+   */
+  export type ExamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter, which Exams to fetch.
+     */
+    where?: ExamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Exams to fetch.
+     */
+    orderBy?: ExamOrderByWithRelationInput | ExamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Exams.
+     */
+    cursor?: ExamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Exams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Exams.
+     */
+    skip?: number
+    distinct?: ExamScalarFieldEnum | ExamScalarFieldEnum[]
+  }
+
+
+  /**
+   * Exam create
+   */
+  export type ExamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Exam.
+     */
+    data: XOR<ExamCreateInput, ExamUncheckedCreateInput>
+  }
+
+
+  /**
+   * Exam createMany
+   */
+  export type ExamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Exams.
+     */
+    data: ExamCreateManyInput | ExamCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Exam update
+   */
+  export type ExamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Exam.
+     */
+    data: XOR<ExamUpdateInput, ExamUncheckedUpdateInput>
+    /**
+     * Choose, which Exam to update.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+
+  /**
+   * Exam updateMany
+   */
+  export type ExamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Exams.
+     */
+    data: XOR<ExamUpdateManyMutationInput, ExamUncheckedUpdateManyInput>
+    /**
+     * Filter which Exams to update
+     */
+    where?: ExamWhereInput
+  }
+
+
+  /**
+   * Exam upsert
+   */
+  export type ExamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Exam to update in case it exists.
+     */
+    where: ExamWhereUniqueInput
+    /**
+     * In case the Exam found by the `where` argument doesn't exist, create a new Exam with this data.
+     */
+    create: XOR<ExamCreateInput, ExamUncheckedCreateInput>
+    /**
+     * In case the Exam was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExamUpdateInput, ExamUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Exam delete
+   */
+  export type ExamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+    /**
+     * Filter which Exam to delete.
+     */
+    where: ExamWhereUniqueInput
+  }
+
+
+  /**
+   * Exam deleteMany
+   */
+  export type ExamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Exams to delete
+     */
+    where?: ExamWhereInput
+  }
+
+
+  /**
+   * Exam.marksEntries
+   */
+  export type Exam$marksEntriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    where?: ExamMarksEntryWhereInput
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    cursor?: ExamMarksEntryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ExamMarksEntryScalarFieldEnum | ExamMarksEntryScalarFieldEnum[]
+  }
+
+
+  /**
+   * Exam without action
+   */
+  export type ExamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Exam
+     */
+    select?: ExamSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model ExamMarksEntry
+   */
+
+  export type AggregateExamMarksEntry = {
+    _count: ExamMarksEntryCountAggregateOutputType | null
+    _avg: ExamMarksEntryAvgAggregateOutputType | null
+    _sum: ExamMarksEntrySumAggregateOutputType | null
+    _min: ExamMarksEntryMinAggregateOutputType | null
+    _max: ExamMarksEntryMaxAggregateOutputType | null
+  }
+
+  export type ExamMarksEntryAvgAggregateOutputType = {
+    marksObtained: number | null
+  }
+
+  export type ExamMarksEntrySumAggregateOutputType = {
+    marksObtained: number | null
+  }
+
+  export type ExamMarksEntryMinAggregateOutputType = {
+    id: string | null
+    examId: string | null
+    courseId: string | null
+    studentId: string | null
+    marksObtained: number | null
+    remarks: string | null
+  }
+
+  export type ExamMarksEntryMaxAggregateOutputType = {
+    id: string | null
+    examId: string | null
+    courseId: string | null
+    studentId: string | null
+    marksObtained: number | null
+    remarks: string | null
+  }
+
+  export type ExamMarksEntryCountAggregateOutputType = {
+    id: number
+    examId: number
+    courseId: number
+    studentId: number
+    marksObtained: number
+    remarks: number
+    _all: number
+  }
+
+
+  export type ExamMarksEntryAvgAggregateInputType = {
+    marksObtained?: true
+  }
+
+  export type ExamMarksEntrySumAggregateInputType = {
+    marksObtained?: true
+  }
+
+  export type ExamMarksEntryMinAggregateInputType = {
+    id?: true
+    examId?: true
+    courseId?: true
+    studentId?: true
+    marksObtained?: true
+    remarks?: true
+  }
+
+  export type ExamMarksEntryMaxAggregateInputType = {
+    id?: true
+    examId?: true
+    courseId?: true
+    studentId?: true
+    marksObtained?: true
+    remarks?: true
+  }
+
+  export type ExamMarksEntryCountAggregateInputType = {
+    id?: true
+    examId?: true
+    courseId?: true
+    studentId?: true
+    marksObtained?: true
+    remarks?: true
+    _all?: true
+  }
+
+  export type ExamMarksEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamMarksEntry to aggregate.
+     */
+    where?: ExamMarksEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamMarksEntries to fetch.
+     */
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ExamMarksEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamMarksEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamMarksEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ExamMarksEntries
+    **/
+    _count?: true | ExamMarksEntryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ExamMarksEntryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ExamMarksEntrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ExamMarksEntryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ExamMarksEntryMaxAggregateInputType
+  }
+
+  export type GetExamMarksEntryAggregateType<T extends ExamMarksEntryAggregateArgs> = {
+        [P in keyof T & keyof AggregateExamMarksEntry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateExamMarksEntry[P]>
+      : GetScalarType<T[P], AggregateExamMarksEntry[P]>
+  }
+
+
+
+
+  export type ExamMarksEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ExamMarksEntryWhereInput
+    orderBy?: ExamMarksEntryOrderByWithAggregationInput | ExamMarksEntryOrderByWithAggregationInput[]
+    by: ExamMarksEntryScalarFieldEnum[] | ExamMarksEntryScalarFieldEnum
+    having?: ExamMarksEntryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ExamMarksEntryCountAggregateInputType | true
+    _avg?: ExamMarksEntryAvgAggregateInputType
+    _sum?: ExamMarksEntrySumAggregateInputType
+    _min?: ExamMarksEntryMinAggregateInputType
+    _max?: ExamMarksEntryMaxAggregateInputType
+  }
+
+  export type ExamMarksEntryGroupByOutputType = {
+    id: string
+    examId: string
+    courseId: string
+    studentId: string
+    marksObtained: number
+    remarks: string | null
+    _count: ExamMarksEntryCountAggregateOutputType | null
+    _avg: ExamMarksEntryAvgAggregateOutputType | null
+    _sum: ExamMarksEntrySumAggregateOutputType | null
+    _min: ExamMarksEntryMinAggregateOutputType | null
+    _max: ExamMarksEntryMaxAggregateOutputType | null
+  }
+
+  type GetExamMarksEntryGroupByPayload<T extends ExamMarksEntryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ExamMarksEntryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ExamMarksEntryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ExamMarksEntryGroupByOutputType[P]>
+            : GetScalarType<T[P], ExamMarksEntryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ExamMarksEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    examId?: boolean
+    courseId?: boolean
+    studentId?: boolean
+    marksObtained?: boolean
+    remarks?: boolean
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["examMarksEntry"]>
+
+  export type ExamMarksEntrySelectScalar = {
+    id?: boolean
+    examId?: boolean
+    courseId?: boolean
+    studentId?: boolean
+    marksObtained?: boolean
+    remarks?: boolean
+  }
+
+  export type ExamMarksEntryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    exam?: boolean | ExamDefaultArgs<ExtArgs>
+    course?: boolean | CourseDefaultArgs<ExtArgs>
+    student?: boolean | StudentDefaultArgs<ExtArgs>
+  }
+
+
+  export type $ExamMarksEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ExamMarksEntry"
+    objects: {
+      exam: Prisma.$ExamPayload<ExtArgs>
+      course: Prisma.$CoursePayload<ExtArgs>
+      student: Prisma.$StudentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      examId: string
+      courseId: string
+      studentId: string
+      marksObtained: number
+      remarks: string | null
+    }, ExtArgs["result"]["examMarksEntry"]>
+    composites: {}
+  }
+
+
+  type ExamMarksEntryGetPayload<S extends boolean | null | undefined | ExamMarksEntryDefaultArgs> = $Result.GetResult<Prisma.$ExamMarksEntryPayload, S>
+
+  type ExamMarksEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ExamMarksEntryFindManyArgs, 'select' | 'include' | 'distinct' > & {
+      select?: ExamMarksEntryCountAggregateInputType | true
+    }
+
+  export interface ExamMarksEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ExamMarksEntry'], meta: { name: 'ExamMarksEntry' } }
+    /**
+     * Find zero or one ExamMarksEntry that matches the filter.
+     * @param {ExamMarksEntryFindUniqueArgs} args - Arguments to find a ExamMarksEntry
+     * @example
+     * // Get one ExamMarksEntry
+     * const examMarksEntry = await prisma.examMarksEntry.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ExamMarksEntryFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamMarksEntryFindUniqueArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ExamMarksEntry that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ExamMarksEntryFindUniqueOrThrowArgs} args - Arguments to find a ExamMarksEntry
+     * @example
+     * // Get one ExamMarksEntry
+     * const examMarksEntry = await prisma.examMarksEntry.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ExamMarksEntryFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamMarksEntryFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ExamMarksEntry that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryFindFirstArgs} args - Arguments to find a ExamMarksEntry
+     * @example
+     * // Get one ExamMarksEntry
+     * const examMarksEntry = await prisma.examMarksEntry.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ExamMarksEntryFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamMarksEntryFindFirstArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ExamMarksEntry that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryFindFirstOrThrowArgs} args - Arguments to find a ExamMarksEntry
+     * @example
+     * // Get one ExamMarksEntry
+     * const examMarksEntry = await prisma.examMarksEntry.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ExamMarksEntryFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamMarksEntryFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ExamMarksEntries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ExamMarksEntries
+     * const examMarksEntries = await prisma.examMarksEntry.findMany()
+     * 
+     * // Get first 10 ExamMarksEntries
+     * const examMarksEntries = await prisma.examMarksEntry.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const examMarksEntryWithIdOnly = await prisma.examMarksEntry.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ExamMarksEntryFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamMarksEntryFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ExamMarksEntry.
+     * @param {ExamMarksEntryCreateArgs} args - Arguments to create a ExamMarksEntry.
+     * @example
+     * // Create one ExamMarksEntry
+     * const ExamMarksEntry = await prisma.examMarksEntry.create({
+     *   data: {
+     *     // ... data to create a ExamMarksEntry
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ExamMarksEntryCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamMarksEntryCreateArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ExamMarksEntries.
+     *     @param {ExamMarksEntryCreateManyArgs} args - Arguments to create many ExamMarksEntries.
+     *     @example
+     *     // Create many ExamMarksEntries
+     *     const examMarksEntry = await prisma.examMarksEntry.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ExamMarksEntryCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamMarksEntryCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ExamMarksEntry.
+     * @param {ExamMarksEntryDeleteArgs} args - Arguments to delete one ExamMarksEntry.
+     * @example
+     * // Delete one ExamMarksEntry
+     * const ExamMarksEntry = await prisma.examMarksEntry.delete({
+     *   where: {
+     *     // ... filter to delete one ExamMarksEntry
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ExamMarksEntryDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamMarksEntryDeleteArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ExamMarksEntry.
+     * @param {ExamMarksEntryUpdateArgs} args - Arguments to update one ExamMarksEntry.
+     * @example
+     * // Update one ExamMarksEntry
+     * const examMarksEntry = await prisma.examMarksEntry.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ExamMarksEntryUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamMarksEntryUpdateArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ExamMarksEntries.
+     * @param {ExamMarksEntryDeleteManyArgs} args - Arguments to filter ExamMarksEntries to delete.
+     * @example
+     * // Delete a few ExamMarksEntries
+     * const { count } = await prisma.examMarksEntry.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ExamMarksEntryDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ExamMarksEntryDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ExamMarksEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ExamMarksEntries
+     * const examMarksEntry = await prisma.examMarksEntry.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ExamMarksEntryUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamMarksEntryUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ExamMarksEntry.
+     * @param {ExamMarksEntryUpsertArgs} args - Arguments to update or create a ExamMarksEntry.
+     * @example
+     * // Update or create a ExamMarksEntry
+     * const examMarksEntry = await prisma.examMarksEntry.upsert({
+     *   create: {
+     *     // ... data to create a ExamMarksEntry
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ExamMarksEntry we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ExamMarksEntryUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ExamMarksEntryUpsertArgs<ExtArgs>>
+    ): Prisma__ExamMarksEntryClient<$Result.GetResult<Prisma.$ExamMarksEntryPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ExamMarksEntries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryCountArgs} args - Arguments to filter ExamMarksEntries to count.
+     * @example
+     * // Count the number of ExamMarksEntries
+     * const count = await prisma.examMarksEntry.count({
+     *   where: {
+     *     // ... the filter for the ExamMarksEntries we want to count
+     *   }
+     * })
+    **/
+    count<T extends ExamMarksEntryCountArgs>(
+      args?: Subset<T, ExamMarksEntryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ExamMarksEntryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ExamMarksEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ExamMarksEntryAggregateArgs>(args: Subset<T, ExamMarksEntryAggregateArgs>): Prisma.PrismaPromise<GetExamMarksEntryAggregateType<T>>
+
+    /**
+     * Group by ExamMarksEntry.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ExamMarksEntryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ExamMarksEntryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ExamMarksEntryGroupByArgs['orderBy'] }
+        : { orderBy?: ExamMarksEntryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ExamMarksEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetExamMarksEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ExamMarksEntry model
+   */
+  readonly fields: ExamMarksEntryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ExamMarksEntry.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ExamMarksEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    exam<T extends ExamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ExamDefaultArgs<ExtArgs>>): Prisma__ExamClient<$Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    course<T extends CourseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CourseDefaultArgs<ExtArgs>>): Prisma__CourseClient<$Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    student<T extends StudentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StudentDefaultArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ExamMarksEntry model
+   */ 
+  interface ExamMarksEntryFieldRefs {
+    readonly id: FieldRef<"ExamMarksEntry", 'String'>
+    readonly examId: FieldRef<"ExamMarksEntry", 'String'>
+    readonly courseId: FieldRef<"ExamMarksEntry", 'String'>
+    readonly studentId: FieldRef<"ExamMarksEntry", 'String'>
+    readonly marksObtained: FieldRef<"ExamMarksEntry", 'Float'>
+    readonly remarks: FieldRef<"ExamMarksEntry", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * ExamMarksEntry findUnique
+   */
+  export type ExamMarksEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamMarksEntry to fetch.
+     */
+    where: ExamMarksEntryWhereUniqueInput
+  }
+
+
+  /**
+   * ExamMarksEntry findUniqueOrThrow
+   */
+  export type ExamMarksEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamMarksEntry to fetch.
+     */
+    where: ExamMarksEntryWhereUniqueInput
+  }
+
+
+  /**
+   * ExamMarksEntry findFirst
+   */
+  export type ExamMarksEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamMarksEntry to fetch.
+     */
+    where?: ExamMarksEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamMarksEntries to fetch.
+     */
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamMarksEntries.
+     */
+    cursor?: ExamMarksEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamMarksEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamMarksEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamMarksEntries.
+     */
+    distinct?: ExamMarksEntryScalarFieldEnum | ExamMarksEntryScalarFieldEnum[]
+  }
+
+
+  /**
+   * ExamMarksEntry findFirstOrThrow
+   */
+  export type ExamMarksEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamMarksEntry to fetch.
+     */
+    where?: ExamMarksEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamMarksEntries to fetch.
+     */
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ExamMarksEntries.
+     */
+    cursor?: ExamMarksEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamMarksEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamMarksEntries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ExamMarksEntries.
+     */
+    distinct?: ExamMarksEntryScalarFieldEnum | ExamMarksEntryScalarFieldEnum[]
+  }
+
+
+  /**
+   * ExamMarksEntry findMany
+   */
+  export type ExamMarksEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * Filter, which ExamMarksEntries to fetch.
+     */
+    where?: ExamMarksEntryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ExamMarksEntries to fetch.
+     */
+    orderBy?: ExamMarksEntryOrderByWithRelationInput | ExamMarksEntryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ExamMarksEntries.
+     */
+    cursor?: ExamMarksEntryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ExamMarksEntries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ExamMarksEntries.
+     */
+    skip?: number
+    distinct?: ExamMarksEntryScalarFieldEnum | ExamMarksEntryScalarFieldEnum[]
+  }
+
+
+  /**
+   * ExamMarksEntry create
+   */
+  export type ExamMarksEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ExamMarksEntry.
+     */
+    data: XOR<ExamMarksEntryCreateInput, ExamMarksEntryUncheckedCreateInput>
+  }
+
+
+  /**
+   * ExamMarksEntry createMany
+   */
+  export type ExamMarksEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ExamMarksEntries.
+     */
+    data: ExamMarksEntryCreateManyInput | ExamMarksEntryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ExamMarksEntry update
+   */
+  export type ExamMarksEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ExamMarksEntry.
+     */
+    data: XOR<ExamMarksEntryUpdateInput, ExamMarksEntryUncheckedUpdateInput>
+    /**
+     * Choose, which ExamMarksEntry to update.
+     */
+    where: ExamMarksEntryWhereUniqueInput
+  }
+
+
+  /**
+   * ExamMarksEntry updateMany
+   */
+  export type ExamMarksEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ExamMarksEntries.
+     */
+    data: XOR<ExamMarksEntryUpdateManyMutationInput, ExamMarksEntryUncheckedUpdateManyInput>
+    /**
+     * Filter which ExamMarksEntries to update
+     */
+    where?: ExamMarksEntryWhereInput
+  }
+
+
+  /**
+   * ExamMarksEntry upsert
+   */
+  export type ExamMarksEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ExamMarksEntry to update in case it exists.
+     */
+    where: ExamMarksEntryWhereUniqueInput
+    /**
+     * In case the ExamMarksEntry found by the `where` argument doesn't exist, create a new ExamMarksEntry with this data.
+     */
+    create: XOR<ExamMarksEntryCreateInput, ExamMarksEntryUncheckedCreateInput>
+    /**
+     * In case the ExamMarksEntry was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ExamMarksEntryUpdateInput, ExamMarksEntryUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ExamMarksEntry delete
+   */
+  export type ExamMarksEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+    /**
+     * Filter which ExamMarksEntry to delete.
+     */
+    where: ExamMarksEntryWhereUniqueInput
+  }
+
+
+  /**
+   * ExamMarksEntry deleteMany
+   */
+  export type ExamMarksEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ExamMarksEntries to delete
+     */
+    where?: ExamMarksEntryWhereInput
+  }
+
+
+  /**
+   * ExamMarksEntry without action
+   */
+  export type ExamMarksEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ExamMarksEntry
+     */
+    select?: ExamMarksEntrySelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ExamMarksEntryInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Model Attendance
    */
 
@@ -11422,6 +13608,28 @@ export namespace Prisma {
   export type FacultyCourseAssignmentScalarFieldEnum = (typeof FacultyCourseAssignmentScalarFieldEnum)[keyof typeof FacultyCourseAssignmentScalarFieldEnum]
 
 
+  export const ExamScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    code: 'code',
+    date: 'date'
+  };
+
+  export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
+
+
+  export const ExamMarksEntryScalarFieldEnum: {
+    id: 'id',
+    examId: 'examId',
+    courseId: 'courseId',
+    studentId: 'studentId',
+    marksObtained: 'marksObtained',
+    remarks: 'remarks'
+  };
+
+  export type ExamMarksEntryScalarFieldEnum = (typeof ExamMarksEntryScalarFieldEnum)[keyof typeof ExamMarksEntryScalarFieldEnum]
+
+
   export const AttendanceScalarFieldEnum: {
     id: 'id',
     courseId: 'courseId',
@@ -11447,6 +13655,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -11511,6 +13727,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'examType'
+   */
+  export type EnumexamTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'examType'>
+    
+
+
+  /**
+   * Reference to a field of type 'examType[]'
+   */
+  export type ListEnumexamTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'examType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -11525,13 +13755,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -11542,6 +13765,13 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
   /**
    * Deep Input Types
@@ -11626,6 +13856,7 @@ export namespace Prisma {
     user?: XOR<UserRelationFilter, UserWhereInput>
     courseRegistered?: StudentCourseRegistrationListRelationFilter
     attendances?: AttendanceListRelationFilter
+    examEntries?: ExamMarksEntryListRelationFilter
   }
 
   export type StudentOrderByWithRelationInput = {
@@ -11642,6 +13873,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     courseRegistered?: StudentCourseRegistrationOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
+    examEntries?: ExamMarksEntryOrderByRelationAggregateInput
   }
 
   export type StudentWhereUniqueInput = Prisma.AtLeast<{
@@ -11661,6 +13893,7 @@ export namespace Prisma {
     user?: XOR<UserRelationFilter, UserWhereInput>
     courseRegistered?: StudentCourseRegistrationListRelationFilter
     attendances?: AttendanceListRelationFilter
+    examEntries?: ExamMarksEntryListRelationFilter
   }, "id" | "rollNo" | "userId">
 
   export type StudentOrderByWithAggregationInput = {
@@ -11901,6 +14134,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationListRelationFilter
     facultyAssigned?: FacultyCourseAssignmentListRelationFilter
     attendances?: AttendanceListRelationFilter
+    examEntries?: ExamMarksEntryListRelationFilter
   }
 
   export type CourseOrderByWithRelationInput = {
@@ -11914,6 +14148,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationOrderByRelationAggregateInput
     facultyAssigned?: FacultyCourseAssignmentOrderByRelationAggregateInput
     attendances?: AttendanceOrderByRelationAggregateInput
+    examEntries?: ExamMarksEntryOrderByRelationAggregateInput
   }
 
   export type CourseWhereUniqueInput = Prisma.AtLeast<{
@@ -11930,6 +14165,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationListRelationFilter
     facultyAssigned?: FacultyCourseAssignmentListRelationFilter
     attendances?: AttendanceListRelationFilter
+    examEntries?: ExamMarksEntryListRelationFilter
   }, "id" | "courseId">
 
   export type CourseOrderByWithAggregationInput = {
@@ -12048,6 +14284,124 @@ export namespace Prisma {
     id?: UuidWithAggregatesFilter<"FacultyCourseAssignment"> | string
     facultyId?: UuidWithAggregatesFilter<"FacultyCourseAssignment"> | string
     courseId?: UuidWithAggregatesFilter<"FacultyCourseAssignment"> | string
+  }
+
+  export type ExamWhereInput = {
+    AND?: ExamWhereInput | ExamWhereInput[]
+    OR?: ExamWhereInput[]
+    NOT?: ExamWhereInput | ExamWhereInput[]
+    id?: UuidFilter<"Exam"> | string
+    name?: EnumexamTypeFilter<"Exam"> | $Enums.examType
+    code?: StringFilter<"Exam"> | string
+    date?: DateTimeFilter<"Exam"> | Date | string
+    marksEntries?: ExamMarksEntryListRelationFilter
+  }
+
+  export type ExamOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    date?: SortOrder
+    marksEntries?: ExamMarksEntryOrderByRelationAggregateInput
+  }
+
+  export type ExamWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    code?: string
+    AND?: ExamWhereInput | ExamWhereInput[]
+    OR?: ExamWhereInput[]
+    NOT?: ExamWhereInput | ExamWhereInput[]
+    name?: EnumexamTypeFilter<"Exam"> | $Enums.examType
+    date?: DateTimeFilter<"Exam"> | Date | string
+    marksEntries?: ExamMarksEntryListRelationFilter
+  }, "id" | "code">
+
+  export type ExamOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    date?: SortOrder
+    _count?: ExamCountOrderByAggregateInput
+    _max?: ExamMaxOrderByAggregateInput
+    _min?: ExamMinOrderByAggregateInput
+  }
+
+  export type ExamScalarWhereWithAggregatesInput = {
+    AND?: ExamScalarWhereWithAggregatesInput | ExamScalarWhereWithAggregatesInput[]
+    OR?: ExamScalarWhereWithAggregatesInput[]
+    NOT?: ExamScalarWhereWithAggregatesInput | ExamScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"Exam"> | string
+    name?: EnumexamTypeWithAggregatesFilter<"Exam"> | $Enums.examType
+    code?: StringWithAggregatesFilter<"Exam"> | string
+    date?: DateTimeWithAggregatesFilter<"Exam"> | Date | string
+  }
+
+  export type ExamMarksEntryWhereInput = {
+    AND?: ExamMarksEntryWhereInput | ExamMarksEntryWhereInput[]
+    OR?: ExamMarksEntryWhereInput[]
+    NOT?: ExamMarksEntryWhereInput | ExamMarksEntryWhereInput[]
+    id?: UuidFilter<"ExamMarksEntry"> | string
+    examId?: UuidFilter<"ExamMarksEntry"> | string
+    courseId?: UuidFilter<"ExamMarksEntry"> | string
+    studentId?: UuidFilter<"ExamMarksEntry"> | string
+    marksObtained?: FloatFilter<"ExamMarksEntry"> | number
+    remarks?: StringNullableFilter<"ExamMarksEntry"> | string | null
+    exam?: XOR<ExamRelationFilter, ExamWhereInput>
+    course?: XOR<CourseRelationFilter, CourseWhereInput>
+    student?: XOR<StudentRelationFilter, StudentWhereInput>
+  }
+
+  export type ExamMarksEntryOrderByWithRelationInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    courseId?: SortOrder
+    studentId?: SortOrder
+    marksObtained?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    exam?: ExamOrderByWithRelationInput
+    course?: CourseOrderByWithRelationInput
+    student?: StudentOrderByWithRelationInput
+  }
+
+  export type ExamMarksEntryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ExamMarksEntryWhereInput | ExamMarksEntryWhereInput[]
+    OR?: ExamMarksEntryWhereInput[]
+    NOT?: ExamMarksEntryWhereInput | ExamMarksEntryWhereInput[]
+    examId?: UuidFilter<"ExamMarksEntry"> | string
+    courseId?: UuidFilter<"ExamMarksEntry"> | string
+    studentId?: UuidFilter<"ExamMarksEntry"> | string
+    marksObtained?: FloatFilter<"ExamMarksEntry"> | number
+    remarks?: StringNullableFilter<"ExamMarksEntry"> | string | null
+    exam?: XOR<ExamRelationFilter, ExamWhereInput>
+    course?: XOR<CourseRelationFilter, CourseWhereInput>
+    student?: XOR<StudentRelationFilter, StudentWhereInput>
+  }, "id">
+
+  export type ExamMarksEntryOrderByWithAggregationInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    courseId?: SortOrder
+    studentId?: SortOrder
+    marksObtained?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    _count?: ExamMarksEntryCountOrderByAggregateInput
+    _avg?: ExamMarksEntryAvgOrderByAggregateInput
+    _max?: ExamMarksEntryMaxOrderByAggregateInput
+    _min?: ExamMarksEntryMinOrderByAggregateInput
+    _sum?: ExamMarksEntrySumOrderByAggregateInput
+  }
+
+  export type ExamMarksEntryScalarWhereWithAggregatesInput = {
+    AND?: ExamMarksEntryScalarWhereWithAggregatesInput | ExamMarksEntryScalarWhereWithAggregatesInput[]
+    OR?: ExamMarksEntryScalarWhereWithAggregatesInput[]
+    NOT?: ExamMarksEntryScalarWhereWithAggregatesInput | ExamMarksEntryScalarWhereWithAggregatesInput[]
+    id?: UuidWithAggregatesFilter<"ExamMarksEntry"> | string
+    examId?: UuidWithAggregatesFilter<"ExamMarksEntry"> | string
+    courseId?: UuidWithAggregatesFilter<"ExamMarksEntry"> | string
+    studentId?: UuidWithAggregatesFilter<"ExamMarksEntry"> | string
+    marksObtained?: FloatWithAggregatesFilter<"ExamMarksEntry"> | number
+    remarks?: StringNullableWithAggregatesFilter<"ExamMarksEntry"> | string | null
   }
 
   export type AttendanceWhereInput = {
@@ -12187,6 +14541,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateInput = {
@@ -12200,6 +14555,7 @@ export namespace Prisma {
     userId: string
     courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUpdateInput = {
@@ -12213,6 +14569,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateInput = {
@@ -12226,6 +14583,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateManyInput = {
@@ -12460,6 +14818,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentCreateNestedManyWithoutCourseInput
     attendances?: AttendanceCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateInput = {
@@ -12471,6 +14830,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedCreateNestedManyWithoutCourseInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUpdateInput = {
@@ -12482,6 +14842,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateInput = {
@@ -12493,6 +14854,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseCreateManyInput = {
@@ -12595,6 +14957,119 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     facultyId?: StringFieldUpdateOperationsInput | string
     courseId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ExamCreateInput = {
+    id?: string
+    name: $Enums.examType
+    code: string
+    date?: Date | string
+    marksEntries?: ExamMarksEntryCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUncheckedCreateInput = {
+    id?: string
+    name: $Enums.examType
+    code: string
+    date?: Date | string
+    marksEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutExamInput
+  }
+
+  export type ExamUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    code?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    marksEntries?: ExamMarksEntryUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    code?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    marksEntries?: ExamMarksEntryUncheckedUpdateManyWithoutExamNestedInput
+  }
+
+  export type ExamCreateManyInput = {
+    id?: string
+    name: $Enums.examType
+    code: string
+    date?: Date | string
+  }
+
+  export type ExamUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    code?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    code?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamMarksEntryCreateInput = {
+    id?: string
+    marksObtained: number
+    remarks?: string | null
+    exam: ExamCreateNestedOneWithoutMarksEntriesInput
+    course: CourseCreateNestedOneWithoutExamEntriesInput
+    student: StudentCreateNestedOneWithoutExamEntriesInput
+  }
+
+  export type ExamMarksEntryUncheckedCreateInput = {
+    id?: string
+    examId: string
+    courseId: string
+    studentId: string
+    marksObtained: number
+    remarks?: string | null
+  }
+
+  export type ExamMarksEntryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    exam?: ExamUpdateOneRequiredWithoutMarksEntriesNestedInput
+    course?: CourseUpdateOneRequiredWithoutExamEntriesNestedInput
+    student?: StudentUpdateOneRequiredWithoutExamEntriesNestedInput
+  }
+
+  export type ExamMarksEntryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExamMarksEntryCreateManyInput = {
+    id?: string
+    examId: string
+    courseId: string
+    studentId: string
+    marksObtained: number
+    remarks?: string | null
+  }
+
+  export type ExamMarksEntryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AttendanceCreateInput = {
@@ -12794,11 +15269,21 @@ export namespace Prisma {
     none?: AttendanceWhereInput
   }
 
+  export type ExamMarksEntryListRelationFilter = {
+    every?: ExamMarksEntryWhereInput
+    some?: ExamMarksEntryWhereInput
+    none?: ExamMarksEntryWhereInput
+  }
+
   export type StudentCourseRegistrationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type AttendanceOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ExamMarksEntryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13067,6 +15552,13 @@ export namespace Prisma {
     courseId?: SortOrder
   }
 
+  export type EnumexamTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.examType | EnumexamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamTypeFilter<$PrismaModel> | $Enums.examType
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -13076,6 +15568,156 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type ExamCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    date?: SortOrder
+  }
+
+  export type ExamMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    date?: SortOrder
+  }
+
+  export type ExamMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    code?: SortOrder
+    date?: SortOrder
+  }
+
+  export type EnumexamTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.examType | EnumexamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamTypeWithAggregatesFilter<$PrismaModel> | $Enums.examType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumexamTypeFilter<$PrismaModel>
+    _max?: NestedEnumexamTypeFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type ExamRelationFilter = {
+    is?: ExamWhereInput
+    isNot?: ExamWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type ExamMarksEntryCountOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    courseId?: SortOrder
+    studentId?: SortOrder
+    marksObtained?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type ExamMarksEntryAvgOrderByAggregateInput = {
+    marksObtained?: SortOrder
+  }
+
+  export type ExamMarksEntryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    courseId?: SortOrder
+    studentId?: SortOrder
+    marksObtained?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type ExamMarksEntryMinOrderByAggregateInput = {
+    id?: SortOrder
+    examId?: SortOrder
+    courseId?: SortOrder
+    studentId?: SortOrder
+    marksObtained?: SortOrder
+    remarks?: SortOrder
+  }
+
+  export type ExamMarksEntrySumOrderByAggregateInput = {
+    marksObtained?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -13105,20 +15747,6 @@ export namespace Prisma {
     studentId?: SortOrder
     date?: SortOrder
     isPresent?: SortOrder
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -13265,6 +15893,13 @@ export namespace Prisma {
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
   }
 
+  export type ExamMarksEntryCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutStudentInput, ExamMarksEntryUncheckedCreateWithoutStudentInput> | ExamMarksEntryCreateWithoutStudentInput[] | ExamMarksEntryUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutStudentInput | ExamMarksEntryCreateOrConnectWithoutStudentInput[]
+    createMany?: ExamMarksEntryCreateManyStudentInputEnvelope
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+  }
+
   export type StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput = {
     create?: XOR<StudentCourseRegistrationCreateWithoutStudentInput, StudentCourseRegistrationUncheckedCreateWithoutStudentInput> | StudentCourseRegistrationCreateWithoutStudentInput[] | StudentCourseRegistrationUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: StudentCourseRegistrationCreateOrConnectWithoutStudentInput | StudentCourseRegistrationCreateOrConnectWithoutStudentInput[]
@@ -13277,6 +15912,13 @@ export namespace Prisma {
     connectOrCreate?: AttendanceCreateOrConnectWithoutStudentInput | AttendanceCreateOrConnectWithoutStudentInput[]
     createMany?: AttendanceCreateManyStudentInputEnvelope
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
+  }
+
+  export type ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutStudentInput, ExamMarksEntryUncheckedCreateWithoutStudentInput> | ExamMarksEntryCreateWithoutStudentInput[] | ExamMarksEntryUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutStudentInput | ExamMarksEntryCreateOrConnectWithoutStudentInput[]
+    createMany?: ExamMarksEntryCreateManyStudentInputEnvelope
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
   }
 
   export type SemesterUpdateOneRequiredWithoutStudentNestedInput = {
@@ -13331,6 +15973,20 @@ export namespace Prisma {
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
   }
 
+  export type ExamMarksEntryUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutStudentInput, ExamMarksEntryUncheckedCreateWithoutStudentInput> | ExamMarksEntryCreateWithoutStudentInput[] | ExamMarksEntryUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutStudentInput | ExamMarksEntryCreateOrConnectWithoutStudentInput[]
+    upsert?: ExamMarksEntryUpsertWithWhereUniqueWithoutStudentInput | ExamMarksEntryUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ExamMarksEntryCreateManyStudentInputEnvelope
+    set?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    disconnect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    delete?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    update?: ExamMarksEntryUpdateWithWhereUniqueWithoutStudentInput | ExamMarksEntryUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ExamMarksEntryUpdateManyWithWhereWithoutStudentInput | ExamMarksEntryUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
+  }
+
   export type StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput = {
     create?: XOR<StudentCourseRegistrationCreateWithoutStudentInput, StudentCourseRegistrationUncheckedCreateWithoutStudentInput> | StudentCourseRegistrationCreateWithoutStudentInput[] | StudentCourseRegistrationUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: StudentCourseRegistrationCreateOrConnectWithoutStudentInput | StudentCourseRegistrationCreateOrConnectWithoutStudentInput[]
@@ -13357,6 +16013,20 @@ export namespace Prisma {
     update?: AttendanceUpdateWithWhereUniqueWithoutStudentInput | AttendanceUpdateWithWhereUniqueWithoutStudentInput[]
     updateMany?: AttendanceUpdateManyWithWhereWithoutStudentInput | AttendanceUpdateManyWithWhereWithoutStudentInput[]
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutStudentInput, ExamMarksEntryUncheckedCreateWithoutStudentInput> | ExamMarksEntryCreateWithoutStudentInput[] | ExamMarksEntryUncheckedCreateWithoutStudentInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutStudentInput | ExamMarksEntryCreateOrConnectWithoutStudentInput[]
+    upsert?: ExamMarksEntryUpsertWithWhereUniqueWithoutStudentInput | ExamMarksEntryUpsertWithWhereUniqueWithoutStudentInput[]
+    createMany?: ExamMarksEntryCreateManyStudentInputEnvelope
+    set?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    disconnect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    delete?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    update?: ExamMarksEntryUpdateWithWhereUniqueWithoutStudentInput | ExamMarksEntryUpdateWithWhereUniqueWithoutStudentInput[]
+    updateMany?: ExamMarksEntryUpdateManyWithWhereWithoutStudentInput | ExamMarksEntryUpdateManyWithWhereWithoutStudentInput[]
+    deleteMany?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutFacultyInput = {
@@ -13642,6 +16312,13 @@ export namespace Prisma {
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
   }
 
+  export type ExamMarksEntryCreateNestedManyWithoutCourseInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutCourseInput, ExamMarksEntryUncheckedCreateWithoutCourseInput> | ExamMarksEntryCreateWithoutCourseInput[] | ExamMarksEntryUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutCourseInput | ExamMarksEntryCreateOrConnectWithoutCourseInput[]
+    createMany?: ExamMarksEntryCreateManyCourseInputEnvelope
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+  }
+
   export type StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput = {
     create?: XOR<StudentCourseRegistrationCreateWithoutCourseInput, StudentCourseRegistrationUncheckedCreateWithoutCourseInput> | StudentCourseRegistrationCreateWithoutCourseInput[] | StudentCourseRegistrationUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: StudentCourseRegistrationCreateOrConnectWithoutCourseInput | StudentCourseRegistrationCreateOrConnectWithoutCourseInput[]
@@ -13661,6 +16338,13 @@ export namespace Prisma {
     connectOrCreate?: AttendanceCreateOrConnectWithoutCourseInput | AttendanceCreateOrConnectWithoutCourseInput[]
     createMany?: AttendanceCreateManyCourseInputEnvelope
     connect?: AttendanceWhereUniqueInput | AttendanceWhereUniqueInput[]
+  }
+
+  export type ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutCourseInput, ExamMarksEntryUncheckedCreateWithoutCourseInput> | ExamMarksEntryCreateWithoutCourseInput[] | ExamMarksEntryUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutCourseInput | ExamMarksEntryCreateOrConnectWithoutCourseInput[]
+    createMany?: ExamMarksEntryCreateManyCourseInputEnvelope
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
   }
 
   export type SemesterUpdateOneRequiredWithoutCourseNestedInput = {
@@ -13721,6 +16405,20 @@ export namespace Prisma {
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
   }
 
+  export type ExamMarksEntryUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutCourseInput, ExamMarksEntryUncheckedCreateWithoutCourseInput> | ExamMarksEntryCreateWithoutCourseInput[] | ExamMarksEntryUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutCourseInput | ExamMarksEntryCreateOrConnectWithoutCourseInput[]
+    upsert?: ExamMarksEntryUpsertWithWhereUniqueWithoutCourseInput | ExamMarksEntryUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: ExamMarksEntryCreateManyCourseInputEnvelope
+    set?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    disconnect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    delete?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    update?: ExamMarksEntryUpdateWithWhereUniqueWithoutCourseInput | ExamMarksEntryUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: ExamMarksEntryUpdateManyWithWhereWithoutCourseInput | ExamMarksEntryUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
+  }
+
   export type StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput = {
     create?: XOR<StudentCourseRegistrationCreateWithoutCourseInput, StudentCourseRegistrationUncheckedCreateWithoutCourseInput> | StudentCourseRegistrationCreateWithoutCourseInput[] | StudentCourseRegistrationUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: StudentCourseRegistrationCreateOrConnectWithoutCourseInput | StudentCourseRegistrationCreateOrConnectWithoutCourseInput[]
@@ -13761,6 +16459,20 @@ export namespace Prisma {
     update?: AttendanceUpdateWithWhereUniqueWithoutCourseInput | AttendanceUpdateWithWhereUniqueWithoutCourseInput[]
     updateMany?: AttendanceUpdateManyWithWhereWithoutCourseInput | AttendanceUpdateManyWithWhereWithoutCourseInput[]
     deleteMany?: AttendanceScalarWhereInput | AttendanceScalarWhereInput[]
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutCourseInput, ExamMarksEntryUncheckedCreateWithoutCourseInput> | ExamMarksEntryCreateWithoutCourseInput[] | ExamMarksEntryUncheckedCreateWithoutCourseInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutCourseInput | ExamMarksEntryCreateOrConnectWithoutCourseInput[]
+    upsert?: ExamMarksEntryUpsertWithWhereUniqueWithoutCourseInput | ExamMarksEntryUpsertWithWhereUniqueWithoutCourseInput[]
+    createMany?: ExamMarksEntryCreateManyCourseInputEnvelope
+    set?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    disconnect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    delete?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    update?: ExamMarksEntryUpdateWithWhereUniqueWithoutCourseInput | ExamMarksEntryUpdateWithWhereUniqueWithoutCourseInput[]
+    updateMany?: ExamMarksEntryUpdateManyWithWhereWithoutCourseInput | ExamMarksEntryUpdateManyWithWhereWithoutCourseInput[]
+    deleteMany?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
   }
 
   export type CourseCreateNestedOneWithoutStudentRegisteredInput = {
@@ -13819,6 +16531,110 @@ export namespace Prisma {
     update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutFacultyAssignedInput, CourseUpdateWithoutFacultyAssignedInput>, CourseUncheckedUpdateWithoutFacultyAssignedInput>
   }
 
+  export type ExamMarksEntryCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutExamInput, ExamMarksEntryUncheckedCreateWithoutExamInput> | ExamMarksEntryCreateWithoutExamInput[] | ExamMarksEntryUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutExamInput | ExamMarksEntryCreateOrConnectWithoutExamInput[]
+    createMany?: ExamMarksEntryCreateManyExamInputEnvelope
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+  }
+
+  export type ExamMarksEntryUncheckedCreateNestedManyWithoutExamInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutExamInput, ExamMarksEntryUncheckedCreateWithoutExamInput> | ExamMarksEntryCreateWithoutExamInput[] | ExamMarksEntryUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutExamInput | ExamMarksEntryCreateOrConnectWithoutExamInput[]
+    createMany?: ExamMarksEntryCreateManyExamInputEnvelope
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+  }
+
+  export type EnumexamTypeFieldUpdateOperationsInput = {
+    set?: $Enums.examType
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type ExamMarksEntryUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutExamInput, ExamMarksEntryUncheckedCreateWithoutExamInput> | ExamMarksEntryCreateWithoutExamInput[] | ExamMarksEntryUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutExamInput | ExamMarksEntryCreateOrConnectWithoutExamInput[]
+    upsert?: ExamMarksEntryUpsertWithWhereUniqueWithoutExamInput | ExamMarksEntryUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamMarksEntryCreateManyExamInputEnvelope
+    set?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    disconnect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    delete?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    update?: ExamMarksEntryUpdateWithWhereUniqueWithoutExamInput | ExamMarksEntryUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamMarksEntryUpdateManyWithWhereWithoutExamInput | ExamMarksEntryUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyWithoutExamNestedInput = {
+    create?: XOR<ExamMarksEntryCreateWithoutExamInput, ExamMarksEntryUncheckedCreateWithoutExamInput> | ExamMarksEntryCreateWithoutExamInput[] | ExamMarksEntryUncheckedCreateWithoutExamInput[]
+    connectOrCreate?: ExamMarksEntryCreateOrConnectWithoutExamInput | ExamMarksEntryCreateOrConnectWithoutExamInput[]
+    upsert?: ExamMarksEntryUpsertWithWhereUniqueWithoutExamInput | ExamMarksEntryUpsertWithWhereUniqueWithoutExamInput[]
+    createMany?: ExamMarksEntryCreateManyExamInputEnvelope
+    set?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    disconnect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    delete?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    connect?: ExamMarksEntryWhereUniqueInput | ExamMarksEntryWhereUniqueInput[]
+    update?: ExamMarksEntryUpdateWithWhereUniqueWithoutExamInput | ExamMarksEntryUpdateWithWhereUniqueWithoutExamInput[]
+    updateMany?: ExamMarksEntryUpdateManyWithWhereWithoutExamInput | ExamMarksEntryUpdateManyWithWhereWithoutExamInput[]
+    deleteMany?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
+  }
+
+  export type ExamCreateNestedOneWithoutMarksEntriesInput = {
+    create?: XOR<ExamCreateWithoutMarksEntriesInput, ExamUncheckedCreateWithoutMarksEntriesInput>
+    connectOrCreate?: ExamCreateOrConnectWithoutMarksEntriesInput
+    connect?: ExamWhereUniqueInput
+  }
+
+  export type CourseCreateNestedOneWithoutExamEntriesInput = {
+    create?: XOR<CourseCreateWithoutExamEntriesInput, CourseUncheckedCreateWithoutExamEntriesInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutExamEntriesInput
+    connect?: CourseWhereUniqueInput
+  }
+
+  export type StudentCreateNestedOneWithoutExamEntriesInput = {
+    create?: XOR<StudentCreateWithoutExamEntriesInput, StudentUncheckedCreateWithoutExamEntriesInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutExamEntriesInput
+    connect?: StudentWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type ExamUpdateOneRequiredWithoutMarksEntriesNestedInput = {
+    create?: XOR<ExamCreateWithoutMarksEntriesInput, ExamUncheckedCreateWithoutMarksEntriesInput>
+    connectOrCreate?: ExamCreateOrConnectWithoutMarksEntriesInput
+    upsert?: ExamUpsertWithoutMarksEntriesInput
+    connect?: ExamWhereUniqueInput
+    update?: XOR<XOR<ExamUpdateToOneWithWhereWithoutMarksEntriesInput, ExamUpdateWithoutMarksEntriesInput>, ExamUncheckedUpdateWithoutMarksEntriesInput>
+  }
+
+  export type CourseUpdateOneRequiredWithoutExamEntriesNestedInput = {
+    create?: XOR<CourseCreateWithoutExamEntriesInput, CourseUncheckedCreateWithoutExamEntriesInput>
+    connectOrCreate?: CourseCreateOrConnectWithoutExamEntriesInput
+    upsert?: CourseUpsertWithoutExamEntriesInput
+    connect?: CourseWhereUniqueInput
+    update?: XOR<XOR<CourseUpdateToOneWithWhereWithoutExamEntriesInput, CourseUpdateWithoutExamEntriesInput>, CourseUncheckedUpdateWithoutExamEntriesInput>
+  }
+
+  export type StudentUpdateOneRequiredWithoutExamEntriesNestedInput = {
+    create?: XOR<StudentCreateWithoutExamEntriesInput, StudentUncheckedCreateWithoutExamEntriesInput>
+    connectOrCreate?: StudentCreateOrConnectWithoutExamEntriesInput
+    upsert?: StudentUpsertWithoutExamEntriesInput
+    connect?: StudentWhereUniqueInput
+    update?: XOR<XOR<StudentUpdateToOneWithWhereWithoutExamEntriesInput, StudentUpdateWithoutExamEntriesInput>, StudentUncheckedUpdateWithoutExamEntriesInput>
+  }
+
   export type StudentCreateNestedOneWithoutAttendancesInput = {
     create?: XOR<StudentCreateWithoutAttendancesInput, StudentUncheckedCreateWithoutAttendancesInput>
     connectOrCreate?: StudentCreateOrConnectWithoutAttendancesInput
@@ -13829,10 +16645,6 @@ export namespace Prisma {
     create?: XOR<CourseCreateWithoutAttendancesInput, CourseUncheckedCreateWithoutAttendancesInput>
     connectOrCreate?: CourseCreateOrConnectWithoutAttendancesInput
     connect?: CourseWhereUniqueInput
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -13983,6 +16795,13 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
+  export type NestedEnumexamTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.examType | EnumexamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamTypeFilter<$PrismaModel> | $Enums.examType
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -13994,9 +16813,14 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type NestedEnumexamTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.examType | EnumexamTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamTypeWithAggregatesFilter<$PrismaModel> | $Enums.examType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumexamTypeFilter<$PrismaModel>
+    _max?: NestedEnumexamTypeFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -14011,6 +16835,69 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -14031,6 +16918,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutUserInput = {
@@ -14043,6 +16931,7 @@ export namespace Prisma {
     email: string
     courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutUserInput = {
@@ -14109,6 +16998,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutUserInput = {
@@ -14121,6 +17011,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type FacultyUpsertWithoutUserInput = {
@@ -14276,6 +17167,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ExamMarksEntryCreateWithoutStudentInput = {
+    id?: string
+    marksObtained: number
+    remarks?: string | null
+    exam: ExamCreateNestedOneWithoutMarksEntriesInput
+    course: CourseCreateNestedOneWithoutExamEntriesInput
+  }
+
+  export type ExamMarksEntryUncheckedCreateWithoutStudentInput = {
+    id?: string
+    examId: string
+    courseId: string
+    marksObtained: number
+    remarks?: string | null
+  }
+
+  export type ExamMarksEntryCreateOrConnectWithoutStudentInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    create: XOR<ExamMarksEntryCreateWithoutStudentInput, ExamMarksEntryUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ExamMarksEntryCreateManyStudentInputEnvelope = {
+    data: ExamMarksEntryCreateManyStudentInput | ExamMarksEntryCreateManyStudentInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SemesterUpsertWithoutStudentInput = {
     update: XOR<SemesterUpdateWithoutStudentInput, SemesterUncheckedUpdateWithoutStudentInput>
     create: XOR<SemesterCreateWithoutStudentInput, SemesterUncheckedCreateWithoutStudentInput>
@@ -14403,6 +17320,34 @@ export namespace Prisma {
     studentId?: UuidFilter<"Attendance"> | string
     date?: DateTimeFilter<"Attendance"> | Date | string
     isPresent?: BoolFilter<"Attendance"> | boolean
+  }
+
+  export type ExamMarksEntryUpsertWithWhereUniqueWithoutStudentInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    update: XOR<ExamMarksEntryUpdateWithoutStudentInput, ExamMarksEntryUncheckedUpdateWithoutStudentInput>
+    create: XOR<ExamMarksEntryCreateWithoutStudentInput, ExamMarksEntryUncheckedCreateWithoutStudentInput>
+  }
+
+  export type ExamMarksEntryUpdateWithWhereUniqueWithoutStudentInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    data: XOR<ExamMarksEntryUpdateWithoutStudentInput, ExamMarksEntryUncheckedUpdateWithoutStudentInput>
+  }
+
+  export type ExamMarksEntryUpdateManyWithWhereWithoutStudentInput = {
+    where: ExamMarksEntryScalarWhereInput
+    data: XOR<ExamMarksEntryUpdateManyMutationInput, ExamMarksEntryUncheckedUpdateManyWithoutStudentInput>
+  }
+
+  export type ExamMarksEntryScalarWhereInput = {
+    AND?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
+    OR?: ExamMarksEntryScalarWhereInput[]
+    NOT?: ExamMarksEntryScalarWhereInput | ExamMarksEntryScalarWhereInput[]
+    id?: UuidFilter<"ExamMarksEntry"> | string
+    examId?: UuidFilter<"ExamMarksEntry"> | string
+    courseId?: UuidFilter<"ExamMarksEntry"> | string
+    studentId?: UuidFilter<"ExamMarksEntry"> | string
+    marksObtained?: FloatFilter<"ExamMarksEntry"> | number
+    remarks?: StringNullableFilter<"ExamMarksEntry"> | string | null
   }
 
   export type UserCreateWithoutFacultyInput = {
@@ -14570,6 +17515,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentCreateNestedManyWithoutCourseInput
     attendances?: AttendanceCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateWithoutSemesterInput = {
@@ -14580,6 +17526,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedCreateNestedManyWithoutCourseInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseCreateOrConnectWithoutSemesterInput = {
@@ -14602,6 +17549,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutSemesterInput = {
@@ -14614,6 +17562,7 @@ export namespace Prisma {
     userId: string
     courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutSemesterInput = {
@@ -14691,6 +17640,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentCreateNestedManyWithoutCourseInput
     attendances?: AttendanceCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateWithoutBranchInput = {
@@ -14701,6 +17651,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedCreateNestedManyWithoutCourseInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseCreateOrConnectWithoutBranchInput = {
@@ -14723,6 +17674,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutBranchInput = {
@@ -14735,6 +17687,7 @@ export namespace Prisma {
     userId: string
     courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutBranchInput = {
@@ -14877,6 +17830,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ExamMarksEntryCreateWithoutCourseInput = {
+    id?: string
+    marksObtained: number
+    remarks?: string | null
+    exam: ExamCreateNestedOneWithoutMarksEntriesInput
+    student: StudentCreateNestedOneWithoutExamEntriesInput
+  }
+
+  export type ExamMarksEntryUncheckedCreateWithoutCourseInput = {
+    id?: string
+    examId: string
+    studentId: string
+    marksObtained: number
+    remarks?: string | null
+  }
+
+  export type ExamMarksEntryCreateOrConnectWithoutCourseInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    create: XOR<ExamMarksEntryCreateWithoutCourseInput, ExamMarksEntryUncheckedCreateWithoutCourseInput>
+  }
+
+  export type ExamMarksEntryCreateManyCourseInputEnvelope = {
+    data: ExamMarksEntryCreateManyCourseInput | ExamMarksEntryCreateManyCourseInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SemesterUpsertWithoutCourseInput = {
     update: XOR<SemesterUpdateWithoutCourseInput, SemesterUncheckedUpdateWithoutCourseInput>
     create: XOR<SemesterCreateWithoutCourseInput, SemesterUncheckedCreateWithoutCourseInput>
@@ -14971,6 +17950,22 @@ export namespace Prisma {
     data: XOR<AttendanceUpdateManyMutationInput, AttendanceUncheckedUpdateManyWithoutCourseInput>
   }
 
+  export type ExamMarksEntryUpsertWithWhereUniqueWithoutCourseInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    update: XOR<ExamMarksEntryUpdateWithoutCourseInput, ExamMarksEntryUncheckedUpdateWithoutCourseInput>
+    create: XOR<ExamMarksEntryCreateWithoutCourseInput, ExamMarksEntryUncheckedCreateWithoutCourseInput>
+  }
+
+  export type ExamMarksEntryUpdateWithWhereUniqueWithoutCourseInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    data: XOR<ExamMarksEntryUpdateWithoutCourseInput, ExamMarksEntryUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type ExamMarksEntryUpdateManyWithWhereWithoutCourseInput = {
+    where: ExamMarksEntryScalarWhereInput
+    data: XOR<ExamMarksEntryUpdateManyMutationInput, ExamMarksEntryUncheckedUpdateManyWithoutCourseInput>
+  }
+
   export type CourseCreateWithoutStudentRegisteredInput = {
     id?: string
     courseId: string
@@ -14979,6 +17974,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentCreateNestedManyWithoutCourseInput
     attendances?: AttendanceCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateWithoutStudentRegisteredInput = {
@@ -14989,6 +17985,7 @@ export namespace Prisma {
     branchId: string
     facultyAssigned?: FacultyCourseAssignmentUncheckedCreateNestedManyWithoutCourseInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseCreateOrConnectWithoutStudentRegisteredInput = {
@@ -15006,6 +18003,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutStudentInput
     user: UserCreateNestedOneWithoutStudentInput
     attendances?: AttendanceCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutCourseRegisteredInput = {
@@ -15018,6 +18016,7 @@ export namespace Prisma {
     email: string
     userId: string
     attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutCourseRegisteredInput = {
@@ -15044,6 +18043,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateWithoutStudentRegisteredInput = {
@@ -15054,6 +18054,7 @@ export namespace Prisma {
     branchId?: StringFieldUpdateOperationsInput | string
     facultyAssigned?: FacultyCourseAssignmentUncheckedUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type StudentUpsertWithoutCourseRegisteredInput = {
@@ -15077,6 +18078,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutCourseRegisteredInput = {
@@ -15089,6 +18091,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type FacultyCreateWithoutCourseAssignedInput = {
@@ -15120,6 +18123,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutCourseInput
     studentRegistered?: StudentCourseRegistrationCreateNestedManyWithoutCourseInput
     attendances?: AttendanceCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateWithoutFacultyAssignedInput = {
@@ -15130,6 +18134,7 @@ export namespace Prisma {
     branchId: string
     studentRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput
     attendances?: AttendanceUncheckedCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseCreateOrConnectWithoutFacultyAssignedInput = {
@@ -15183,6 +18188,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutCourseNestedInput
     studentRegistered?: StudentCourseRegistrationUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateWithoutFacultyAssignedInput = {
@@ -15193,6 +18199,221 @@ export namespace Prisma {
     branchId?: StringFieldUpdateOperationsInput | string
     studentRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
+  export type ExamMarksEntryCreateWithoutExamInput = {
+    id?: string
+    marksObtained: number
+    remarks?: string | null
+    course: CourseCreateNestedOneWithoutExamEntriesInput
+    student: StudentCreateNestedOneWithoutExamEntriesInput
+  }
+
+  export type ExamMarksEntryUncheckedCreateWithoutExamInput = {
+    id?: string
+    courseId: string
+    studentId: string
+    marksObtained: number
+    remarks?: string | null
+  }
+
+  export type ExamMarksEntryCreateOrConnectWithoutExamInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    create: XOR<ExamMarksEntryCreateWithoutExamInput, ExamMarksEntryUncheckedCreateWithoutExamInput>
+  }
+
+  export type ExamMarksEntryCreateManyExamInputEnvelope = {
+    data: ExamMarksEntryCreateManyExamInput | ExamMarksEntryCreateManyExamInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ExamMarksEntryUpsertWithWhereUniqueWithoutExamInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    update: XOR<ExamMarksEntryUpdateWithoutExamInput, ExamMarksEntryUncheckedUpdateWithoutExamInput>
+    create: XOR<ExamMarksEntryCreateWithoutExamInput, ExamMarksEntryUncheckedCreateWithoutExamInput>
+  }
+
+  export type ExamMarksEntryUpdateWithWhereUniqueWithoutExamInput = {
+    where: ExamMarksEntryWhereUniqueInput
+    data: XOR<ExamMarksEntryUpdateWithoutExamInput, ExamMarksEntryUncheckedUpdateWithoutExamInput>
+  }
+
+  export type ExamMarksEntryUpdateManyWithWhereWithoutExamInput = {
+    where: ExamMarksEntryScalarWhereInput
+    data: XOR<ExamMarksEntryUpdateManyMutationInput, ExamMarksEntryUncheckedUpdateManyWithoutExamInput>
+  }
+
+  export type ExamCreateWithoutMarksEntriesInput = {
+    id?: string
+    name: $Enums.examType
+    code: string
+    date?: Date | string
+  }
+
+  export type ExamUncheckedCreateWithoutMarksEntriesInput = {
+    id?: string
+    name: $Enums.examType
+    code: string
+    date?: Date | string
+  }
+
+  export type ExamCreateOrConnectWithoutMarksEntriesInput = {
+    where: ExamWhereUniqueInput
+    create: XOR<ExamCreateWithoutMarksEntriesInput, ExamUncheckedCreateWithoutMarksEntriesInput>
+  }
+
+  export type CourseCreateWithoutExamEntriesInput = {
+    id?: string
+    courseId: string
+    name: string
+    semester: SemesterCreateNestedOneWithoutCourseInput
+    branch: BranchCreateNestedOneWithoutCourseInput
+    studentRegistered?: StudentCourseRegistrationCreateNestedManyWithoutCourseInput
+    facultyAssigned?: FacultyCourseAssignmentCreateNestedManyWithoutCourseInput
+    attendances?: AttendanceCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseUncheckedCreateWithoutExamEntriesInput = {
+    id?: string
+    courseId: string
+    name: string
+    semesterId: string
+    branchId: string
+    studentRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput
+    facultyAssigned?: FacultyCourseAssignmentUncheckedCreateNestedManyWithoutCourseInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutCourseInput
+  }
+
+  export type CourseCreateOrConnectWithoutExamEntriesInput = {
+    where: CourseWhereUniqueInput
+    create: XOR<CourseCreateWithoutExamEntriesInput, CourseUncheckedCreateWithoutExamEntriesInput>
+  }
+
+  export type StudentCreateWithoutExamEntriesInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    mobileNo: string
+    email: string
+    semester: SemesterCreateNestedOneWithoutStudentInput
+    branch: BranchCreateNestedOneWithoutStudentInput
+    user: UserCreateNestedOneWithoutStudentInput
+    courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
+    attendances?: AttendanceCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentUncheckedCreateWithoutExamEntriesInput = {
+    id?: string
+    rollNo: string
+    fullName: string
+    semesterId: string
+    branchId: string
+    mobileNo: string
+    email: string
+    userId: string
+    courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
+    attendances?: AttendanceUncheckedCreateNestedManyWithoutStudentInput
+  }
+
+  export type StudentCreateOrConnectWithoutExamEntriesInput = {
+    where: StudentWhereUniqueInput
+    create: XOR<StudentCreateWithoutExamEntriesInput, StudentUncheckedCreateWithoutExamEntriesInput>
+  }
+
+  export type ExamUpsertWithoutMarksEntriesInput = {
+    update: XOR<ExamUpdateWithoutMarksEntriesInput, ExamUncheckedUpdateWithoutMarksEntriesInput>
+    create: XOR<ExamCreateWithoutMarksEntriesInput, ExamUncheckedCreateWithoutMarksEntriesInput>
+    where?: ExamWhereInput
+  }
+
+  export type ExamUpdateToOneWithWhereWithoutMarksEntriesInput = {
+    where?: ExamWhereInput
+    data: XOR<ExamUpdateWithoutMarksEntriesInput, ExamUncheckedUpdateWithoutMarksEntriesInput>
+  }
+
+  export type ExamUpdateWithoutMarksEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    code?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ExamUncheckedUpdateWithoutMarksEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    code?: StringFieldUpdateOperationsInput | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CourseUpsertWithoutExamEntriesInput = {
+    update: XOR<CourseUpdateWithoutExamEntriesInput, CourseUncheckedUpdateWithoutExamEntriesInput>
+    create: XOR<CourseCreateWithoutExamEntriesInput, CourseUncheckedCreateWithoutExamEntriesInput>
+    where?: CourseWhereInput
+  }
+
+  export type CourseUpdateToOneWithWhereWithoutExamEntriesInput = {
+    where?: CourseWhereInput
+    data: XOR<CourseUpdateWithoutExamEntriesInput, CourseUncheckedUpdateWithoutExamEntriesInput>
+  }
+
+  export type CourseUpdateWithoutExamEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutCourseNestedInput
+    branch?: BranchUpdateOneRequiredWithoutCourseNestedInput
+    studentRegistered?: StudentCourseRegistrationUpdateManyWithoutCourseNestedInput
+    facultyAssigned?: FacultyCourseAssignmentUpdateManyWithoutCourseNestedInput
+    attendances?: AttendanceUpdateManyWithoutCourseNestedInput
+  }
+
+  export type CourseUncheckedUpdateWithoutExamEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    studentRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput
+    facultyAssigned?: FacultyCourseAssignmentUncheckedUpdateManyWithoutCourseNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutCourseNestedInput
+  }
+
+  export type StudentUpsertWithoutExamEntriesInput = {
+    update: XOR<StudentUpdateWithoutExamEntriesInput, StudentUncheckedUpdateWithoutExamEntriesInput>
+    create: XOR<StudentCreateWithoutExamEntriesInput, StudentUncheckedCreateWithoutExamEntriesInput>
+    where?: StudentWhereInput
+  }
+
+  export type StudentUpdateToOneWithWhereWithoutExamEntriesInput = {
+    where?: StudentWhereInput
+    data: XOR<StudentUpdateWithoutExamEntriesInput, StudentUncheckedUpdateWithoutExamEntriesInput>
+  }
+
+  export type StudentUpdateWithoutExamEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    semester?: SemesterUpdateOneRequiredWithoutStudentNestedInput
+    branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
+    user?: UserUpdateOneRequiredWithoutStudentNestedInput
+    courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
+    attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+  }
+
+  export type StudentUncheckedUpdateWithoutExamEntriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    rollNo?: StringFieldUpdateOperationsInput | string
+    fullName?: StringFieldUpdateOperationsInput | string
+    semesterId?: StringFieldUpdateOperationsInput | string
+    branchId?: StringFieldUpdateOperationsInput | string
+    mobileNo?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
+    attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentCreateWithoutAttendancesInput = {
@@ -15205,6 +18426,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutStudentInput
     user: UserCreateNestedOneWithoutStudentInput
     courseRegistered?: StudentCourseRegistrationCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutStudentInput
   }
 
   export type StudentUncheckedCreateWithoutAttendancesInput = {
@@ -15217,6 +18439,7 @@ export namespace Prisma {
     email: string
     userId: string
     courseRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutStudentInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutStudentInput
   }
 
   export type StudentCreateOrConnectWithoutAttendancesInput = {
@@ -15232,6 +18455,7 @@ export namespace Prisma {
     branch: BranchCreateNestedOneWithoutCourseInput
     studentRegistered?: StudentCourseRegistrationCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryCreateNestedManyWithoutCourseInput
   }
 
   export type CourseUncheckedCreateWithoutAttendancesInput = {
@@ -15242,6 +18466,7 @@ export namespace Prisma {
     branchId: string
     studentRegistered?: StudentCourseRegistrationUncheckedCreateNestedManyWithoutCourseInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedCreateNestedManyWithoutCourseInput
+    examEntries?: ExamMarksEntryUncheckedCreateNestedManyWithoutCourseInput
   }
 
   export type CourseCreateOrConnectWithoutAttendancesInput = {
@@ -15270,6 +18495,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutStudentNestedInput
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutAttendancesInput = {
@@ -15282,6 +18508,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type CourseUpsertWithoutAttendancesInput = {
@@ -15303,6 +18530,7 @@ export namespace Prisma {
     branch?: BranchUpdateOneRequiredWithoutCourseNestedInput
     studentRegistered?: StudentCourseRegistrationUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateWithoutAttendancesInput = {
@@ -15313,6 +18541,7 @@ export namespace Prisma {
     branchId?: StringFieldUpdateOperationsInput | string
     studentRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type StudentCourseRegistrationCreateManyStudentInput = {
@@ -15325,6 +18554,14 @@ export namespace Prisma {
     courseId: string
     date?: Date | string
     isPresent: boolean
+  }
+
+  export type ExamMarksEntryCreateManyStudentInput = {
+    id?: string
+    examId: string
+    courseId: string
+    marksObtained: number
+    remarks?: string | null
   }
 
   export type StudentCourseRegistrationUpdateWithoutStudentInput = {
@@ -15361,6 +18598,30 @@ export namespace Prisma {
     courseId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     isPresent?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ExamMarksEntryUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    exam?: ExamUpdateOneRequiredWithoutMarksEntriesNestedInput
+    course?: CourseUpdateOneRequiredWithoutExamEntriesNestedInput
+  }
+
+  export type ExamMarksEntryUncheckedUpdateWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyWithoutStudentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type FacultyCourseAssignmentCreateManyFacultyInput = {
@@ -15408,6 +18669,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateWithoutSemesterInput = {
@@ -15418,6 +18680,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateManyWithoutSemesterInput = {
@@ -15437,6 +18700,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutSemesterInput = {
@@ -15449,6 +18713,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutSemesterInput = {
@@ -15486,6 +18751,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateWithoutBranchInput = {
@@ -15496,6 +18762,7 @@ export namespace Prisma {
     studentRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutCourseNestedInput
     facultyAssigned?: FacultyCourseAssignmentUncheckedUpdateManyWithoutCourseNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutCourseNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutCourseNestedInput
   }
 
   export type CourseUncheckedUpdateManyWithoutBranchInput = {
@@ -15515,6 +18782,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutStudentNestedInput
     courseRegistered?: StudentCourseRegistrationUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateWithoutBranchInput = {
@@ -15527,6 +18795,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     courseRegistered?: StudentCourseRegistrationUncheckedUpdateManyWithoutStudentNestedInput
     attendances?: AttendanceUncheckedUpdateManyWithoutStudentNestedInput
+    examEntries?: ExamMarksEntryUncheckedUpdateManyWithoutStudentNestedInput
   }
 
   export type StudentUncheckedUpdateManyWithoutBranchInput = {
@@ -15554,6 +18823,14 @@ export namespace Prisma {
     studentId: string
     date?: Date | string
     isPresent: boolean
+  }
+
+  export type ExamMarksEntryCreateManyCourseInput = {
+    id?: string
+    examId: string
+    studentId: string
+    marksObtained: number
+    remarks?: string | null
   }
 
   export type StudentCourseRegistrationUpdateWithoutCourseInput = {
@@ -15607,6 +18884,62 @@ export namespace Prisma {
     isPresent?: BoolFieldUpdateOperationsInput | boolean
   }
 
+  export type ExamMarksEntryUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    exam?: ExamUpdateOneRequiredWithoutMarksEntriesNestedInput
+    student?: StudentUpdateOneRequiredWithoutExamEntriesNestedInput
+  }
+
+  export type ExamMarksEntryUncheckedUpdateWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyWithoutCourseInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    examId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExamMarksEntryCreateManyExamInput = {
+    id?: string
+    courseId: string
+    studentId: string
+    marksObtained: number
+    remarks?: string | null
+  }
+
+  export type ExamMarksEntryUpdateWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    course?: CourseUpdateOneRequiredWithoutExamEntriesNestedInput
+    student?: StudentUpdateOneRequiredWithoutExamEntriesNestedInput
+  }
+
+  export type ExamMarksEntryUncheckedUpdateWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ExamMarksEntryUncheckedUpdateManyWithoutExamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    courseId?: StringFieldUpdateOperationsInput | string
+    studentId?: StringFieldUpdateOperationsInput | string
+    marksObtained?: FloatFieldUpdateOperationsInput | number
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
 
 
   /**
@@ -15632,6 +18965,10 @@ export namespace Prisma {
      * @deprecated Use CourseCountOutputTypeDefaultArgs instead
      */
     export type CourseCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CourseCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamCountOutputTypeDefaultArgs instead
+     */
+    export type ExamCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UserDefaultArgs instead
      */
@@ -15668,6 +19005,14 @@ export namespace Prisma {
      * @deprecated Use FacultyCourseAssignmentDefaultArgs instead
      */
     export type FacultyCourseAssignmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = FacultyCourseAssignmentDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamDefaultArgs instead
+     */
+    export type ExamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ExamMarksEntryDefaultArgs instead
+     */
+    export type ExamMarksEntryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ExamMarksEntryDefaultArgs<ExtArgs>
     /**
      * @deprecated Use AttendanceDefaultArgs instead
      */
