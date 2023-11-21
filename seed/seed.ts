@@ -1,10 +1,28 @@
 // seed.ts
 import { PrismaClient } from "../generated/client";
+import {facultyData, adminData, semesterData, branchData, studentData} from "./seedData"
 
 const prisma = new PrismaClient();
 
 async function seedData() {
   try {
+
+
+    // await prisma.studentCourseRegistration.deleteMany({});
+    // await prisma.facultyCourseAssignment.deleteMany({});
+    // await prisma.examMarksEntry.deleteMany({});
+    // await prisma.semester.deleteMany({}).then(()=>{}).catch((err)=>{
+    //   console.log(err);
+    // });
+    // await prisma.branch.deleteMany({});
+    // await prisma.exam.deleteMany({});
+    // await prisma.admin.deleteMany({});
+    // await prisma.student.deleteMany({});
+    // await prisma.faculty.deleteMany({});
+    // await prisma.user.deleteMany({});
+
+
+
     let user:any[] = [];
     for (let index = 20201; index <= 20249; index++) {
         const obj = {
@@ -15,63 +33,33 @@ async function seedData() {
         };
         user.push(obj);
     }
+    const userWithFac = user.concat(facultyData);
+    const allUser = userWithFac.concat(adminData);
+
+    // Seeding user
     await prisma.user.createMany({
-      data: user,
+      data: allUser,
     });
-    const students = await prisma.user.findMany({
-        where:{
-            role: "STUDENT"
-        }
-    })
 
     
 
-    const semesterData = [
-        {
-            sem: 1,
-        },
-        {
-            sem: 2,
-        },
-        {
-            sem: 3,
-        },
-        {
-            sem: 4,
-        },
-        {
-            sem: 5,
-        },
-        {
-            sem: 6,
-        },
-        {
-            sem: 7,
-        },
-        {
-            sem: 8,
-        }
-    ]
-    const semesters = await prisma.semester.createMany({
+    // Seeding semester
+    await prisma.semester.createMany({
         data: semesterData
     })
 
-    const branchData = [
-      {
-        name: "CSE",
-      },
-      {
-        name: "ECE",
-      },
-      {
-        name: "IT",
-      },
-    ];
-
-    const branchs = await prisma.branch.createMany({
+    // Seeding Branch
+    await prisma.branch.createMany({
         data: branchData
     })
-    // const user = await prisma.user.findMany({});
+
+    // Fetching Student, Branch, Semester
+    const studentUsers = await prisma.user.findMany({
+      where: {
+        role: "STUDENT",
+      },
+    });
+
     const branch = await prisma.branch.findMany({});
     const semester = await prisma.semester.findMany({});
 
@@ -80,16 +68,16 @@ async function seedData() {
     for (let index = 20201; index <= 20249; index++) {
       const obj = {
         rollNo: index.toString(),
-        fullName: "",
+        fullName: studentData[index - 20201]?.fullName,
         semesterId: semester[6]?.id,
         branchId: branch[1]?.id,
-        mobileNo: "",
-        email: students[index-20201]?.email,
-        userId: students[index-20201]?.id,
+        mobileNo: studentData[index - 20201]?.mobileNo,
+        email: studentUsers[index - 20201]?.email,
+        userId: studentUsers[index - 20201]?.id,
       };
       student.push(obj);
     }
-
+    // Seeding Student
     await prisma.student.createMany({
       data: student
     });
@@ -139,9 +127,29 @@ async function seedData() {
         semesterId: semester[6].id,
       },
     ];
-    const courseS = await prisma.course.createMany({
+    // Seeding Courses
+    await prisma.course.createMany({
         data: courseData
     })
+
+    // Seeding Exam
+
+    await prisma.exam.createMany({
+      data: [
+        {
+          name: "CT1",
+          code: "CT1",
+        },
+        {
+          name: "CT2",
+          code: "CT2",
+        },
+        {
+          name: "ENDSEM",
+          code: "ENDSEM",
+        },
+      ],
+    });
 
     console.log("Data seeded successfully.");
   } catch (error) {

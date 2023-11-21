@@ -81,13 +81,22 @@ export const getExamEntriesByExamStudentId = async (
   res: Response
 ) => {
   const examId = req?.query?.examId?.toString();
-  const studentId = req?.query?.studentId?.toString();
+  const userId = req?.query?.studentId?.toString();
   try {
     const response = await prisma.examMarksEntry.findMany({
       where: {
         examId: examId,
-        studentId: studentId,
+        student:{
+          userId: userId
+        }
       },
+      include:{
+        course: {
+          select:{
+            name: true
+          }
+        }
+      }
     });
     res.json(response);
   } catch (error) {

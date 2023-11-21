@@ -4,6 +4,9 @@ CREATE TYPE "userType" AS ENUM ('STUDENT', 'FACULTY', 'ADMIN');
 -- CreateEnum
 CREATE TYPE "departmentType" AS ENUM ('ELECTRONICS', 'COMPUTING');
 
+-- CreateEnum
+CREATE TYPE "examType" AS ENUM ('CT1', 'CT2', 'ENDSEM');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
@@ -96,6 +99,28 @@ CREATE TABLE "FacultyCourseAssignment" (
 );
 
 -- CreateTable
+CREATE TABLE "Exam" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "name" "examType" NOT NULL,
+    "code" TEXT NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Exam_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "ExamMarksEntry" (
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "examId" UUID NOT NULL,
+    "courseId" UUID NOT NULL,
+    "studentId" UUID NOT NULL,
+    "marksObtained" DOUBLE PRECISION NOT NULL,
+    "remarks" TEXT,
+
+    CONSTRAINT "ExamMarksEntry_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Attendance" (
     "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "courseId" UUID NOT NULL,
@@ -133,6 +158,9 @@ CREATE UNIQUE INDEX "Branch_name_key" ON "Branch"("name");
 -- CreateIndex
 CREATE UNIQUE INDEX "Course_courseId_key" ON "Course"("courseId");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "Exam_code_key" ON "Exam"("code");
+
 -- AddForeignKey
 ALTER TABLE "Student" ADD CONSTRAINT "Student_semesterId_fkey" FOREIGN KEY ("semesterId") REFERENCES "Semester"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -165,6 +193,15 @@ ALTER TABLE "FacultyCourseAssignment" ADD CONSTRAINT "FacultyCourseAssignment_fa
 
 -- AddForeignKey
 ALTER TABLE "FacultyCourseAssignment" ADD CONSTRAINT "FacultyCourseAssignment_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ExamMarksEntry" ADD CONSTRAINT "ExamMarksEntry_examId_fkey" FOREIGN KEY ("examId") REFERENCES "Exam"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ExamMarksEntry" ADD CONSTRAINT "ExamMarksEntry_courseId_fkey" FOREIGN KEY ("courseId") REFERENCES "Course"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ExamMarksEntry" ADD CONSTRAINT "ExamMarksEntry_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Attendance" ADD CONSTRAINT "Attendance_studentId_fkey" FOREIGN KEY ("studentId") REFERENCES "Student"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
