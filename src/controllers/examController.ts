@@ -62,6 +62,30 @@ export const addExamEntries = async (req: Request, res: Response) => {
   }
 };
 
+export const updateExamEntries = async (req: Request, res: Response) => {
+  try {
+    const response = req.body?.marks?.map(async (ele:any)=>{
+      await prisma.examMarksEntry.update({
+        where: {
+          examId_studentId_courseId: {
+            examId: req?.body?.examId,
+            courseId: req?.body?.courseId,
+            studentId: ele?.studentId,
+          },
+        },
+        data: {
+          marksObtained: ele?.marksObtained,
+          remarks: ele?.remarks,
+        },
+      });
+    })
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export const getExamEntriesByCourseExam = async (req: Request, res: Response) => {
     const examId = req?.query?.examId?.toString();
     const courseId = req?.query?.courseId?.toString();

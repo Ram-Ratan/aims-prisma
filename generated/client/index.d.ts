@@ -14365,6 +14365,7 @@ export namespace Prisma {
 
   export type ExamMarksEntryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    examId_studentId_courseId?: ExamMarksEntryExamIdStudentIdCourseIdCompoundUniqueInput
     AND?: ExamMarksEntryWhereInput | ExamMarksEntryWhereInput[]
     OR?: ExamMarksEntryWhereInput[]
     NOT?: ExamMarksEntryWhereInput | ExamMarksEntryWhereInput[]
@@ -14376,7 +14377,7 @@ export namespace Prisma {
     exam?: XOR<ExamRelationFilter, ExamWhereInput>
     course?: XOR<CourseRelationFilter, CourseWhereInput>
     student?: XOR<StudentRelationFilter, StudentWhereInput>
-  }, "id">
+  }, "id" | "examId_studentId_courseId">
 
   export type ExamMarksEntryOrderByWithAggregationInput = {
     id?: SortOrder
@@ -15650,6 +15651,12 @@ export namespace Prisma {
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type ExamMarksEntryExamIdStudentIdCourseIdCompoundUniqueInput = {
+    examId: string
+    studentId: string
+    courseId: string
   }
 
   export type ExamMarksEntryCountOrderByAggregateInput = {

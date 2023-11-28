@@ -113,6 +113,7 @@ model ExamMarksEntry {
   studentId     String  @db.Uuid
   marksObtained Float
   remarks       String?
+  @@unique([examId, studentId, courseId])
   exam          Exam    @relation(fields: [examId], references: [id])
   course        Course  @relation(fields: [courseId], references: [id])
   student       Student @relation(fields: [studentId], references: [id])
