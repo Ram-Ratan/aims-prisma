@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import { PrismaClient } from "../../generated/client";
 
 const prisma = new PrismaClient();
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
 
 export const getExam = async (req: Request, res: Response) => {
   try {
@@ -77,11 +80,11 @@ export const getExamEntriesByCourseExam = async (req: Request, res: Response) =>
 };
 
 export const getExamEntriesByExamStudentId = async (
-  req: Request,
+  req: AuthenticatedRequest,
   res: Response
 ) => {
   const examId = req?.query?.examId?.toString();
-  const userId = req?.query?.studentId?.toString();
+  const userId = req?.user?.userId;
   try {
     const response = await prisma.examMarksEntry.findMany({
       where: {

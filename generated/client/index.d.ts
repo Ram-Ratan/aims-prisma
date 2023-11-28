@@ -14429,6 +14429,7 @@ export namespace Prisma {
 
   export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    courseId_studentId_date?: AttendanceCourseIdStudentIdDateCompoundUniqueInput
     AND?: AttendanceWhereInput | AttendanceWhereInput[]
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
@@ -14438,7 +14439,7 @@ export namespace Prisma {
     isPresent?: BoolFilter<"Attendance"> | boolean
     student?: XOR<StudentRelationFilter, StudentWhereInput>
     course?: XOR<CourseRelationFilter, CourseWhereInput>
-  }, "id">
+  }, "id" | "courseId_studentId_date">
 
   export type AttendanceOrderByWithAggregationInput = {
     id?: SortOrder
@@ -15723,6 +15724,12 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type AttendanceCourseIdStudentIdDateCompoundUniqueInput = {
+    courseId: string
+    studentId: string
+    date: Date | string
   }
 
   export type AttendanceCountOrderByAggregateInput = {
