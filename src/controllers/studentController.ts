@@ -3,17 +3,21 @@ import { PrismaClient } from "../../generated/client";
 
 const prisma = new PrismaClient();
 
-export const getStudents = async (req: Request, res: Response) => {
-  const {userId} = req?.query;
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
+export const getStudents = async (req: AuthenticatedRequest, res: Response) => {
+  const userId = req?.user?.userId;
   try {
-    const response = await prisma.student.findMany({
+    const response = await prisma.student.findUnique({
       where:{
         userId: userId?.toString()
       },
       include:{
         semester:true,
         branch:true,
-
+        courseRegistered: true
       }
     });
     console.log(response);

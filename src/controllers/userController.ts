@@ -17,7 +17,6 @@ export const getAllUsers = async (req: Request, res: Response) => {
 };
 
 export const getUser = async (req: Request, res: Response) => {
-  console.log("getUser called");
   const { username, password } = req?.body;
   try {
     const users = await prisma.user.findUnique({
@@ -141,6 +140,29 @@ export const login = async (req: Request, res: Response) => {
     });
 
     res.json({ token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
+export const getUserAuth = async (req: AuthenticatedRequest, res: Response) => {
+  const { username, password } = req?.body;
+  try {
+    const userId = req?.user?.userId;
+    const user = await prisma.user.findUnique({
+      where:{
+        id: userId,
+      },
+      select:{
+        email: true,
+        role: true
+      }
+    })
+    res.json(user);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

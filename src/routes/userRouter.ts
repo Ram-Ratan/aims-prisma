@@ -1,5 +1,6 @@
 import express from "express";
-import { addMultipleUsers, addUser, getAllUsers, getUser, login, signup } from "../controllers/userController";
+import { addMultipleUsers, addUser, getAllUsers, getUser, getUserAuth, login, signup } from "../controllers/userController";
+import { authenticateToken } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
@@ -9,6 +10,7 @@ router.post("/add-user", addUser);
 router.post("/add-multiple-user", addMultipleUsers)
 router.post("/signup",signup);
 router.post("/login", login);
+router.get("/get-user",authenticateToken,getUserAuth);
 
 
 export default router;
