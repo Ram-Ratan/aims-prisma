@@ -3,14 +3,25 @@ import { PrismaClient } from "../../generated/client";
 
 const prisma = new PrismaClient();
 
-export const courseRegistration = async (req: Request, res: Response) => {
-  const data = req?.body?.courses?.map((course:any)=>{
-    return {
-        courseId: course,
-        studentId: req?.body?.studentId
-    }
-  })
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
+export const courseRegistration = async (req: AuthenticatedRequest, res: Response) => {
+ 
   try {
+     const student = await prisma.student.findUnique({
+       where: {
+         userId: req?.user?.userId,
+       },
+     });
+     const data = req?.body?.courses?.map((course: any) => {
+       return {
+         courseId: course,
+         studentId: student?.id,
+       };
+     });
+     console.log(data);
     const courses = await prisma.studentCourseRegistration.createMany({
         data: data,
         skipDuplicates: true

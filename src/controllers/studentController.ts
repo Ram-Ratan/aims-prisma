@@ -17,7 +17,11 @@ export const getStudents = async (req: AuthenticatedRequest, res: Response) => {
       include:{
         semester:true,
         branch:true,
-        courseRegistered: true
+        courseRegistered: {
+          select:{
+            course: true
+          }
+        }
       }
     });
     console.log(response);
