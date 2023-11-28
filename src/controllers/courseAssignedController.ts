@@ -3,9 +3,13 @@ import { PrismaClient } from "../../generated/client";
 
 const prisma = new PrismaClient();
 
-export const courserAssignedById = async (req: Request, res: Response) => {
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
+export const courserAssignedById = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req?.query?.id?.toString();
+    const userId = req?.user?.userId;
     const response = await prisma.faculty.findUnique({
       where: {
         userId: userId,

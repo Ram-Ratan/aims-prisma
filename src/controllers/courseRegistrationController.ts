@@ -33,9 +33,9 @@ export const courseRegistration = async (req: AuthenticatedRequest, res: Respons
   }
 };
 
-export const courserRegisteredById = async (req: Request, res: Response) => {
+export const courserRegisteredById = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userId = req?.query?.id?.toString()
+    const userId = req?.user?.userId;
     const response = await prisma.student.findUnique({
         where: {
             userId: userId

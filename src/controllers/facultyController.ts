@@ -3,12 +3,16 @@ import { PrismaClient } from "../../generated/client";
 
 const prisma = new PrismaClient();
 
-export const getFacultyDetails = async (req: Request, res: Response) => {
-  const {userId} = req.query;
+interface AuthenticatedRequest extends Request {
+  user?: { userId: string };
+}
+
+export const getFacultyDetails = async (req: AuthenticatedRequest, res: Response) => {
+  const userId = req?.user?.userId;
   try {
     const users = await prisma.faculty.findUnique({
       where: {
-        userId: userId?.toString()
+        userId: userId
       },
       select:{
         fullName: true,
