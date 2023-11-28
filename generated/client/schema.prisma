@@ -94,6 +94,7 @@ model FacultyCourseAssignment {
   id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   facultyId String  @db.Uuid
   courseId  String  @db.Uuid
+  @@unique([facultyId, courseId])
   faculty   Faculty @relation(fields: [facultyId], references: [id])
   course    Course  @relation(fields: [courseId], references: [id])
 }

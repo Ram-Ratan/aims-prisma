@@ -29,3 +29,24 @@ export const courserAssignedById = async (req: AuthenticatedRequest, res: Respon
   }
 };
 
+export const courserAssignment = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
+  try {
+    const data = req.body?.courses.map((course:any)=> {
+      return {
+        courseId: course,
+        facultyId: req.body?.faculty
+      }
+    })
+    const response = await prisma.facultyCourseAssignment.createMany({
+      data
+    })
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+

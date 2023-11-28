@@ -37,6 +37,19 @@ export const getFacultyDetails = async (req: AuthenticatedRequest, res: Response
   }
 };
 
+export const getAllFaculty = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const faculty = await prisma.faculty.findMany({});
+    res.json(faculty);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 export const addFaculty = async (req: Request, res: Response) => {
   const { fullName, email, userId, department } = req.body;
   try {

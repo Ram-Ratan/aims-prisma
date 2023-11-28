@@ -14259,6 +14259,7 @@ export namespace Prisma {
 
   export type FacultyCourseAssignmentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    facultyId_courseId?: FacultyCourseAssignmentFacultyIdCourseIdCompoundUniqueInput
     AND?: FacultyCourseAssignmentWhereInput | FacultyCourseAssignmentWhereInput[]
     OR?: FacultyCourseAssignmentWhereInput[]
     NOT?: FacultyCourseAssignmentWhereInput | FacultyCourseAssignmentWhereInput[]
@@ -14266,7 +14267,7 @@ export namespace Prisma {
     courseId?: UuidFilter<"FacultyCourseAssignment"> | string
     faculty?: XOR<FacultyRelationFilter, FacultyWhereInput>
     course?: XOR<CourseRelationFilter, CourseWhereInput>
-  }, "id">
+  }, "id" | "facultyId_courseId">
 
   export type FacultyCourseAssignmentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -15534,6 +15535,11 @@ export namespace Prisma {
   export type FacultyRelationFilter = {
     is?: FacultyWhereInput
     isNot?: FacultyWhereInput
+  }
+
+  export type FacultyCourseAssignmentFacultyIdCourseIdCompoundUniqueInput = {
+    facultyId: string
+    courseId: string
   }
 
   export type FacultyCourseAssignmentCountOrderByAggregateInput = {
