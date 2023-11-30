@@ -168,3 +168,39 @@ export const getUserAuth = async (req: AuthenticatedRequest, res: Response) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const resetPassword = async (req: Request, res: Response) => {
+  const { email, oldPassword, newPassword } = req?.body;
+  try {
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+
+    if (!passwordMatch) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const result = await prisma.user.update({
+      where: {
+        email: email
+      },
+      data: {
+        password: hashedPassword,
+      }
+    })
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
