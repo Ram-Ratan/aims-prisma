@@ -24,16 +24,16 @@ model Student {
   rollNo           String                      @unique
   fullName         String
   semesterId       String                      @db.Uuid
-  semester         Semester                    @relation(fields: [semesterId], references: [id])
+  semester         Semester                    @relation(fields: [semesterId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   branchId         String                      @db.Uuid
-  branch           Branch                      @relation(fields: [branchId], references: [id])
+  branch           Branch                      @relation(fields: [branchId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   mobileNo         String
   email            String
-  user             User                        @relation(fields: [userId], references: [id])
+  user             User                        @relation(fields: [userId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   userId           String                      @unique @db.Uuid
-  courseRegistered StudentCourseRegistration[]
+  courseRegistered CourseRegistration[]
   attendances      Attendance[]
-  examEntries      ExamMarksEntry[]
+  examEntries      MarksEntry[]
 }
 
 model Faculty {
@@ -41,7 +41,7 @@ model Faculty {
   fullName       String
   department     departmentType
   email          String
-  user           User                      @relation(fields: [userId], references: [id])
+  user           User                      @relation(fields: [userId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   userId         String                    @unique @db.Uuid
   courseAssigned FacultyCourseAssignment[]
 }
@@ -50,7 +50,7 @@ model Admin {
   id       String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   fullName String
   email    String
-  user     User   @relation(fields: [userId], references: [id])
+  user     User   @relation(fields: [userId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   userId   String @unique @db.Uuid
 }
 
@@ -70,24 +70,28 @@ model Branch {
 
 model Course {
   id                String                      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  courseId          String                      @unique
+  code         String                      @unique
   name              String
-  semester          Semester                    @relation(fields: [semesterId], references: [id])
-  semesterId        String                      @db.Uuid
-  branch            Branch                      @relation(fields: [branchId], references: [id])
-  branchId          String                      @db.Uuid
-  studentRegistered StudentCourseRegistration[]
+  courseType    courseType
+  electiveCode  String
+  credit      Int
+  labIncluded   Boolean     @default(false)
+  batchId     String    @db.Uuid
+  batch     Batch   @relation(fields: [batchId],references: [id], onDelete: NoAction, onUpdate: NoAction)
+  branch    Branch[]
+  semester  Semester[]
+  studentRegistered CourseRegistration[]
   facultyAssigned   FacultyCourseAssignment[]
   attendances       Attendance[]
-  examEntries       ExamMarksEntry[]
+  examEntries       MarksEntry[]
 }
 
-model StudentCourseRegistration {
+model CourseRegistration {
   id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   courseId  String  @db.Uuid
   studentId String  @db.Uuid
-  course    Course  @relation(fields: [courseId], references: [id])
-  student   Student @relation(fields: [studentId], references: [id])
+  course    Course  @relation(fields: [courseId], references: [id],onDelete: NoAction, onUpdate: NoAction)
+  student   Student @relation(fields: [studentId], references: [id],onDelete: NoAction, onUpdate: NoAction)
 }
 
 model FacultyCourseAssignment {
@@ -95,29 +99,20 @@ model FacultyCourseAssignment {
   facultyId String  @db.Uuid
   courseId  String  @db.Uuid
   @@unique([facultyId, courseId])
-  faculty   Faculty @relation(fields: [facultyId], references: [id])
-  course    Course  @relation(fields: [courseId], references: [id])
+  faculty   Faculty @relation(fields: [facultyId], references: [id],onDelete: NoAction, onUpdate: NoAction)
+  course    Course  @relation(fields: [courseId], references: [id],onDelete: NoAction, onUpdate: NoAction)
 }
 
-model Exam {
-  id           String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name         examType
-  code         String           @unique
-  date         DateTime         @default(now())
-  marksEntries ExamMarksEntry[]
-}
-
-model ExamMarksEntry {
+model MarksEntry {
   id            String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  examId        String  @db.Uuid
+  examCode    examType
+  examType    examType
   courseId      String  @db.Uuid
   studentId     String  @db.Uuid
   marksObtained Float
   remarks       String?
-  @@unique([examId, studentId, courseId])
-  exam          Exam    @relation(fields: [examId], references: [id])
-  course        Course  @relation(fields: [courseId], references: [id])
-  student       Student @relation(fields: [studentId], references: [id])
+  course        Course  @relation(fields: [courseId], references: [id],onDelete: NoAction, onUpdate: NoAction)
+  student       Student @relation(fields: [studentId], references: [id],onDelete: NoAction, onUpdate: NoAction)
 }
 
 model Attendance {
@@ -126,9 +121,10 @@ model Attendance {
   studentId String   @db.Uuid
   date      DateTime @default(now())
   isPresent Boolean
-  @@unique([courseId, studentId, date])
-  student   Student  @relation(fields: [studentId], references: [id])
-  course    Course   @relation(fields: [courseId], references: [id])
+  classType classType   @default(REGULAR)
+  attendanceType attenanceType  @default(THEORY)
+  student   Student  @relation(fields: [studentId], references: [id],onDelete: NoAction, onUpdate: NoAction)
+  course    Course   @relation(fields: [courseId], references: [id],onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum userType {
@@ -143,8 +139,49 @@ enum departmentType {
 }
 
 
-enum examType {
+enum examCode {
   CT1
   CT2
   ENDSEM
+}
+
+enum examType{
+ LAB 
+ THEORY
+}
+
+enum courseType{
+  GIR 
+  PC
+  PE 
+  SE
+}
+
+enum classType{
+  EXTRA
+  REGULAR
+}
+
+enum attenanceType{
+  THEORY
+  LAB
+}
+
+model Batch{
+  id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code  String  @unique
+  name String
+  course Course[]
+}
+
+model SteamElective{
+  id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code  String  @unique
+  name String
+}
+
+model ProgramElective{
+  id String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code  String  @unique
+  name String
 }
