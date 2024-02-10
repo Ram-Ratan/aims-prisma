@@ -57,6 +57,7 @@ model Admin {
 model Semester {
   id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   sem    Int      @unique
+  name   String   @unique
   course Course[]
   student Student[]
 }
@@ -64,6 +65,7 @@ model Semester {
 model Branch {
   id     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name   String   @unique
+  code   String   @unique
   course Course[]
   student Student[]
 }
