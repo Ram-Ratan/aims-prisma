@@ -121,7 +121,7 @@ export const login = async (req: Request, res: Response) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        email,
+        email
       },
     });
 
@@ -175,7 +175,7 @@ export const resetPassword = async (req: Request, res: Response) => {
 
     const user = await prisma.user.findUnique({
       where: {
-        email,
+        email
       },
     });
 

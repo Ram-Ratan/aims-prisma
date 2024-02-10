@@ -143,12 +143,14 @@ exports.Prisma.AdminScalarFieldEnum = {
 
 exports.Prisma.SemesterScalarFieldEnum = {
   id: 'id',
-  sem: 'sem'
+  sem: 'sem',
+  name: 'name'
 };
 
 exports.Prisma.BranchScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  name: 'name',
+  code: 'code'
 };
 
 exports.Prisma.CourseScalarFieldEnum = {
@@ -242,6 +244,12 @@ exports.courseType = exports.$Enums.courseType = {
   PC: 'PC',
   PE: 'PE',
   SE: 'SE'
+};
+
+exports.examCode = exports.$Enums.examCode = {
+  CT1: 'CT1',
+  CT2: 'CT2',
+  ENDSEM: 'ENDSEM'
 };
 
 exports.examType = exports.$Enums.examType = {

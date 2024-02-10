@@ -22,7 +22,7 @@ export const courseRegistration = async (req: AuthenticatedRequest, res: Respons
        };
      });
      console.log(data);
-    const courses = await prisma.studentCourseRegistration.createMany({
+    const courses = await prisma.courseRegistration.createMany({
         data: data,
         skipDuplicates: true
     })
@@ -62,7 +62,7 @@ export const courserRegisteredById = async (req: AuthenticatedRequest, res: Resp
 export const getStudentByCourse = async (req: Request, res: Response) => {
   try {
     const courseId = req?.query?.courseId?.toString();
-    const response = await prisma.studentCourseRegistration.findMany({
+    const response = await prisma.courseRegistration.findMany({
       orderBy:{
         student:{
           rollNo: "asc"

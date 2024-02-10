@@ -115,6 +115,15 @@ export const courseType: {
 export type courseType = (typeof courseType)[keyof typeof courseType]
 
 
+export const examCode: {
+  CT1: 'CT1',
+  CT2: 'CT2',
+  ENDSEM: 'ENDSEM'
+};
+
+export type examCode = (typeof examCode)[keyof typeof examCode]
+
+
 export const examType: {
   LAB: 'LAB',
   THEORY: 'THEORY'
@@ -151,6 +160,10 @@ export const departmentType: typeof $Enums.departmentType
 export type courseType = $Enums.courseType
 
 export const courseType: typeof $Enums.courseType
+
+export type examCode = $Enums.examCode
+
+export const examCode: typeof $Enums.examCode
 
 export type examType = $Enums.examType
 
@@ -6188,16 +6201,19 @@ export namespace Prisma {
   export type SemesterMinAggregateOutputType = {
     id: string | null
     sem: number | null
+    name: string | null
   }
 
   export type SemesterMaxAggregateOutputType = {
     id: string | null
     sem: number | null
+    name: string | null
   }
 
   export type SemesterCountAggregateOutputType = {
     id: number
     sem: number
+    name: number
     _all: number
   }
 
@@ -6213,16 +6229,19 @@ export namespace Prisma {
   export type SemesterMinAggregateInputType = {
     id?: true
     sem?: true
+    name?: true
   }
 
   export type SemesterMaxAggregateInputType = {
     id?: true
     sem?: true
+    name?: true
   }
 
   export type SemesterCountAggregateInputType = {
     id?: true
     sem?: true
+    name?: true
     _all?: true
   }
 
@@ -6315,6 +6334,7 @@ export namespace Prisma {
   export type SemesterGroupByOutputType = {
     id: string
     sem: number
+    name: string
     _count: SemesterCountAggregateOutputType | null
     _avg: SemesterAvgAggregateOutputType | null
     _sum: SemesterSumAggregateOutputType | null
@@ -6339,6 +6359,7 @@ export namespace Prisma {
   export type SemesterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sem?: boolean
+    name?: boolean
     course?: boolean | Semester$courseArgs<ExtArgs>
     student?: boolean | Semester$studentArgs<ExtArgs>
     _count?: boolean | SemesterCountOutputTypeDefaultArgs<ExtArgs>
@@ -6347,6 +6368,7 @@ export namespace Prisma {
   export type SemesterSelectScalar = {
     id?: boolean
     sem?: boolean
+    name?: boolean
   }
 
   export type SemesterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6365,6 +6387,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       sem: number
+      name: string
     }, ExtArgs["result"]["semester"]>
     composites: {}
   }
@@ -6764,6 +6787,7 @@ export namespace Prisma {
   interface SemesterFieldRefs {
     readonly id: FieldRef<"Semester", 'String'>
     readonly sem: FieldRef<"Semester", 'Int'>
+    readonly name: FieldRef<"Semester", 'String'>
   }
     
 
@@ -7146,16 +7170,19 @@ export namespace Prisma {
   export type BranchMinAggregateOutputType = {
     id: string | null
     name: string | null
+    code: string | null
   }
 
   export type BranchMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    code: string | null
   }
 
   export type BranchCountAggregateOutputType = {
     id: number
     name: number
+    code: number
     _all: number
   }
 
@@ -7163,16 +7190,19 @@ export namespace Prisma {
   export type BranchMinAggregateInputType = {
     id?: true
     name?: true
+    code?: true
   }
 
   export type BranchMaxAggregateInputType = {
     id?: true
     name?: true
+    code?: true
   }
 
   export type BranchCountAggregateInputType = {
     id?: true
     name?: true
+    code?: true
     _all?: true
   }
 
@@ -7251,6 +7281,7 @@ export namespace Prisma {
   export type BranchGroupByOutputType = {
     id: string
     name: string
+    code: string
     _count: BranchCountAggregateOutputType | null
     _min: BranchMinAggregateOutputType | null
     _max: BranchMaxAggregateOutputType | null
@@ -7273,6 +7304,7 @@ export namespace Prisma {
   export type BranchSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    code?: boolean
     course?: boolean | Branch$courseArgs<ExtArgs>
     student?: boolean | Branch$studentArgs<ExtArgs>
     _count?: boolean | BranchCountOutputTypeDefaultArgs<ExtArgs>
@@ -7281,6 +7313,7 @@ export namespace Prisma {
   export type BranchSelectScalar = {
     id?: boolean
     name?: boolean
+    code?: boolean
   }
 
   export type BranchInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7299,6 +7332,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      code: string
     }, ExtArgs["result"]["branch"]>
     composites: {}
   }
@@ -7698,6 +7732,7 @@ export namespace Prisma {
   interface BranchFieldRefs {
     readonly id: FieldRef<"Branch", 'String'>
     readonly name: FieldRef<"Branch", 'String'>
+    readonly code: FieldRef<"Branch", 'String'>
   }
     
 
@@ -11034,7 +11069,7 @@ export namespace Prisma {
 
   export type MarksEntryMinAggregateOutputType = {
     id: string | null
-    examCode: $Enums.examType | null
+    examCode: $Enums.examCode | null
     examType: $Enums.examType | null
     courseId: string | null
     studentId: string | null
@@ -11044,7 +11079,7 @@ export namespace Prisma {
 
   export type MarksEntryMaxAggregateOutputType = {
     id: string | null
-    examCode: $Enums.examType | null
+    examCode: $Enums.examCode | null
     examType: $Enums.examType | null
     courseId: string | null
     studentId: string | null
@@ -11191,7 +11226,7 @@ export namespace Prisma {
 
   export type MarksEntryGroupByOutputType = {
     id: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     courseId: string
     studentId: string
@@ -11254,7 +11289,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      examCode: $Enums.examType
+      examCode: $Enums.examCode
       examType: $Enums.examType
       courseId: string
       studentId: string
@@ -11658,7 +11693,7 @@ export namespace Prisma {
    */ 
   interface MarksEntryFieldRefs {
     readonly id: FieldRef<"MarksEntry", 'String'>
-    readonly examCode: FieldRef<"MarksEntry", 'examType'>
+    readonly examCode: FieldRef<"MarksEntry", 'examCode'>
     readonly examType: FieldRef<"MarksEntry", 'examType'>
     readonly courseId: FieldRef<"MarksEntry", 'String'>
     readonly studentId: FieldRef<"MarksEntry", 'String'>
@@ -15613,7 +15648,8 @@ export namespace Prisma {
 
   export const SemesterScalarFieldEnum: {
     id: 'id',
-    sem: 'sem'
+    sem: 'sem',
+    name: 'name'
   };
 
   export type SemesterScalarFieldEnum = (typeof SemesterScalarFieldEnum)[keyof typeof SemesterScalarFieldEnum]
@@ -15621,7 +15657,8 @@ export namespace Prisma {
 
   export const BranchScalarFieldEnum: {
     id: 'id',
-    name: 'name'
+    name: 'name',
+    code: 'code'
   };
 
   export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
@@ -15815,6 +15852,20 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'examCode'
+   */
+  export type EnumexamCodeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'examCode'>
+    
+
+
+  /**
+   * Reference to a field of type 'examCode[]'
+   */
+  export type ListEnumexamCodeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'examCode[]'>
     
 
 
@@ -16151,6 +16202,7 @@ export namespace Prisma {
     NOT?: SemesterWhereInput | SemesterWhereInput[]
     id?: UuidFilter<"Semester"> | string
     sem?: IntFilter<"Semester"> | number
+    name?: StringFilter<"Semester"> | string
     course?: CourseListRelationFilter
     student?: StudentListRelationFilter
   }
@@ -16158,6 +16210,7 @@ export namespace Prisma {
   export type SemesterOrderByWithRelationInput = {
     id?: SortOrder
     sem?: SortOrder
+    name?: SortOrder
     course?: CourseOrderByRelationAggregateInput
     student?: StudentOrderByRelationAggregateInput
   }
@@ -16165,16 +16218,18 @@ export namespace Prisma {
   export type SemesterWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     sem?: number
+    name?: string
     AND?: SemesterWhereInput | SemesterWhereInput[]
     OR?: SemesterWhereInput[]
     NOT?: SemesterWhereInput | SemesterWhereInput[]
     course?: CourseListRelationFilter
     student?: StudentListRelationFilter
-  }, "id" | "sem">
+  }, "id" | "sem" | "name">
 
   export type SemesterOrderByWithAggregationInput = {
     id?: SortOrder
     sem?: SortOrder
+    name?: SortOrder
     _count?: SemesterCountOrderByAggregateInput
     _avg?: SemesterAvgOrderByAggregateInput
     _max?: SemesterMaxOrderByAggregateInput
@@ -16188,6 +16243,7 @@ export namespace Prisma {
     NOT?: SemesterScalarWhereWithAggregatesInput | SemesterScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Semester"> | string
     sem?: IntWithAggregatesFilter<"Semester"> | number
+    name?: StringWithAggregatesFilter<"Semester"> | string
   }
 
   export type BranchWhereInput = {
@@ -16196,6 +16252,7 @@ export namespace Prisma {
     NOT?: BranchWhereInput | BranchWhereInput[]
     id?: UuidFilter<"Branch"> | string
     name?: StringFilter<"Branch"> | string
+    code?: StringFilter<"Branch"> | string
     course?: CourseListRelationFilter
     student?: StudentListRelationFilter
   }
@@ -16203,6 +16260,7 @@ export namespace Prisma {
   export type BranchOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    code?: SortOrder
     course?: CourseOrderByRelationAggregateInput
     student?: StudentOrderByRelationAggregateInput
   }
@@ -16210,16 +16268,18 @@ export namespace Prisma {
   export type BranchWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     name?: string
+    code?: string
     AND?: BranchWhereInput | BranchWhereInput[]
     OR?: BranchWhereInput[]
     NOT?: BranchWhereInput | BranchWhereInput[]
     course?: CourseListRelationFilter
     student?: StudentListRelationFilter
-  }, "id" | "name">
+  }, "id" | "name" | "code">
 
   export type BranchOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    code?: SortOrder
     _count?: BranchCountOrderByAggregateInput
     _max?: BranchMaxOrderByAggregateInput
     _min?: BranchMinOrderByAggregateInput
@@ -16231,6 +16291,7 @@ export namespace Prisma {
     NOT?: BranchScalarWhereWithAggregatesInput | BranchScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"Branch"> | string
     name?: StringWithAggregatesFilter<"Branch"> | string
+    code?: StringWithAggregatesFilter<"Branch"> | string
   }
 
   export type CourseWhereInput = {
@@ -16425,7 +16486,7 @@ export namespace Prisma {
     OR?: MarksEntryWhereInput[]
     NOT?: MarksEntryWhereInput | MarksEntryWhereInput[]
     id?: UuidFilter<"MarksEntry"> | string
-    examCode?: EnumexamTypeFilter<"MarksEntry"> | $Enums.examType
+    examCode?: EnumexamCodeFilter<"MarksEntry"> | $Enums.examCode
     examType?: EnumexamTypeFilter<"MarksEntry"> | $Enums.examType
     courseId?: UuidFilter<"MarksEntry"> | string
     studentId?: UuidFilter<"MarksEntry"> | string
@@ -16449,10 +16510,11 @@ export namespace Prisma {
 
   export type MarksEntryWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    examCode_examType_courseId_studentId?: MarksEntryExamCodeExamTypeCourseIdStudentIdCompoundUniqueInput
     AND?: MarksEntryWhereInput | MarksEntryWhereInput[]
     OR?: MarksEntryWhereInput[]
     NOT?: MarksEntryWhereInput | MarksEntryWhereInput[]
-    examCode?: EnumexamTypeFilter<"MarksEntry"> | $Enums.examType
+    examCode?: EnumexamCodeFilter<"MarksEntry"> | $Enums.examCode
     examType?: EnumexamTypeFilter<"MarksEntry"> | $Enums.examType
     courseId?: UuidFilter<"MarksEntry"> | string
     studentId?: UuidFilter<"MarksEntry"> | string
@@ -16460,7 +16522,7 @@ export namespace Prisma {
     remarks?: StringNullableFilter<"MarksEntry"> | string | null
     course?: XOR<CourseRelationFilter, CourseWhereInput>
     student?: XOR<StudentRelationFilter, StudentWhereInput>
-  }, "id">
+  }, "id" | "examCode_examType_courseId_studentId">
 
   export type MarksEntryOrderByWithAggregationInput = {
     id?: SortOrder
@@ -16482,7 +16544,7 @@ export namespace Prisma {
     OR?: MarksEntryScalarWhereWithAggregatesInput[]
     NOT?: MarksEntryScalarWhereWithAggregatesInput | MarksEntryScalarWhereWithAggregatesInput[]
     id?: UuidWithAggregatesFilter<"MarksEntry"> | string
-    examCode?: EnumexamTypeWithAggregatesFilter<"MarksEntry"> | $Enums.examType
+    examCode?: EnumexamCodeWithAggregatesFilter<"MarksEntry"> | $Enums.examCode
     examType?: EnumexamTypeWithAggregatesFilter<"MarksEntry"> | $Enums.examType
     courseId?: UuidWithAggregatesFilter<"MarksEntry"> | string
     studentId?: UuidWithAggregatesFilter<"MarksEntry"> | string
@@ -16519,6 +16581,7 @@ export namespace Prisma {
 
   export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    courseId_studentId_date?: AttendanceCourseIdStudentIdDateCompoundUniqueInput
     AND?: AttendanceWhereInput | AttendanceWhereInput[]
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
@@ -16530,7 +16593,7 @@ export namespace Prisma {
     attendanceType?: EnumattenanceTypeFilter<"Attendance"> | $Enums.attenanceType
     student?: XOR<StudentRelationFilter, StudentWhereInput>
     course?: XOR<CourseRelationFilter, CourseWhereInput>
-  }, "id">
+  }, "id" | "courseId_studentId_date">
 
   export type AttendanceOrderByWithAggregationInput = {
     id?: SortOrder
@@ -16951,6 +17014,7 @@ export namespace Prisma {
   export type SemesterCreateInput = {
     id?: string
     sem: number
+    name: string
     course?: CourseCreateNestedManyWithoutSemesterInput
     student?: StudentCreateNestedManyWithoutSemesterInput
   }
@@ -16958,6 +17022,7 @@ export namespace Prisma {
   export type SemesterUncheckedCreateInput = {
     id?: string
     sem: number
+    name: string
     course?: CourseUncheckedCreateNestedManyWithoutSemesterInput
     student?: StudentUncheckedCreateNestedManyWithoutSemesterInput
   }
@@ -16965,6 +17030,7 @@ export namespace Prisma {
   export type SemesterUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     course?: CourseUpdateManyWithoutSemesterNestedInput
     student?: StudentUpdateManyWithoutSemesterNestedInput
   }
@@ -16972,6 +17038,7 @@ export namespace Prisma {
   export type SemesterUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     course?: CourseUncheckedUpdateManyWithoutSemesterNestedInput
     student?: StudentUncheckedUpdateManyWithoutSemesterNestedInput
   }
@@ -16979,21 +17046,25 @@ export namespace Prisma {
   export type SemesterCreateManyInput = {
     id?: string
     sem: number
+    name: string
   }
 
   export type SemesterUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type SemesterUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type BranchCreateInput = {
     id?: string
     name: string
+    code: string
     course?: CourseCreateNestedManyWithoutBranchInput
     student?: StudentCreateNestedManyWithoutBranchInput
   }
@@ -17001,6 +17072,7 @@ export namespace Prisma {
   export type BranchUncheckedCreateInput = {
     id?: string
     name: string
+    code: string
     course?: CourseUncheckedCreateNestedManyWithoutBranchInput
     student?: StudentUncheckedCreateNestedManyWithoutBranchInput
   }
@@ -17008,6 +17080,7 @@ export namespace Prisma {
   export type BranchUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
     course?: CourseUpdateManyWithoutBranchNestedInput
     student?: StudentUpdateManyWithoutBranchNestedInput
   }
@@ -17015,6 +17088,7 @@ export namespace Prisma {
   export type BranchUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
     course?: CourseUncheckedUpdateManyWithoutBranchNestedInput
     student?: StudentUncheckedUpdateManyWithoutBranchNestedInput
   }
@@ -17022,16 +17096,19 @@ export namespace Prisma {
   export type BranchCreateManyInput = {
     id?: string
     name: string
+    code: string
   }
 
   export type BranchUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
   }
 
   export type BranchUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
   }
 
   export type CourseCreateInput = {
@@ -17216,7 +17293,7 @@ export namespace Prisma {
 
   export type MarksEntryCreateInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     marksObtained: number
     remarks?: string | null
@@ -17226,7 +17303,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedCreateInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     courseId: string
     studentId: string
@@ -17236,7 +17313,7 @@ export namespace Prisma {
 
   export type MarksEntryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     marksObtained?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17246,7 +17323,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     courseId?: StringFieldUpdateOperationsInput | string
     studentId?: StringFieldUpdateOperationsInput | string
@@ -17256,7 +17333,7 @@ export namespace Prisma {
 
   export type MarksEntryCreateManyInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     courseId: string
     studentId: string
@@ -17266,7 +17343,7 @@ export namespace Prisma {
 
   export type MarksEntryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     marksObtained?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17274,7 +17351,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     courseId?: StringFieldUpdateOperationsInput | string
     studentId?: StringFieldUpdateOperationsInput | string
@@ -17780,6 +17857,7 @@ export namespace Prisma {
   export type SemesterCountOrderByAggregateInput = {
     id?: SortOrder
     sem?: SortOrder
+    name?: SortOrder
   }
 
   export type SemesterAvgOrderByAggregateInput = {
@@ -17789,11 +17867,13 @@ export namespace Prisma {
   export type SemesterMaxOrderByAggregateInput = {
     id?: SortOrder
     sem?: SortOrder
+    name?: SortOrder
   }
 
   export type SemesterMinOrderByAggregateInput = {
     id?: SortOrder
     sem?: SortOrder
+    name?: SortOrder
   }
 
   export type SemesterSumOrderByAggregateInput = {
@@ -17819,16 +17899,19 @@ export namespace Prisma {
   export type BranchCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    code?: SortOrder
   }
 
   export type BranchMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    code?: SortOrder
   }
 
   export type BranchMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    code?: SortOrder
   }
 
   export type EnumcourseTypeFilter<$PrismaModel = never> = {
@@ -17983,6 +18066,13 @@ export namespace Prisma {
     courseId?: SortOrder
   }
 
+  export type EnumexamCodeFilter<$PrismaModel = never> = {
+    equals?: $Enums.examCode | EnumexamCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamCodeFilter<$PrismaModel> | $Enums.examCode
+  }
+
   export type EnumexamTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.examType | EnumexamTypeFieldRefInput<$PrismaModel>
     in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
@@ -18021,6 +18111,13 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
+  export type MarksEntryExamCodeExamTypeCourseIdStudentIdCompoundUniqueInput = {
+    examCode: $Enums.examCode
+    examType: $Enums.examType
+    courseId: string
+    studentId: string
+  }
+
   export type MarksEntryCountOrderByAggregateInput = {
     id?: SortOrder
     examCode?: SortOrder
@@ -18057,6 +18154,16 @@ export namespace Prisma {
 
   export type MarksEntrySumOrderByAggregateInput = {
     marksObtained?: SortOrder
+  }
+
+  export type EnumexamCodeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.examCode | EnumexamCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamCodeWithAggregatesFilter<$PrismaModel> | $Enums.examCode
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumexamCodeFilter<$PrismaModel>
+    _max?: NestedEnumexamCodeFilter<$PrismaModel>
   }
 
   export type EnumexamTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -18126,6 +18233,12 @@ export namespace Prisma {
     in?: $Enums.attenanceType[] | ListEnumattenanceTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.attenanceType[] | ListEnumattenanceTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumattenanceTypeFilter<$PrismaModel> | $Enums.attenanceType
+  }
+
+  export type AttendanceCourseIdStudentIdDateCompoundUniqueInput = {
+    courseId: string
+    studentId: string
+    date: Date | string
   }
 
   export type AttendanceCountOrderByAggregateInput = {
@@ -19094,6 +19207,10 @@ export namespace Prisma {
     connect?: StudentWhereUniqueInput
   }
 
+  export type EnumexamCodeFieldUpdateOperationsInput = {
+    set?: $Enums.examCode
+  }
+
   export type EnumexamTypeFieldUpdateOperationsInput = {
     set?: $Enums.examType
   }
@@ -19366,6 +19483,13 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedEnumexamCodeFilter<$PrismaModel = never> = {
+    equals?: $Enums.examCode | EnumexamCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamCodeFilter<$PrismaModel> | $Enums.examCode
+  }
+
   export type NestedEnumexamTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.examType | EnumexamTypeFieldRefInput<$PrismaModel>
     in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
@@ -19385,6 +19509,16 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumexamCodeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.examCode | EnumexamCodeFieldRefInput<$PrismaModel>
+    in?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.examCode[] | ListEnumexamCodeFieldRefInput<$PrismaModel>
+    not?: NestedEnumexamCodeWithAggregatesFilter<$PrismaModel> | $Enums.examCode
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumexamCodeFilter<$PrismaModel>
+    _max?: NestedEnumexamCodeFilter<$PrismaModel>
   }
 
   export type NestedEnumexamTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -19659,12 +19793,14 @@ export namespace Prisma {
   export type SemesterCreateWithoutStudentInput = {
     id?: string
     sem: number
+    name: string
     course?: CourseCreateNestedManyWithoutSemesterInput
   }
 
   export type SemesterUncheckedCreateWithoutStudentInput = {
     id?: string
     sem: number
+    name: string
     course?: CourseUncheckedCreateNestedManyWithoutSemesterInput
   }
 
@@ -19676,12 +19812,14 @@ export namespace Prisma {
   export type BranchCreateWithoutStudentInput = {
     id?: string
     name: string
+    code: string
     course?: CourseCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutStudentInput = {
     id?: string
     name: string
+    code: string
     course?: CourseUncheckedCreateNestedManyWithoutBranchInput
   }
 
@@ -19765,7 +19903,7 @@ export namespace Prisma {
 
   export type MarksEntryCreateWithoutStudentInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     marksObtained: number
     remarks?: string | null
@@ -19774,7 +19912,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedCreateWithoutStudentInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     courseId: string
     marksObtained: number
@@ -19805,12 +19943,14 @@ export namespace Prisma {
   export type SemesterUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     course?: CourseUpdateManyWithoutSemesterNestedInput
   }
 
   export type SemesterUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     course?: CourseUncheckedUpdateManyWithoutSemesterNestedInput
   }
 
@@ -19828,12 +19968,14 @@ export namespace Prisma {
   export type BranchUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
     course?: CourseUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
     course?: CourseUncheckedUpdateManyWithoutBranchNestedInput
   }
 
@@ -19943,7 +20085,7 @@ export namespace Prisma {
     OR?: MarksEntryScalarWhereInput[]
     NOT?: MarksEntryScalarWhereInput | MarksEntryScalarWhereInput[]
     id?: UuidFilter<"MarksEntry"> | string
-    examCode?: EnumexamTypeFilter<"MarksEntry"> | $Enums.examType
+    examCode?: EnumexamCodeFilter<"MarksEntry"> | $Enums.examCode
     examType?: EnumexamTypeFilter<"MarksEntry"> | $Enums.examType
     courseId?: UuidFilter<"MarksEntry"> | string
     studentId?: UuidFilter<"MarksEntry"> | string
@@ -20366,12 +20508,14 @@ export namespace Prisma {
   export type BranchCreateWithoutCourseInput = {
     id?: string
     name: string
+    code: string
     student?: StudentCreateNestedManyWithoutBranchInput
   }
 
   export type BranchUncheckedCreateWithoutCourseInput = {
     id?: string
     name: string
+    code: string
     student?: StudentUncheckedCreateNestedManyWithoutBranchInput
   }
 
@@ -20383,12 +20527,14 @@ export namespace Prisma {
   export type SemesterCreateWithoutCourseInput = {
     id?: string
     sem: number
+    name: string
     student?: StudentCreateNestedManyWithoutSemesterInput
   }
 
   export type SemesterUncheckedCreateWithoutCourseInput = {
     id?: string
     sem: number
+    name: string
     student?: StudentUncheckedCreateNestedManyWithoutSemesterInput
   }
 
@@ -20467,7 +20613,7 @@ export namespace Prisma {
 
   export type MarksEntryCreateWithoutCourseInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     marksObtained: number
     remarks?: string | null
@@ -20476,7 +20622,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedCreateWithoutCourseInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     studentId: string
     marksObtained: number
@@ -20538,6 +20684,7 @@ export namespace Prisma {
     NOT?: BranchScalarWhereInput | BranchScalarWhereInput[]
     id?: UuidFilter<"Branch"> | string
     name?: StringFilter<"Branch"> | string
+    code?: StringFilter<"Branch"> | string
   }
 
   export type SemesterUpsertWithWhereUniqueWithoutCourseInput = {
@@ -20562,6 +20709,7 @@ export namespace Prisma {
     NOT?: SemesterScalarWhereInput | SemesterScalarWhereInput[]
     id?: UuidFilter<"Semester"> | string
     sem?: IntFilter<"Semester"> | number
+    name?: StringFilter<"Semester"> | string
   }
 
   export type CourseRegistrationUpsertWithWhereUniqueWithoutCourseInput = {
@@ -21274,7 +21422,7 @@ export namespace Prisma {
 
   export type MarksEntryCreateManyStudentInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     courseId: string
     marksObtained: number
@@ -21325,7 +21473,7 @@ export namespace Prisma {
 
   export type MarksEntryUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     marksObtained?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21334,7 +21482,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedUpdateWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     courseId?: StringFieldUpdateOperationsInput | string
     marksObtained?: FloatFieldUpdateOperationsInput | number
@@ -21343,7 +21491,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedUpdateManyWithoutStudentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     courseId?: StringFieldUpdateOperationsInput | string
     marksObtained?: FloatFieldUpdateOperationsInput | number
@@ -21569,7 +21717,7 @@ export namespace Prisma {
 
   export type MarksEntryCreateManyCourseInput = {
     id?: string
-    examCode: $Enums.examType
+    examCode: $Enums.examCode
     examType: $Enums.examType
     studentId: string
     marksObtained: number
@@ -21579,35 +21727,41 @@ export namespace Prisma {
   export type BranchUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
     student?: StudentUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
     student?: StudentUncheckedUpdateManyWithoutBranchNestedInput
   }
 
   export type BranchUncheckedUpdateManyWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
   }
 
   export type SemesterUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     student?: StudentUpdateManyWithoutSemesterNestedInput
   }
 
   export type SemesterUncheckedUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
     student?: StudentUncheckedUpdateManyWithoutSemesterNestedInput
   }
 
   export type SemesterUncheckedUpdateManyWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
     sem?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type CourseRegistrationUpdateWithoutCourseInput = {
@@ -21669,7 +21823,7 @@ export namespace Prisma {
 
   export type MarksEntryUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     marksObtained?: FloatFieldUpdateOperationsInput | number
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21678,7 +21832,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedUpdateWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     studentId?: StringFieldUpdateOperationsInput | string
     marksObtained?: FloatFieldUpdateOperationsInput | number
@@ -21687,7 +21841,7 @@ export namespace Prisma {
 
   export type MarksEntryUncheckedUpdateManyWithoutCourseInput = {
     id?: StringFieldUpdateOperationsInput | string
-    examCode?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
+    examCode?: EnumexamCodeFieldUpdateOperationsInput | $Enums.examCode
     examType?: EnumexamTypeFieldUpdateOperationsInput | $Enums.examType
     studentId?: StringFieldUpdateOperationsInput | string
     marksObtained?: FloatFieldUpdateOperationsInput | number
