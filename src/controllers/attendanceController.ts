@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "../../generated/client";
+import { PrismaClient, attenanceType, classType } from "../../generated/client";
 
 const prisma = new PrismaClient();
 interface AuthenticatedRequest extends Request {
@@ -97,6 +97,26 @@ export const getAttendanceByCourseDateId = async (
       },
     });
     res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getClassType = async (req: Request, res: Response) => {
+  try {
+    const result = classType;
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getAttendanceType = async (req: Request, res: Response) => {
+  try {
+    const result = attenanceType;
+    res.json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
