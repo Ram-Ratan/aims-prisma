@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "../../generated/client";
+import { PrismaClient, examCode, examType } from "../../generated/client";
 
 const prisma = new PrismaClient();
 interface AuthenticatedRequest extends Request {
@@ -112,3 +112,22 @@ export const getExamEntriesByExamStudentId = async (
   }
 };
 
+export const getExamType = async (req: Request, res: Response) => {
+  try {
+    const result = examType;
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getExamCode = async (req: Request, res: Response) => {
+  try {
+    const result = examCode;
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
