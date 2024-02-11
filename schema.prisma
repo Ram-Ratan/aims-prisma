@@ -167,8 +167,8 @@ enum courseType{
 }
 
 enum classType{
-  EXTRA
   REGULAR
+  EXTRA
 }
 
 enum attenanceType{

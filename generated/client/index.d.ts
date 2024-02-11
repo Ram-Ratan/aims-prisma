@@ -133,8 +133,8 @@ export type examType = (typeof examType)[keyof typeof examType]
 
 
 export const classType: {
-  EXTRA: 'EXTRA',
-  REGULAR: 'REGULAR'
+  REGULAR: 'REGULAR',
+  EXTRA: 'EXTRA'
 };
 
 export type classType = (typeof classType)[keyof typeof classType]

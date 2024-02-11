@@ -260,8 +260,8 @@ exports.examType = exports.$Enums.examType = {
 };
 
 exports.classType = exports.$Enums.classType = {
-  EXTRA: 'EXTRA',
-  REGULAR: 'REGULAR'
+  REGULAR: 'REGULAR',
+  EXTRA: 'EXTRA'
 };
 
 exports.attenanceType = exports.$Enums.attenanceType = {
