@@ -105,7 +105,7 @@ export const getAttendanceByCourseDateId = async (
 
 export const getClassType = async (req: Request, res: Response) => {
   try {
-    const result = classType;
+    const result = Object.values(classType);
     res.json(result);
   } catch (error) {
     console.error(error);
@@ -115,7 +115,7 @@ export const getClassType = async (req: Request, res: Response) => {
 
 export const getAttendanceType = async (req: Request, res: Response) => {
   try {
-    const result = attenanceType;
+    const result = Object.values(attenanceType);
     res.json(result);
   } catch (error) {
     console.error(error);

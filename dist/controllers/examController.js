@@ -112,7 +112,7 @@ const getExamEntriesByExamStudentId = async (req, res) => {
 exports.getExamEntriesByExamStudentId = getExamEntriesByExamStudentId;
 const getExamType = async (req, res) => {
     try {
-        const result = client_1.examType;
+        const result = Object.values(client_1.examType);
         res.json(result);
     }
     catch (error) {
@@ -123,7 +123,7 @@ const getExamType = async (req, res) => {
 exports.getExamType = getExamType;
 const getExamCode = async (req, res) => {
     try {
-        const result = client_1.examCode;
+        const result = Object.values(client_1.examCode);
         res.json(result);
     }
     catch (error) {

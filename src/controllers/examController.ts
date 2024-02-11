@@ -114,7 +114,7 @@ export const getExamEntriesByExamStudentId = async (
 
 export const getExamType = async (req: Request, res: Response) => {
   try {
-    const result = examType;
+    const result = Object.values(examType);
     res.json(result);
   } catch (error) {
     console.error(error);
@@ -124,7 +124,7 @@ export const getExamType = async (req: Request, res: Response) => {
 
 export const getExamCode = async (req: Request, res: Response) => {
   try {
-    const result = examCode;
+    const result = Object.values(examCode);
     res.json(result);
   } catch (error) {
     console.error(error);

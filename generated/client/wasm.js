@@ -168,7 +168,8 @@ exports.Prisma.CourseScalarFieldEnum = {
 exports.Prisma.CourseRegistrationScalarFieldEnum = {
   id: 'id',
   courseId: 'courseId',
-  studentId: 'studentId'
+  studentId: 'studentId',
+  semesterId: 'semesterId'
 };
 
 exports.Prisma.FacultyCourseAssignmentScalarFieldEnum = {
