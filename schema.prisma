@@ -62,6 +62,7 @@ model Semester {
   name   String   @unique
   course Course[]
   student Student[]
+  courseRegistration CourseRegistration[]
 }
 
 model Branch {
@@ -94,6 +95,8 @@ model CourseRegistration {
   id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   courseId  String  @db.Uuid
   studentId String  @db.Uuid
+  semesterId  String  @db.Uuid
+  semester  Semester  @relation(fields: [semesterId],references: [id], onDelete: NoAction, onUpdate: NoAction)
   course    Course  @relation(fields: [courseId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   student   Student @relation(fields: [studentId], references: [id],onDelete: NoAction, onUpdate: NoAction)
 }
