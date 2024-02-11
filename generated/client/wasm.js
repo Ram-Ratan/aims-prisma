@@ -123,7 +123,8 @@ exports.Prisma.StudentScalarFieldEnum = {
   branchId: 'branchId',
   mobileNo: 'mobileNo',
   email: 'email',
-  userId: 'userId'
+  userId: 'userId',
+  batchId: 'batchId'
 };
 
 exports.Prisma.FacultyScalarFieldEnum = {
