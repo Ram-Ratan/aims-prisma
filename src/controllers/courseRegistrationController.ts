@@ -87,6 +87,21 @@ export const getStudentByCourse = async (req: Request, res: Response) => {
   }
 };
 
-
+export const isRegistered = async (req: Request, res: Response) => {
+  const { studentId, semesterId } = req.query;
+  try {
+    const response = await prisma.courseRegistration.findMany({
+      where: {
+        studentId: studentId?.toString(),
+        semesterId: semesterId?.toString()
+      }
+    });
+    console.log(response);
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 
