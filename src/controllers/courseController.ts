@@ -9,18 +9,17 @@ export const getAllCourses = async (req: Request, res: Response) => {
   try {
     const courses = await prisma.course.findMany({
       where: {
-        AND: [
-        { batchId: batchId?.toString() },
-        {semester: {
+         batchId: batchId?.toString() ,
+        semester: {
           some: {
             id: semesterId
           }
-        }},
-        {branch: {
+        },
+        branch: {
           some: {
             id: branchId
           }
-        }}]
+        }
       }
     });
     console.log(courses)
@@ -34,23 +33,18 @@ export const getAllCourses = async (req: Request, res: Response) => {
 export const addCourse = async (req: Request, res: Response) => {
     const {courseName,courseId, branch,semester} = req?.body;
   try {
-    // const response = await prisma.course.create({
-    //     data: {
-    //       name: courseName,
-    //       semester:{
-    //         connect:{
-    //           sem: semester
-    //         }
-    //       },
-    //       branch: {
-    //         connect: {
-    //           name: branch
-    //         }
-    //       }
-    //     }
-    // })
-    // console.log(response);
-    // res.json(response);
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getAllStremElective = async (req: Request, res: Response) => {
+  try {
+    const response = await prisma.steamElective.findMany({});
+    console.log(response);
+    res.json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

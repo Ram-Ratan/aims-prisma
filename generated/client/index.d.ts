@@ -8290,7 +8290,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode: string | null
     credit: number
     labIncluded: boolean
     batchId: string
@@ -8373,7 +8373,7 @@ export namespace Prisma {
       code: string
       name: string
       courseType: $Enums.courseType
-      electiveCode: string
+      electiveCode: string | null
       credit: number
       labIncluded: boolean
       batchId: string
@@ -16302,7 +16302,7 @@ export namespace Prisma {
     code?: StringFilter<"Course"> | string
     name?: StringFilter<"Course"> | string
     courseType?: EnumcourseTypeFilter<"Course"> | $Enums.courseType
-    electiveCode?: StringFilter<"Course"> | string
+    electiveCode?: StringNullableFilter<"Course"> | string | null
     credit?: IntFilter<"Course"> | number
     labIncluded?: BoolFilter<"Course"> | boolean
     batchId?: UuidFilter<"Course"> | string
@@ -16320,7 +16320,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     courseType?: SortOrder
-    electiveCode?: SortOrder
+    electiveCode?: SortOrderInput | SortOrder
     credit?: SortOrder
     labIncluded?: SortOrder
     batchId?: SortOrder
@@ -16341,7 +16341,7 @@ export namespace Prisma {
     NOT?: CourseWhereInput | CourseWhereInput[]
     name?: StringFilter<"Course"> | string
     courseType?: EnumcourseTypeFilter<"Course"> | $Enums.courseType
-    electiveCode?: StringFilter<"Course"> | string
+    electiveCode?: StringNullableFilter<"Course"> | string | null
     credit?: IntFilter<"Course"> | number
     labIncluded?: BoolFilter<"Course"> | boolean
     batchId?: UuidFilter<"Course"> | string
@@ -16359,7 +16359,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     courseType?: SortOrder
-    electiveCode?: SortOrder
+    electiveCode?: SortOrderInput | SortOrder
     credit?: SortOrder
     labIncluded?: SortOrder
     batchId?: SortOrder
@@ -16378,7 +16378,7 @@ export namespace Prisma {
     code?: StringWithAggregatesFilter<"Course"> | string
     name?: StringWithAggregatesFilter<"Course"> | string
     courseType?: EnumcourseTypeWithAggregatesFilter<"Course"> | $Enums.courseType
-    electiveCode?: StringWithAggregatesFilter<"Course"> | string
+    electiveCode?: StringNullableWithAggregatesFilter<"Course"> | string | null
     credit?: IntWithAggregatesFilter<"Course"> | number
     labIncluded?: BoolWithAggregatesFilter<"Course"> | boolean
     batchId?: UuidWithAggregatesFilter<"Course"> | string
@@ -17116,7 +17116,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -17133,7 +17133,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -17150,7 +17150,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -17167,7 +17167,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -17184,7 +17184,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -17195,7 +17195,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -17205,7 +17205,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -17921,6 +17921,21 @@ export namespace Prisma {
     not?: NestedEnumcourseTypeFilter<$PrismaModel> | $Enums.courseType
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -17941,6 +17956,11 @@ export namespace Prisma {
     every?: SemesterWhereInput
     some?: SemesterWhereInput
     none?: SemesterWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type BranchOrderByRelationAggregateInput = {
@@ -18000,6 +18020,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumcourseTypeFilter<$PrismaModel>
     _max?: NestedEnumcourseTypeFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -18091,26 +18129,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
   export type MarksEntryExamCodeExamTypeCourseIdStudentIdCompoundUniqueInput = {
     examCode: $Enums.examCode
     examType: $Enums.examType
@@ -18190,24 +18208,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -18963,6 +18963,10 @@ export namespace Prisma {
     set?: $Enums.courseType
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
   }
@@ -19223,10 +19227,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type CourseUpdateOneRequiredWithoutExamEntriesNestedInput = {
     create?: XOR<CourseCreateWithoutExamEntriesInput, CourseUncheckedCreateWithoutExamEntriesInput>
     connectOrCreate?: CourseCreateOrConnectWithoutExamEntriesInput
@@ -19460,6 +19460,20 @@ export namespace Prisma {
     not?: NestedEnumcourseTypeFilter<$PrismaModel> | $Enums.courseType
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -19473,6 +19487,34 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumcourseTypeFilter<$PrismaModel>
     _max?: NestedEnumcourseTypeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -19495,20 +19537,6 @@ export namespace Prisma {
     in?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
     notIn?: $Enums.examType[] | ListEnumexamTypeFieldRefInput<$PrismaModel>
     not?: NestedEnumexamTypeFilter<$PrismaModel> | $Enums.examType
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedEnumexamCodeWithAggregatesFilter<$PrismaModel = never> = {
@@ -19545,34 +19573,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -20255,7 +20255,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -20271,7 +20271,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -20347,7 +20347,7 @@ export namespace Prisma {
     code?: StringFilter<"Course"> | string
     name?: StringFilter<"Course"> | string
     courseType?: EnumcourseTypeFilter<"Course"> | $Enums.courseType
-    electiveCode?: StringFilter<"Course"> | string
+    electiveCode?: StringNullableFilter<"Course"> | string | null
     credit?: IntFilter<"Course"> | number
     labIncluded?: BoolFilter<"Course"> | boolean
     batchId?: UuidFilter<"Course"> | string
@@ -20388,7 +20388,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -20404,7 +20404,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -20781,7 +20781,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -20797,7 +20797,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -20860,7 +20860,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -20876,7 +20876,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -20950,7 +20950,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -20966,7 +20966,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -21025,7 +21025,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -21041,7 +21041,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21057,7 +21057,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -21073,7 +21073,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -21136,7 +21136,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -21152,7 +21152,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21236,7 +21236,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batch: BatchCreateNestedOneWithoutCourseInput
@@ -21252,7 +21252,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     batchId: string
@@ -21321,7 +21321,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -21337,7 +21337,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21353,7 +21353,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     branch?: BranchCreateNestedManyWithoutCourseInput
@@ -21369,7 +21369,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
     branch?: BranchUncheckedCreateNestedManyWithoutCourseInput
@@ -21533,7 +21533,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -21549,7 +21549,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21565,7 +21565,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21622,7 +21622,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batch?: BatchUpdateOneRequiredWithoutCourseNestedInput
@@ -21638,7 +21638,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21654,7 +21654,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     batchId?: StringFieldUpdateOperationsInput | string
@@ -21853,7 +21853,7 @@ export namespace Prisma {
     code: string
     name: string
     courseType: $Enums.courseType
-    electiveCode: string
+    electiveCode?: string | null
     credit: number
     labIncluded?: boolean
   }
@@ -21863,7 +21863,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     branch?: BranchUpdateManyWithoutCourseNestedInput
@@ -21879,7 +21879,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
     branch?: BranchUncheckedUpdateManyWithoutCourseNestedInput
@@ -21895,7 +21895,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     courseType?: EnumcourseTypeFieldUpdateOperationsInput | $Enums.courseType
-    electiveCode?: StringFieldUpdateOperationsInput | string
+    electiveCode?: NullableStringFieldUpdateOperationsInput | string | null
     credit?: IntFieldUpdateOperationsInput | number
     labIncluded?: BoolFieldUpdateOperationsInput | boolean
   }

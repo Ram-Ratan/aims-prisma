@@ -31,6 +31,8 @@ model Student {
   email            String
   user             User                        @relation(fields: [userId], references: [id],onDelete: NoAction, onUpdate: NoAction)
   userId           String                      @unique @db.Uuid
+  batchId          String                      @db.Uuid
+  batch            Batch           @relation(fields: [batchId], references: [id])
   courseRegistered CourseRegistration[]
   attendances      Attendance[]
   examEntries      MarksEntry[]
@@ -75,7 +77,7 @@ model Course {
   code         String                      @unique
   name              String
   courseType    courseType
-  electiveCode  String
+  electiveCode  String?
   credit      Int
   labIncluded   Boolean     @default(false)
   batchId     String    @db.Uuid
@@ -176,6 +178,7 @@ model Batch{
   code  String  @unique
   name String
   course Course[]
+  student Student[]
 }
 
 model SteamElective{

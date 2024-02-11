@@ -126,7 +126,7 @@ const login = async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: {
-                email,
+                email
             },
         });
         if (!user) {
@@ -173,7 +173,7 @@ const resetPassword = async (req, res) => {
     try {
         const user = await prisma.user.findUnique({
             where: {
-                email,
+                email
             },
         });
         if (!user) {

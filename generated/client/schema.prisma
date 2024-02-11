@@ -75,7 +75,7 @@ model Course {
   code         String                      @unique
   name              String
   courseType    courseType
-  electiveCode  String
+  electiveCode  String?
   credit      Int
   labIncluded   Boolean     @default(false)
   batchId     String    @db.Uuid

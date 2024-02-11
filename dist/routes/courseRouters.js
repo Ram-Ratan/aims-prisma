@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const courseController_1 = require("../controllers/courseController");
 const router = express_1.default.Router();
-router.get("/get-all-courses", courseController_1.getAllCourses);
+router.get("/get-all-courses/:batchId/:branchId/:semesterId", courseController_1.getAllCourses);
 router.post("/add-course", courseController_1.addCourse);
+router.get("/get-all-stream-elective", courseController_1.getAllStremElective);
 exports.default = router;
