@@ -82,6 +82,7 @@ export const signup = async (req: Request, res: Response) => {
             branchId: student?.branchId,
             mobileNo: student?.mobileNo,
             email: user?.email,
+            batchId:student?.batchId
           },
         });
         break;

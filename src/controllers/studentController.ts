@@ -33,7 +33,7 @@ export const getStudents = async (req: AuthenticatedRequest, res: Response) => {
 };
 
 export const createStudent = async (req: Request, res: Response) => {
-  const {rollNo,fullName,mobileNo,email,branchName,currentSemester} = req?.body;
+  const {rollNo,fullName,mobileNo,email,branchName,currentSemester,batchCode} = req?.body;
   try {
     const response = await prisma.student.create({
       data: {
@@ -56,6 +56,11 @@ export const createStudent = async (req: Request, res: Response) => {
             sem: currentSemester
           }
         },
+        batch: {
+          connect: {
+            code: batchCode
+          }
+        }
       }
     });
     res.json(response);

@@ -88,6 +88,7 @@ const signup = async (req, res) => {
                         branchId: student?.branchId,
                         mobileNo: student?.mobileNo,
                         email: user?.email,
+                        batchId: student?.batchId
                     },
                 });
                 break;

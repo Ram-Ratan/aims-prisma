@@ -7,8 +7,7 @@ const getAllCourses = async (req, res) => {
     console.log("get all courses called");
     const { semesterId, branchId, batchId } = req.params;
     try {
-        const courses = await prisma.course.groupBy({
-            by: ['electiveCode'],
+        const courses = await prisma.course.findMany({
             where: {
                 batchId: batchId?.toString(),
                 semester: {
