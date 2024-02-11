@@ -10,6 +10,8 @@ export const markAttendance = async (req: Request, res: Response) => {
   const data = req.body.attendance.map((student: any) => {
     return {
       courseId: req.body.courseId,
+      classType: req.body.classType,
+      attenanceType:req.body.attenanceType,
       studentId: student.id,
       isPresent: student.isPresent,
       date: new Date(req.body.date),
@@ -32,7 +34,9 @@ export const updateAttendance = async (req: Request, res: Response) => {
     const result = req.body.attendance.map(async (student: any) => {
       await prisma.attendance.update({
         where: {
-          courseId_studentId_date: {
+          courseId_classType_attendanceType_studentId_date: {
+            classType: req.body.classType,
+            attendanceType: req.body.attenanceType,
             courseId: req.body.courseId,
             studentId: student.id,
             date: new Date(req.body.date),
@@ -61,6 +65,8 @@ export const getAttendanceByCourseAndDate = async (
       where: {
         date: date,
         courseId: courseId,
+        classType: req.body.classType,
+        attendanceType: req.body.attenanceType
       },
       include: {
         student: true,

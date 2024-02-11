@@ -16706,7 +16706,7 @@ export namespace Prisma {
 
   export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    courseId_studentId_date?: AttendanceCourseIdStudentIdDateCompoundUniqueInput
+    courseId_classType_attendanceType_studentId_date?: AttendanceCourseIdClassTypeAttendanceTypeStudentIdDateCompoundUniqueInput
     AND?: AttendanceWhereInput | AttendanceWhereInput[]
     OR?: AttendanceWhereInput[]
     NOT?: AttendanceWhereInput | AttendanceWhereInput[]
@@ -16718,7 +16718,7 @@ export namespace Prisma {
     attendanceType?: EnumattenanceTypeFilter<"Attendance"> | $Enums.attenanceType
     student?: XOR<StudentRelationFilter, StudentWhereInput>
     course?: XOR<CourseRelationFilter, CourseWhereInput>
-  }, "id" | "courseId_studentId_date">
+  }, "id" | "courseId_classType_attendanceType_studentId_date">
 
   export type AttendanceOrderByWithAggregationInput = {
     id?: SortOrder
@@ -18389,8 +18389,10 @@ export namespace Prisma {
     not?: NestedEnumattenanceTypeFilter<$PrismaModel> | $Enums.attenanceType
   }
 
-  export type AttendanceCourseIdStudentIdDateCompoundUniqueInput = {
+  export type AttendanceCourseIdClassTypeAttendanceTypeStudentIdDateCompoundUniqueInput = {
     courseId: string
+    classType: $Enums.classType
+    attendanceType: $Enums.attenanceType
     studentId: string
     date: Date | string
   }

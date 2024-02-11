@@ -129,7 +129,7 @@ model Attendance {
   studentId String   @db.Uuid
   date      DateTime @default(now())
   isPresent Boolean
-  @@unique([courseId,studentId,date])
+  @@unique([courseId,classType,attendanceType,studentId,date])
   classType classType   @default(REGULAR)
   attendanceType attenanceType  @default(THEORY)
   student   Student  @relation(fields: [studentId], references: [id],onDelete: NoAction, onUpdate: NoAction)
