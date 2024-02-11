@@ -29,7 +29,6 @@ const getAllCourses = async (req, res) => {
             }
             groupedCourses[course.courseType].push(course);
         }
-        // Send the grouped courses as a response
         res.json(groupedCourses);
     }
     catch (error) {
