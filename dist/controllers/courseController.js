@@ -22,8 +22,15 @@ const getAllCourses = async (req, res) => {
                 }
             }
         });
-        console.log(courses);
-        res.json(courses);
+        const groupedCourses = {};
+        for (const course of courses) {
+            if (!groupedCourses[course.courseType]) {
+                groupedCourses[course.courseType] = [];
+            }
+            groupedCourses[course.courseType].push(course);
+        }
+        // Send the grouped courses as a response
+        res.json(groupedCourses);
     }
     catch (error) {
         console.error(error);

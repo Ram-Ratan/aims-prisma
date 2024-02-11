@@ -9,7 +9,7 @@ export const getAllCourses = async (req: Request, res: Response) => {
   try {
     const courses = await prisma.course.findMany({
       where: {
-         batchId: batchId?.toString() ,
+        batchId: batchId?.toString() ,
         semester: {
           some: {
             id: semesterId
@@ -22,8 +22,15 @@ export const getAllCourses = async (req: Request, res: Response) => {
         }
       }
     });
-    console.log(courses)
-    res.json(courses);
+    const groupedCourses: { [courseType: string]: typeof courses } = {};
+    for (const course of courses) {
+      if (!groupedCourses[course.courseType]) {
+        groupedCourses[course.courseType] = [];
+      }
+      groupedCourses[course.courseType].push(course);
+    }
+
+    res.json(groupedCourses);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

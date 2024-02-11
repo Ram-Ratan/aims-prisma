@@ -100,7 +100,7 @@ const getAttendanceByCourseDateId = async (req, res) => {
 exports.getAttendanceByCourseDateId = getAttendanceByCourseDateId;
 const getClassType = async (req, res) => {
     try {
-        const result = client_1.classType;
+        const result = Object.values(client_1.classType);
         res.json(result);
     }
     catch (error) {
@@ -111,7 +111,7 @@ const getClassType = async (req, res) => {
 exports.getClassType = getClassType;
 const getAttendanceType = async (req, res) => {
     try {
-        const result = client_1.attenanceType;
+        const result = Object.values(client_1.attenanceType);
         res.json(result);
     }
     catch (error) {

@@ -10,4 +10,5 @@ const router = express_1.default.Router();
 router.post("/register", authMiddleware_1.authenticateToken, courseRegistrationController_1.courseRegistration);
 router.get("/course-registered-by-id", authMiddleware_1.authenticateToken, courseRegistrationController_1.courserRegisteredById);
 router.get("/get-student-by-course", courseRegistrationController_1.getStudentByCourse);
+router.get("/is-registered", courseRegistrationController_1.isRegistered);
 exports.default = router;

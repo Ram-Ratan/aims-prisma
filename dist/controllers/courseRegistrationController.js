@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getStudentByCourse = exports.courserRegisteredById = exports.courseRegistration = void 0;
+exports.isRegistered = exports.getStudentByCourse = exports.courserRegisteredById = exports.courseRegistration = void 0;
 const client_1 = require("../../generated/client");
 const prisma = new client_1.PrismaClient();
 const courseRegistration = async (req, res) => {
@@ -85,3 +85,21 @@ const getStudentByCourse = async (req, res) => {
     }
 };
 exports.getStudentByCourse = getStudentByCourse;
+const isRegistered = async (req, res) => {
+    const { studentId, semesterId } = req.query;
+    try {
+        const response = await prisma.courseRegistration.findMany({
+            where: {
+                studentId: studentId?.toString(),
+                semesterId: semesterId?.toString()
+            }
+        });
+        console.log(response);
+        res.json(response);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+exports.isRegistered = isRegistered;
