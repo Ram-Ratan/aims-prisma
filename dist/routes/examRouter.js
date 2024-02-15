@@ -11,6 +11,6 @@ router.get("/get-exam-type", examController_1.getExamType);
 router.get("/get-exam-code", examController_1.getExamCode);
 router.post("/add-exam-entries", authMiddleware_1.authenticateToken, examController_1.addExamEntries);
 router.post("/update-exam-entries", authMiddleware_1.authenticateToken, examController_1.updateExamEntries);
-router.get("/get-exam-entries-by-course-exam", authMiddleware_1.authenticateToken, examController_1.getExamEntriesByCourseExam);
-router.get("/get-exam-entries-by-exam-student", authMiddleware_1.authenticateToken, examController_1.getExamEntriesByExamStudentId);
+router.post("/get-exam-entries-by-course-exam", authMiddleware_1.authenticateToken, examController_1.getExamEntriesByCourseExam);
+router.post("/get-exam-entries-by-exam-student", authMiddleware_1.authenticateToken, examController_1.getExamEntriesByExamStudentId);
 exports.default = router;

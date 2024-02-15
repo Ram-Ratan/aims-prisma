@@ -63,18 +63,18 @@ export const updateExamEntries = async (req: Request, res: Response) => {
 };
 
 export const getExamEntriesByCourseExam = async (req: Request, res: Response) => {
-  const examCode = req.query.examCode?.toString();
-  const examType = req?.query?.examType?.toString();
-    const courseId = req?.query?.courseId?.toString();
+  const examCode = req.body.examCode?.toString();
+  const examType = req?.body?.examType?.toString();
+    const courseId = req?.body?.courseId?.toString();
   try {
-    // const response = await prisma.marksEntry.findMany({
-    //     where: {
-    //       examCode: examCode,
-    //       examType: examType,
-    //       courseId: courseId
-    //     }
-    // });
-    // res.json(response);
+    const response = await prisma.marksEntry.findMany({
+        where: {
+          examCode: examCode,
+          examType: examType,
+          courseId: courseId
+        }
+    });
+    res.json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -85,27 +85,27 @@ export const getExamEntriesByExamStudentId = async (
   req: AuthenticatedRequest,
   res: Response
 ) => {
-  const examCode = req?.query?.examCode;
-  const examType = req?.query?.examType;
+  const examCode = req?.body?.examCode;
+  const examType = req?.body?.examType;
   const userId = req?.user?.userId;
   try {
-    // const response = await prisma.marksEntry.findMany({
-    //   where: {
-    //     examCode: examCode,
-    //     examType: examType,
-    //     student:{
-    //       userId: userId
-    //     }
-    //   },
-    //   include:{
-    //     course: {
-    //       select:{
-    //         name: true
-    //       }
-    //     }
-    //   }
-    // });
-    // res.json(response);
+    const response = await prisma.marksEntry.findMany({
+      where: {
+        examCode: examCode,
+        examType: examType,
+        student:{
+          userId: userId
+        }
+      },
+      include:{
+        course: {
+          select:{
+            name: true
+          }
+        }
+      }
+    });
+    res.json(response);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

@@ -11,7 +11,7 @@ export const markAttendance = async (req: Request, res: Response) => {
     return {
       courseId: req.body.courseId,
       classType: req.body.classType,
-      attenanceType:req.body.attenanceType,
+      attendanceType:req.body.attendanceType,
       studentId: student.id,
       isPresent: student.isPresent,
       date: new Date(req.body.date),
@@ -95,6 +95,8 @@ export const getAttendanceByCourseDateId = async (
           lte: endDate,
         },
         courseId: courseId,
+        classType: req.body.classType,
+        attendanceType: req.body.attenanceType,
         student: {
           user: {
             id: userId,

@@ -62,18 +62,18 @@ const updateExamEntries = async (req, res) => {
 };
 exports.updateExamEntries = updateExamEntries;
 const getExamEntriesByCourseExam = async (req, res) => {
-    const examCode = req.query.examCode?.toString();
-    const examType = req?.query?.examType?.toString();
-    const courseId = req?.query?.courseId?.toString();
+    const examCode = req.body.examCode?.toString();
+    const examType = req?.body?.examType?.toString();
+    const courseId = req?.body?.courseId?.toString();
     try {
-        // const response = await prisma.marksEntry.findMany({
-        //     where: {
-        //       examCode: examCode,
-        //       examType: examType,
-        //       courseId: courseId
-        //     }
-        // });
-        // res.json(response);
+        const response = await prisma.marksEntry.findMany({
+            where: {
+                examCode: examCode,
+                examType: examType,
+                courseId: courseId
+            }
+        });
+        res.json(response);
     }
     catch (error) {
         console.error(error);
@@ -82,27 +82,27 @@ const getExamEntriesByCourseExam = async (req, res) => {
 };
 exports.getExamEntriesByCourseExam = getExamEntriesByCourseExam;
 const getExamEntriesByExamStudentId = async (req, res) => {
-    const examCode = req?.query?.examCode;
-    const examType = req?.query?.examType;
+    const examCode = req?.body?.examCode;
+    const examType = req?.body?.examType;
     const userId = req?.user?.userId;
     try {
-        // const response = await prisma.marksEntry.findMany({
-        //   where: {
-        //     examCode: examCode,
-        //     examType: examType,
-        //     student:{
-        //       userId: userId
-        //     }
-        //   },
-        //   include:{
-        //     course: {
-        //       select:{
-        //         name: true
-        //       }
-        //     }
-        //   }
-        // });
-        // res.json(response);
+        const response = await prisma.marksEntry.findMany({
+            where: {
+                examCode: examCode,
+                examType: examType,
+                student: {
+                    userId: userId
+                }
+            },
+            include: {
+                course: {
+                    select: {
+                        name: true
+                    }
+                }
+            }
+        });
+        res.json(response);
     }
     catch (error) {
         console.error(error);
